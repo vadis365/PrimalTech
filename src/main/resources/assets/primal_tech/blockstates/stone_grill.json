@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "primal_tech:stone_grill", "y": 90 },
+        "facing=south": { "model": "primal_tech:stone_grill", "y": 270 },
+        "facing=west":  { "model": "primal_tech:stone_grill"},
+        "facing=east":  { "model": "primal_tech:stone_grill", "y": 180 }
+    }
+}

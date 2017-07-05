@@ -1,0 +1,7 @@
+{
+	"parent": "block/column_side",
+	"textures": {
+		"side": "primal_tech:blocks/charcoal_block",
+        	"end": "primal_tech:blocks/charcoal_block_top"
+	}
+}

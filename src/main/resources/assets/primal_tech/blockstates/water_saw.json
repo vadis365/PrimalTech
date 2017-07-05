@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "primal_tech:blank"},
+        "facing=south": { "model": "primal_tech:blank"},
+        "facing=west":  { "model": "primal_tech:blank"},
+        "facing=east":  { "model": "primal_tech:blank"}
+    }
+}

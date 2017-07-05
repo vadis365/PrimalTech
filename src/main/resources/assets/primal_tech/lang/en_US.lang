@@ -1,0 +1,38 @@
+#Blocks
+tile.primal_tech.clay_kiln.name=Clay Kiln
+tile.primal_tech.flint_block.name=Flint Block
+tile.primal_tech.stick_bundle.name=Stick Bundle
+tile.primal_tech.fibre_torch.name=Un-Lit Fibre Torch
+tile.primal_tech.fibre_torch_lit.name=Lit Fibre Torch
+tile.primal_tech.charcoal_block.name=Low Grade Charcoal
+tile.primal_tech.work_stump.name=Work Stump
+tile.primal_tech.work_stump_upgraded.name=Work Stump Mk2
+tile.primal_tech.stone_grill.name=Stone Grill (Funway's High Tech Barbie)
+tile.primal_tech.wooden_hopper.name=Wopper Mk2 :P
+tile.primal_tech.charcoal_hopper.name=Flame Grilled Wopper
+tile.primal_tech.water_saw.name=Water Powered Saw
+
+#Items
+item.primal_tech.fire_sticks.name=Whittled Fire Sticks
+item.primal_tech.bone_pickaxe.name=Bone Pickaxe
+item.primal_tech.bone_axe.name=Bone Axe
+item.primal_tech.bone_shovel.name=Bone Shovel
+item.primal_tech.bone_sword.name=Bone Sword
+item.primal_tech.bone_knife.name=Bone Knife
+item.primal_tech.bone_shard.name=Bone Shard
+item.primal_tech.plant_fibres.name=Plant Fibres
+item.primal_tech.twine.name=Twine
+item.primal_tech.bone_shears.name=Bone Shears
+item.primal_tech.rock.name=Crafting Rock
+item.primal_tech.wood_club.name=Wood Club
+item.primal_tech.stone_club.name=Stone Club
+item.primal_tech.bone_club.name=Bone Club
+item.primal_tech.flint_edged_disc.name=Water Powered Saw Blade
+item.primal_tech.fluid_bladder.name=Fluid Bladder
+
+#Creative Tab
+itemGroup.primal_tech=Primal Tech
+
+#Tool Tips
+tooltip.fire_sticks_1=Hold in both hands and right click a block.
+tooltip.fire_sticks_2=Sets a fire at block looked at. Single use.

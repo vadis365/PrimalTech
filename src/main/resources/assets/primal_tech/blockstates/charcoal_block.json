@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"axis=y":  { "model": "primal_tech:charcoal_block" },
+        "axis=z":   { "model": "primal_tech:charcoal_block", "x": 90 },
+        "axis=x":   { "model": "primal_tech:charcoal_block", "x": 90, "y": 90 },
+        "axis=none": { "model": "primal_tech:charcoal_block_bark" }
+	}
+}

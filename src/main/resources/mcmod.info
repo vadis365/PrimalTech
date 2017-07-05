@@ -1,0 +1,20 @@
+[
+{
+  "modid": "primal_tech",
+  "name": "primal_tech",
+  "description": "Primal Technology.",
+  "version": "0.1.24",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "vadis365"
+  ],
+  "credits": "Thanks to people and stuff.",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]

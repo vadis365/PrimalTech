@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down": { "model": "primal_tech:charcoal_hopper_down" },
+        "facing=up": { "model": "primal_tech:charcoal_hopper_down" },
+        "facing=north": { "model": "primal_tech:charcoal_hopper_side" },
+        "facing=south": { "model": "primal_tech:charcoal_hopper_side", "y": 180 },
+        "facing=west": { "model": "primal_tech:charcoal_hopper_side", "y": 270 },
+        "facing=east": { "model": "primal_tech:charcoal_hopper_side", "y": 90 }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "ignition=0": { "model": "primal_tech:stick_bundle" },
+        "ignition=1": { "model": "primal_tech:stick_bundle" },
+        "ignition=2": { "model": "primal_tech:stick_bundle" },
+        "ignition=3": { "model": "primal_tech:stick_bundle" },
+        "ignition=4": { "model": "primal_tech:stick_bundle" },
+        "ignition=5": { "model": "primal_tech:stick_bundle" },
+        "ignition=6": { "model": "primal_tech:stick_bundle" },
+        "ignition=7": { "model": "primal_tech:stick_bundle" },
+        "ignition=8": { "model": "primal_tech:stick_bundle" },
+        "ignition=9": { "model": "primal_tech:stick_bundle" },
+        "ignition=10": { "model": "primal_tech:stick_bundle" },
+        "ignition=11": { "model": "primal_tech:stick_bundle" },
+        "ignition=12": { "model": "primal_tech:stick_bundle" },
+        "ignition=13": { "model": "primal_tech:stick_bundle" },
+        "ignition=14": { "model": "primal_tech:stick_bundle" },
+        "ignition=15": { "model": "primal_tech:stick_bundle" }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "primal_tech:work_stump", "y": 180 },
+        "facing=south": { "model": "primal_tech:work_stump" },
+        "facing=west":  { "model": "primal_tech:work_stump", "y": 90},
+        "facing=east":  { "model": "primal_tech:work_stump" , "y": 270 }
+    }
+}

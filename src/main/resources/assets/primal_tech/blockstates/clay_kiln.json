@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,fired=false": { "model": "primal_tech:clay_kiln", "y": 180 },
+        "facing=south,fired=false": { "model": "primal_tech:clay_kiln" },
+        "facing=west,fired=false":  { "model": "primal_tech:clay_kiln", "y": 90},
+        "facing=east,fired=false":  { "model": "primal_tech:clay_kiln" , "y": 270 },
+        "facing=north,fired=true": { "model": "primal_tech:clay_kiln_fired", "y": 180 },
+        "facing=south,fired=true": { "model": "primal_tech:clay_kiln_fired" },
+        "facing=west,fired=true":  { "model": "primal_tech:clay_kiln_fired", "y": 90},
+        "facing=east,fired=true":  { "model": "primal_tech:clay_kiln_fired" , "y": 270 }
+    }
+}

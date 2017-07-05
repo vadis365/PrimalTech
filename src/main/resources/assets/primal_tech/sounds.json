@@ -1,0 +1,8 @@
+{
+  "breaking_stuff": {
+    "category": "blocks",
+    "sounds": [
+      "primal_tech:breaking_stuff"
+    ]
+  }
+}
