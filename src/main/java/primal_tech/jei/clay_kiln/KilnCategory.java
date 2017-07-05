@@ -11,7 +11,7 @@ import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 
 public class KilnCategory<T extends IRecipeWrapper> extends BlankRecipeCategory<KilnRecipeWrapper> {
 
@@ -52,7 +52,7 @@ public class KilnCategory<T extends IRecipeWrapper> extends BlankRecipeCategory<
 
 	@Override
 	public String getTitle() {
-		return PrimalTech.CLAY_KILN.getLocalizedName();
+		return ModBlocks.CLAY_KILN.getLocalizedName();
 	}
 
 	@Override
@@ -65,5 +65,10 @@ public class KilnCategory<T extends IRecipeWrapper> extends BlankRecipeCategory<
 
 		guiItemStacks.set(ingredients);
 		recipeWrapper.setCurrentIngredients(guiItemStacks.getGuiIngredients());
+	}
+
+	@Override
+	public String getModName() {
+		return "primal_tech";
 	}
 }

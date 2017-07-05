@@ -83,11 +83,6 @@ public class BlockWoodenHopper extends BlockDirectional implements ITileEntityPr
     }
 
 	@Override
-    public boolean isFullyOpaque(IBlockState state) {
-        return true;
-    }
-
-	@Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
         updateState(worldIn, pos, state);
     }
@@ -221,6 +216,11 @@ public class BlockWoodenHopper extends BlockDirectional implements ITileEntityPr
 	@Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
+    }
+
+	@Override
+    public boolean isTopSolid(IBlockState state) {
+        return true;
     }
 
 	@Override

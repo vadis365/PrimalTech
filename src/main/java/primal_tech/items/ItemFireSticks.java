@@ -2,7 +2,10 @@ package primal_tech.items;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -19,6 +22,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import primal_tech.ModItems;
 import primal_tech.PrimalTech;
 import primal_tech.network.FireSticksMessage;
 
@@ -31,7 +35,7 @@ public class ItemFireSticks extends Item {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flag) {
 		list.add(TextFormatting.YELLOW + new TextComponentTranslation("tooltip.fire_sticks_1").getFormattedText());
 		list.add(TextFormatting.YELLOW + new TextComponentTranslation("tooltip.fire_sticks_2").getFormattedText());
 	}
@@ -51,7 +55,7 @@ public class ItemFireSticks extends Item {
 			ItemStack mainHandItem = player.getHeldItem(EnumHand.MAIN_HAND);
 			ItemStack offHandItem = player.getHeldItem(EnumHand.OFF_HAND);
 			if (!mainHandItem.isEmpty() && !offHandItem.isEmpty()) {
-				if (mainHandItem.getItem() == PrimalTech.FIRE_STICKS && offHandItem.getItem() == PrimalTech.FIRE_STICKS) {
+				if (mainHandItem.getItem() == ModItems.FIRE_STICKS && offHandItem.getItem() == ModItems.FIRE_STICKS) {
 					int count = mainHandItem.getTagCompound().getInteger("rubbingCount");
 					if (mainHandItem.getTagCompound().getBoolean("animate")) {
 						mainHandItem.getTagCompound().setInteger("rubbingCount", mainHandItem.getTagCompound().getInteger("rubbingCount") + 1);
@@ -95,7 +99,7 @@ public class ItemFireSticks extends Item {
 			//eventually add capability here
 
 			if (!mainHandItem.isEmpty() && !offHandItem.isEmpty()) {
-				if (mainHandItem.getItem() == PrimalTech.FIRE_STICKS && offHandItem.getItem() == PrimalTech.FIRE_STICKS) {
+				if (mainHandItem.getItem() == ModItems.FIRE_STICKS && offHandItem.getItem() == ModItems.FIRE_STICKS) {
 					mainHandItem.getTagCompound().setInteger("rubbingCount", 0);
 					mainHandItem.getTagCompound().setBoolean("animate", true);
 					return EnumActionResult.SUCCESS;

@@ -19,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 import primal_tech.blocks.BlockClayKiln;
 import primal_tech.configs.ConfigHandler;
 import primal_tech.inventory.InventoryWrapperKilnGrill;
@@ -48,12 +48,12 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
         if (getWorld().isRemote) 
             return;
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || isFireSource(getWorld().getBlockState(pos.down()).getBlock()) || getWorld().getBlockState(pos.down()).getBlock() == PrimalTech.CHARCOAL_HOPPER) && getTemp() < 200) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || isFireSource(getWorld().getBlockState(pos.down()).getBlock()) || getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER) && getTemp() < 200) {
         	setTemp(getTemp() + 1);
         	markForUpdate();
         }
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE && !isFireSource(getWorld().getBlockState(pos.down()).getBlock()) && getWorld().getBlockState(pos.down()).getBlock() != PrimalTech.CHARCOAL_HOPPER) && getTemp() > 0) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE && !isFireSource(getWorld().getBlockState(pos.down()).getBlock()) && getWorld().getBlockState(pos.down()).getBlock() != ModBlocks.CHARCOAL_HOPPER) && getTemp() > 0) {
         	setTemp(getTemp() - 1);
         	markForUpdate();
         }

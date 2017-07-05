@@ -34,6 +34,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import primal_tech.ModItems;
+import primal_tech.ModSounds;
 import primal_tech.PrimalTech;
 import primal_tech.configs.ConfigHandler;
 import primal_tech.tiles.TileEntityWorkStump;
@@ -189,7 +191,7 @@ public class BlockWorkStump extends Block implements ITileEntityProvider {
 			TileEntityWorkStump tile = (TileEntityWorkStump) world.getTileEntity(pos);
 			if (side.getIndex() == 1) {
 				getSlotClicked(direction, hitX, hitZ);
-				if (stack.getItem() != PrimalTech.ROCK && getSlotClicked(direction, hitX, hitZ) != 10) {
+				if (stack.getItem() != ModItems.ROCK && getSlotClicked(direction, hitX, hitZ) != 10) {
 					if (!stack.isEmpty() && tile.getStackInSlot(getSlotClicked(direction, hitX, hitZ)).isEmpty()) {
 						if (!world.isRemote) {
 							tile.setInventorySlotContents(getSlotClicked(direction, hitX, hitZ), stack.splitStack(1));
@@ -207,7 +209,7 @@ public class BlockWorkStump extends Block implements ITileEntityProvider {
 							tile.markForUpdate();
 						}
 					}
-				} else if (!stack.isEmpty() && stack.getItem() == PrimalTech.ROCK) {
+				} else if (!stack.isEmpty() && stack.getItem() == ModItems.ROCK) {
 					tile.setStrikes(tile.getStrikes() + 1);
 					stack.damageItem(1, player);
 					tile.setHit(true);
@@ -215,13 +217,13 @@ public class BlockWorkStump extends Block implements ITileEntityProvider {
 					if (tile.getDamage() >= ConfigHandler.WORK_STUMP_DAMAGE) {
 						breakBlock(world, pos, state);
 						world.destroyBlock(pos, false);
-						world.playSound((EntityPlayer)null, pos, PrimalTech.BREAKING_STUFF, SoundCategory.BLOCKS, 1F, 1F);
+						world.playSound((EntityPlayer)null, pos, ModSounds.BREAKING_STUFF, SoundCategory.BLOCKS, 1F, 1F);
 					}
 				}
 			}
 
 			if (side.getIndex() != 1 && side.getIndex() == direction.getIndex()) {
-				if (!stack.isEmpty() && tile.getStackInSlot(9).isEmpty() && stack.getItem() == PrimalTech.ROCK) {
+				if (!stack.isEmpty() && tile.getStackInSlot(9).isEmpty() && stack.getItem() == ModItems.ROCK) {
 					if (!world.isRemote) {
 						tile.setInventorySlotContents(9, stack.splitStack(1));
 						tile.markForUpdate();

@@ -16,7 +16,7 @@ import mezz.jei.api.ingredients.IModIngredientRegistration;
 import mezz.jei.api.recipe.IStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 import primal_tech.jei.stone_grill.GrillCategory;
 import primal_tech.jei.stone_grill.GrillRecipeHandler;
 import primal_tech.jei.stone_grill.GrillRecipeWrapper;
@@ -30,7 +30,7 @@ public class JEIPlugInStoneGrill implements IModPlugin {
 		IIngredientRegistry ingredientRegistry = registry.getIngredientRegistry();
 		registry.addRecipeCategories(new GrillCategory(guiHelper));
 		registry.addRecipeHandlers(new GrillRecipeHandler());
-		registry.addRecipeCategoryCraftingItem(new ItemStack(PrimalTech.STONE_GRILL), GrillCategory.UID);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.STONE_GRILL), GrillCategory.UID);
 		
 		List<GrillRecipeWrapper> recipes = new ArrayList<GrillRecipeWrapper>();
 		recipes = getFurnaceRecipes(recipes, jeiHelpers);
@@ -45,7 +45,7 @@ public class JEIPlugInStoneGrill implements IModPlugin {
 			List<ItemStack> output = new ArrayList();
 			ItemStack inStack = entry.getKey();
 			ItemStack outStack = entry.getValue();
-			ItemStack outStack2 = new ItemStack(PrimalTech.STONE_GRILL);
+			ItemStack outStack2 = new ItemStack(ModBlocks.STONE_GRILL);
 			List<ItemStack> inputs = stackHelper.getSubtypes(inStack);
 			output.add(outStack);
 			output.add(outStack2);

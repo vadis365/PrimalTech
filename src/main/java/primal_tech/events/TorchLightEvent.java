@@ -12,7 +12,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 import primal_tech.configs.ConfigHandler;
 
 public class TorchLightEvent {
@@ -22,9 +22,9 @@ public class TorchLightEvent {
 		EntityPlayer player = (EntityPlayer) event.getEntityPlayer();
 		ItemStack handItem = player.getHeldItem(event.getHand());
 			if (!handItem.isEmpty()) {
-				if (handItem.getItem() == PrimalTech.FIBRE_TORCH_ITEM) {
+				if (handItem.getItem() == ModBlocks.FIBRE_TORCH_ITEM) {
 					if (isFireSource(event.getWorld().getBlockState(event.getPos().up()).getBlock()) && event.getFace().getIndex() == 1 || isFireSource(event.getWorld().getBlockState(event.getPos()).getBlock())) {
-						lightTorch(handItem, player, new ItemStack(PrimalTech.FIBRE_TORCH_ITEM_LIT));
+						lightTorch(handItem, player, new ItemStack(ModBlocks.FIBRE_TORCH_ITEM_LIT));
 						event.getWorld().playSound((EntityPlayer)null, event.getPos(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.2F, 0.1F + (event.getWorld().rand.nextFloat() - event.getWorld().rand.nextFloat()) * 0.8F);
 						handItem.shrink(1);
 						event.setUseItem(Result.DENY);

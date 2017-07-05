@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -39,7 +40,7 @@ public class ItemFluidBladder extends ItemFluidContainer {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flag) {
 		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("Fluid")) {
 			FluidStack fluid = FluidStack.loadFluidStackFromNBT(stack.getTagCompound().getCompoundTag("Fluid"));
 			if(fluid !=null) {
@@ -124,7 +125,7 @@ public class ItemFluidBladder extends ItemFluidContainer {
 	}
 
 	@Override
-	public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, NBTTagCompound nbt) {
+	public ICapabilityProvider initCapabilities(@Nonnull final ItemStack stack, NBTTagCompound nbt) {
 		return new FluidHandlerItemStack.SwapEmpty(stack, stack, capacity) {
 
 			@Nonnull

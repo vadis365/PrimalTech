@@ -14,7 +14,7 @@ import primal_tech.tiles.TileEntityWorkStump;
 public class TileEntityWorkStumpRenderer extends TileEntitySpecialRenderer<TileEntityWorkStump> {
 
 	@Override
-	public void renderTileEntityAt(TileEntityWorkStump toolJig, double x, double y, double z, float partialTicks, int destroyStage) {
+	public void render(TileEntityWorkStump toolJig, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		if(toolJig == null || !toolJig.hasWorld())
 			return;
 		GlStateManager.pushMatrix();

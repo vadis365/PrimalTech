@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import primal_tech.ModBlocks;
 import primal_tech.PrimalTech;
 
 public class BlockFibreTorch extends BlockTorch {
@@ -34,8 +35,8 @@ public class BlockFibreTorch extends BlockTorch {
 			return true;
 		} else {
 			ItemStack mainHandItem = player.getHeldItem(EnumHand.MAIN_HAND);
-			if (!mainHandItem.isEmpty() && mainHandItem.getItem() == PrimalTech.FIBRE_TORCH_ITEM_LIT) {
-				world.setBlockState(pos, PrimalTech.FIBRE_TORCH_LIT.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+			if (!mainHandItem.isEmpty() && mainHandItem.getItem() == ModBlocks.FIBRE_TORCH_ITEM_LIT) {
+				world.setBlockState(pos, ModBlocks.FIBRE_TORCH_LIT.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
 				world.playSound((EntityPlayer)null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.2F, 0.1F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
 			}
 			return true;

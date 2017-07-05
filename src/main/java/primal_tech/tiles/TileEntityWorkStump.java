@@ -81,12 +81,12 @@ public class TileEntityWorkStump extends TileEntityInventoryHelper implements IT
 		if (!getWorld().isRemote) {
 			if (this instanceof TileEntityWorkStumpUpgraded ? getStrikes() >= ConfigHandler.CRAFTING_STRIKES_II : getStrikes() >= ConfigHandler.CRAFTING_STRIKES) {
 				craftMatrix = new InventoryWorkStump(new ContainerWorkStump(), this);
-				ItemStack output = CraftingManager.getInstance().findMatchingRecipe(craftMatrix, getWorld());
+				ItemStack output = CraftingManager.findMatchingResult(craftMatrix, getWorld());
 				if (output.isEmpty()) {
 					setStrikes(0);
 					return;
 				}
-				NonNullList<ItemStack> stuffLeft = CraftingManager.getInstance().getRemainingItems(craftMatrix, getWorld());
+				NonNullList<ItemStack> stuffLeft = CraftingManager.getRemainingItems(craftMatrix, getWorld());
 				for (int index = 0; index < 9; index++) {
 					if(!stuffLeft.get(index).isEmpty())
 						setInventorySlotContents(index, stuffLeft.get(index));

@@ -31,6 +31,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import primal_tech.ModBlocks;
+import primal_tech.ModItems;
 import primal_tech.PrimalTech;
 
 public class BlockStickBundle extends Block {
@@ -68,7 +70,7 @@ public class BlockStickBundle extends Block {
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
 		ret.add(new ItemStack(Items.STICK, 7, 0));
-		ret.add(new ItemStack(PrimalTech.TWINE, 2, 0));
+		ret.add(new ItemStack(ModItems.TWINE, 2, 0));
 		return ret;
 	}
 
@@ -133,7 +135,7 @@ public class BlockStickBundle extends Block {
 					mainHandItem.shrink(0);
 				}
 			}
-			if (!mainHandItem.isEmpty() && mainHandItem.getItem() == PrimalTech.FIBRE_TORCH_ITEM_LIT) {
+			if (!mainHandItem.isEmpty() && mainHandItem.getItem() == ModBlocks.FIBRE_TORCH_ITEM_LIT) {
 				state = state.cycleProperty(IGNITION_STAGE);
 				world.setBlockState(pos, Blocks.FIRE.getDefaultState(), 3);
 				world.playSound((EntityPlayer)null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.2F, 0.1F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);

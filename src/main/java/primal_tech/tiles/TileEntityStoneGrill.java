@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 import primal_tech.configs.ConfigHandler;
 import primal_tech.inventory.InventoryWrapperKilnGrill;
 
@@ -39,12 +39,12 @@ public class TileEntityStoneGrill extends TileEntityInventoryHelper implements I
         if (getWorld().isRemote) 
             return;
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() == PrimalTech.CHARCOAL_HOPPER || getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || isFireSource(getWorld().getBlockState(pos.down()).getBlock())) && getTemp() < 200 && canSmelt()) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER || getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || isFireSource(getWorld().getBlockState(pos.down()).getBlock())) && getTemp() < 200 && canSmelt()) {
         	setTemp(getTemp() + 1);
         	markForUpdate();
         }
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() != PrimalTech.CHARCOAL_HOPPER && getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE && !isFireSource(getWorld().getBlockState(pos.down()).getBlock())) && getTemp() > 0) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() != ModBlocks.CHARCOAL_HOPPER && getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE && !isFireSource(getWorld().getBlockState(pos.down()).getBlock())) && getTemp() > 0) {
         	setTemp(getTemp() - 1);
         	markForUpdate();
         }

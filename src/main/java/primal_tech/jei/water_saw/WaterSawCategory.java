@@ -11,7 +11,7 @@ import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 
 public class WaterSawCategory<T extends IRecipeWrapper> extends BlankRecipeCategory<WaterSawRecipeWrapper> {
 
@@ -47,7 +47,7 @@ public class WaterSawCategory<T extends IRecipeWrapper> extends BlankRecipeCateg
 
 	@Override
 	public String getTitle() {
-		return PrimalTech.WATER_SAW.getLocalizedName();
+		return ModBlocks.WATER_SAW.getLocalizedName();
 	}
 
 	@Override
@@ -60,5 +60,10 @@ public class WaterSawCategory<T extends IRecipeWrapper> extends BlankRecipeCateg
 
 		guiItemStacks.set(ingredients);
 		recipeWrapper.setCurrentIngredients(guiItemStacks.getGuiIngredients());
+	}
+
+	@Override
+	public String getModName() {
+		return "primal_tech";
 	}
 }

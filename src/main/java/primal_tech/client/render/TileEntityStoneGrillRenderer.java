@@ -4,10 +4,10 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -19,7 +19,7 @@ import primal_tech.tiles.TileEntityStoneGrill;
 public class TileEntityStoneGrillRenderer extends TileEntitySpecialRenderer<TileEntityStoneGrill> {
 
 	@Override
-	public void renderTileEntityAt(TileEntityStoneGrill grill, double x, double y, double z, float partialTicks, int destroyStage) {
+	public void render(TileEntityStoneGrill grill, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		if(grill == null || !grill.hasWorld())
 			return;
 		GlStateManager.pushMatrix();
@@ -72,10 +72,10 @@ public class TileEntityStoneGrillRenderer extends TileEntitySpecialRenderer<Tile
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer vertexbuffer = tessellator.getBuffer();
+		BufferBuilder vertexbuffer = tessellator.getBuffer();
 		GlStateManager.disableTexture2D();
 		vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-		FontRenderer fontrenderer = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
 		int width = fontrenderer.getStringWidth(count) / 2;
 		vertexbuffer.pos(x - width - 1, y - 1, z).color(0F, 0F, 0, 0.25F).endVertex();
 		vertexbuffer.pos(x - width - 1, y + 8, z).color(0F, 0F, 0, 0.25F).endVertex();

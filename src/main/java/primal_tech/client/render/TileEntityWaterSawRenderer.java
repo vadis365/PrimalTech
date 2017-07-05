@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 import primal_tech.blocks.BlockWaterSaw;
 import primal_tech.client.models.ModelWaterSaw;
 import primal_tech.tiles.TileEntityWaterSaw;
@@ -22,10 +22,10 @@ public class TileEntityWaterSawRenderer extends TileEntitySpecialRenderer<TileEn
 	private static final ResourceLocation BASE_TEXTURE = new ResourceLocation("primal_tech:textures/blocks/water_saw.png");
 	private final ModelWaterSaw saw_base = new ModelWaterSaw();
 
-	public void renderTile(TileEntityWaterSaw tile, double x, double y, double z, float partialTick, int destroyStage) {
+	public void renderTile(TileEntityWaterSaw tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		IBlockState state = tile.getWorld().getBlockState(tile.getPos());
 
-		if(state == null || state.getBlock() != PrimalTech.WATER_SAW)
+		if(state == null || state.getBlock() != ModBlocks.WATER_SAW)
 			return;
 
 		EnumFacing facing = state.getValue(BlockWaterSaw.FACING);
@@ -74,7 +74,7 @@ public class TileEntityWaterSawRenderer extends TileEntitySpecialRenderer<TileEn
 		GlStateManager.popMatrix();		
 		
 		GlStateManager.pushMatrix();
-		float ticks = tile.animationTicks + (tile.animationTicks - tile.prevAnimationTicks)  * partialTick;
+		float ticks = tile.animationTicks + (tile.animationTicks - tile.prevAnimationTicks)  * partialTicks;
 		GlStateManager.rotate(ticks, 1.0F, 0F, 0F);
 		
 		GlStateManager.pushMatrix();
@@ -91,12 +91,12 @@ public class TileEntityWaterSawRenderer extends TileEntitySpecialRenderer<TileEn
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntityWaterSaw te, double x, double y, double z, float partialTicks, int destroyStage) {
+	public void render(TileEntityWaterSaw te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		if(te == null || !te.hasWorld()) {
 			renderTileAsItem(x, y, z);
 			return;
 		}
-		renderTile(te, x, y, z, partialTicks, destroyStage);
+		renderTile(te, x, y, z, partialTicks, destroyStage, alpha);
 	}
 
 	private void renderTileAsItem(double x, double y, double z) {

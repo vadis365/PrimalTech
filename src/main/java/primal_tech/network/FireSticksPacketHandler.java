@@ -24,8 +24,8 @@ public class FireSticksPacketHandler implements IMessageHandler<FireSticksMessag
 			return null;
 
 		else if (!world.isRemote)
-			if (ctx.getServerHandler().playerEntity.getEntityId() == message.entityID) {
-				final EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+			if (ctx.getServerHandler().player.getEntityId() == message.entityID) {
+				final EntityPlayerMP player = ctx.getServerHandler().player;
 				player.getServer().addScheduledTask(new Runnable() {
 					public void run() {
 						world.playSound((EntityPlayer)null, message.tilePos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.2F, 0.1F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);

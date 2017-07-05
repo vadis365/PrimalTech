@@ -312,7 +312,7 @@ public class TileEntityWoodenHopper extends TileEntityInventoryHelper implements
         if (entityItem == null)
             return false;
         else {
-            ItemStack itemstack = entityItem.getEntityItem().copy();
+            ItemStack itemstack = entityItem.getItem().copy();
             ItemStack itemstack1 = putStackInInventoryAllSlots(iInventory, itemIn, itemstack, (EnumFacing)null);
 
             if (itemstack1.isEmpty()) {
@@ -320,7 +320,7 @@ public class TileEntityWoodenHopper extends TileEntityInventoryHelper implements
                entityItem.setDead();
             }
             else
-               entityItem.setEntityItemStack(itemstack1);
+               entityItem.setItem(itemstack1);
 
             return flag;
         }

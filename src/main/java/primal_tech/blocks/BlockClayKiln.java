@@ -28,6 +28,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import primal_tech.ModBlocks;
 import primal_tech.PrimalTech;
 import primal_tech.recipes.ClayKilnRecipes;
 import primal_tech.tiles.TileEntityKiln;
@@ -113,7 +114,7 @@ public class BlockClayKiln extends Block implements ITileEntityProvider {
 		if (!world.isRemote) {
 			TileEntityKiln tile = (TileEntityKiln) world.getTileEntity(pos);
 			IBlockState state = world.getBlockState(pos);
-			world.setBlockState(pos, PrimalTech.CLAY_KILN.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(FIRED, true), 3);
+			world.setBlockState(pos, ModBlocks.CLAY_KILN.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(FIRED, true), 3);
 			if (tile != null) {
 				tile.validate();
 				world.setTileEntity(pos, tile);

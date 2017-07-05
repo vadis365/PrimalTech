@@ -13,7 +13,7 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 import net.minecraft.item.ItemStack;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 import primal_tech.jei.water_saw.WaterSawCategory;
 import primal_tech.jei.water_saw.WaterSawRecipeHandler;
 import primal_tech.jei.water_saw.WaterSawRecipeWrapper;
@@ -28,7 +28,7 @@ public class JEIPlugInWaterSaw implements IModPlugin {
 		IIngredientRegistry ingredientRegistry = registry.getIngredientRegistry();
 		registry.addRecipeCategories(new WaterSawCategory(guiHelper));
 		registry.addRecipeHandlers(new WaterSawRecipeHandler());
-		registry.addRecipeCategoryCraftingItem(new ItemStack(PrimalTech.WATER_SAW), WaterSawCategory.UID);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.WATER_SAW), WaterSawCategory.UID);
 		
 		List<WaterSawRecipeWrapper> recipes = new ArrayList<WaterSawRecipeWrapper>();
 		recipes = getTestRecipe(recipes);
@@ -40,7 +40,7 @@ public class JEIPlugInWaterSaw implements IModPlugin {
 			List<ItemStack> output = new ArrayList();
 			ItemStack inStack = recipe.getInput();
 			ItemStack outStack = recipe.getOutput(inStack);
-			ItemStack outStack2 = new ItemStack(PrimalTech.WATER_SAW);
+			ItemStack outStack2 = new ItemStack(ModBlocks.WATER_SAW);
 			output.add(outStack);
 			output.add(outStack2);
 			recipes.add(new WaterSawRecipeWrapper(inStack, output));

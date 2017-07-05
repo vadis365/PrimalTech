@@ -7,35 +7,35 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
+import primal_tech.ModItems;
 import primal_tech.configs.ConfigHandler;
 
 public class ModRecipes {
 
 	public static void addRecipes() {
 
-		 OreDictionary.registerOre("string", PrimalTech.TWINE);
-		 OreDictionary.registerOre("flakeBone", PrimalTech.BONE_SHARD);
+		// OreDictionary.registerOre("string", ModItems.TWINE);
+		// OreDictionary.registerOre("flakeBone", ModItems.BONE_SHARD);
 
-		 addShapedRecipe(new ItemStack(PrimalTech.CLAY_KILN), "CCC", "C C", "CCC", 'C', new ItemStack(Items.CLAY_BALL));
-		 addShapedRecipe(new ItemStack(PrimalTech.BONE_KNIFE), " B", "S ", 'B', new ItemStack(PrimalTech.BONE_SHARD), 'S', "stickWood");
-		 addShapedRecipe(new ItemStack(PrimalTech.STICK_BUNDLE), "STS", "SSS", "STS", 'T', new ItemStack(PrimalTech.TWINE), 'S', "stickWood");
-		 addShapedRecipe(new ItemStack(PrimalTech.FIBRE_TORCH, 4, 0), "F", "S", 'F', new ItemStack(PrimalTech.PLANT_FIBRES, 1, 0), 'S', "stickWood");
-		 addShapelessRecipe(new ItemStack(Items.COAL, 4, 1), PrimalTech.CHARCOAL_BLOCK);
-		 addShapelessRecipe(new ItemStack(PrimalTech.ROCK, 4, 0), "cobblestone");
+		 addShapedRecipe(getResource("primal_tech:clay_kiln"), getResource("recipe_clay_kiln"), new ItemStack(ModBlocks.CLAY_KILN), "CCC", "C C", "CCC", 'C', new ItemStack(Items.CLAY_BALL));
+		 addShapedRecipe(getResource("primal_tech:bone_knife"), getResource("recipe_bone_knife"), new ItemStack(ModItems.BONE_KNIFE), " B", "S ", 'B', new ItemStack(ModItems.BONE_SHARD), 'S', "stickWood");
+		 addShapedRecipe(getResource("primal_tech:stick_bundle"), getResource("recipe_stick_bundle"), new ItemStack(ModBlocks.STICK_BUNDLE), "STS", "SSS", "STS", 'T', new ItemStack(ModItems.TWINE), 'S', "stickWood");
+		 addShapedRecipe(getResource("primal_tech:fibre_torch"), getResource("recipe_fibre_torch"), new ItemStack(ModBlocks.FIBRE_TORCH, 4, 0), "F", "S", 'F', new ItemStack(ModItems.PLANT_FIBRES, 1, 0), 'S', "stickWood");
+		 addShapelessRecipe(getResource("primal_tech:charcoal"), getResource("recipe_charcoal"), new ItemStack(Items.COAL, 4, 1), Ingredient.fromStacks(new ItemStack(ModBlocks.CHARCOAL_BLOCK)));
+		 addShapelessRecipe(getResource("primal_tech:rock"), getResource("recipe_rock"), new ItemStack(ModItems.ROCK, 4, 0), Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE)));
 		 
-		 addShapedRecipe(new ItemStack(PrimalTech.WOOD_CLUB), "L", "S", 'L', "logWood", 'S', "stickWood");
-		 addShapedRecipe(new ItemStack(PrimalTech.STONE_CLUB), "C", "S", 'C', "cobblestone", 'S', "stickWood");
-		 addShapedRecipe(new ItemStack(PrimalTech.BONE_CLUB), "B", "S", 'B', new ItemStack(Blocks.BONE_BLOCK), 'S', "stickWood");
+		 addShapedRecipe(getResource("primal_tech:wood_club"), getResource("recipe_wood_club"), new ItemStack(ModItems.WOOD_CLUB), "L", "S", 'L', "logWood", 'S', "stickWood");
+		 addShapedRecipe(getResource("primal_tech:stone_club"), getResource("recipe_stone_club"), new ItemStack(ModItems.STONE_CLUB), "C", "S", 'C', "cobblestone", 'S', "stickWood");
+		 addShapedRecipe(getResource("primal_tech:bone_club"), getResource("recipe_bone_club"), new ItemStack(ModItems.BONE_CLUB), "B", "S", 'B', new ItemStack(Blocks.BONE_BLOCK), 'S', "stickWood");
 
-		 addShapelessRecipe(new ItemStack(PrimalTech.PLANT_FIBRES), new ItemStack(Blocks.TALLGRASS, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(PrimalTech.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE));
-		 addShapelessRecipe(new ItemStack(PrimalTech.TWINE, 3, 0), new ItemStack(PrimalTech.PLANT_FIBRES), new ItemStack(PrimalTech.PLANT_FIBRES), new ItemStack(PrimalTech.PLANT_FIBRES));
-		 addShapelessRecipe(new ItemStack(PrimalTech.FIRE_STICKS), "stickWood", new ItemStack(PrimalTech.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE));
+		 addShapelessRecipe(getResource("primal_tech:plant_fibres"), getResource("recipe_plant_fibres"), new ItemStack(ModItems.PLANT_FIBRES), Ingredient.fromStacks(new ItemStack(Blocks.TALLGRASS, 1, OreDictionary.WILDCARD_VALUE)), Ingredient.fromStacks(new ItemStack(ModItems.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE)));
+		 addShapelessRecipe(getResource("primal_tech:twine"), getResource("recipe_twine"), new ItemStack(ModItems.TWINE, 3, 0), Ingredient.fromStacks(new ItemStack(ModItems.PLANT_FIBRES)), Ingredient.fromStacks(new ItemStack(ModItems.PLANT_FIBRES)), Ingredient.fromStacks(new ItemStack(ModItems.PLANT_FIBRES)));
+		 addShapelessRecipe(getResource("primal_tech:fire_sticks"), getResource("recipe_fire_sticks"), new ItemStack(ModItems.FIRE_STICKS), Ingredient.fromStacks(new ItemStack(Items.STICK)), Ingredient.fromStacks(new ItemStack(ModItems.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE)));
 	}
 
 	public static void addKilnRecipes() {
@@ -116,12 +116,16 @@ public class ModRecipes {
 		}
 	}
 
-	private static void addShapelessRecipe(ItemStack output, Object... parameters) {
-		GameRegistry.addRecipe(new ShapelessOreRecipe(output, parameters));
+	private static void addShapelessRecipe(ResourceLocation name, ResourceLocation group, ItemStack output, Ingredient... params) {
+		GameRegistry.addShapelessRecipe(name, group, output, params);
 	}
 
-	private static void addShapedRecipe(ItemStack output, Object... parameters) {
-		GameRegistry.addRecipe(new ShapedOreRecipe(output, parameters));
+	private static void addShapedRecipe(ResourceLocation name, ResourceLocation group, ItemStack output, Object... params) {
+		GameRegistry.addShapedRecipe(name, group, output, params);
+	}
+
+	private static ResourceLocation getResource(String inName) {
+		return new ResourceLocation(inName);
 	}
 
 }

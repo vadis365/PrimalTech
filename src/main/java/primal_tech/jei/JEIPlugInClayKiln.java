@@ -13,7 +13,7 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 import net.minecraft.item.ItemStack;
-import primal_tech.PrimalTech;
+import primal_tech.ModBlocks;
 import primal_tech.jei.clay_kiln.KilnCategory;
 import primal_tech.jei.clay_kiln.KilnRecipeHandler;
 import primal_tech.jei.clay_kiln.KilnRecipeWrapper;
@@ -28,7 +28,7 @@ public class JEIPlugInClayKiln implements IModPlugin {
 		IIngredientRegistry ingredientRegistry = registry.getIngredientRegistry();
 		registry.addRecipeCategories(new KilnCategory(guiHelper));
 		registry.addRecipeHandlers(new KilnRecipeHandler());
-		registry.addRecipeCategoryCraftingItem(new ItemStack(PrimalTech.CLAY_KILN), KilnCategory.UID);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.CLAY_KILN), KilnCategory.UID);
 		
 		List<KilnRecipeWrapper> recipes = new ArrayList<KilnRecipeWrapper>();
 		recipes = getTestRecipe(recipes);
@@ -40,7 +40,7 @@ public class JEIPlugInClayKiln implements IModPlugin {
 			List<ItemStack> output = new ArrayList();
 			ItemStack inStack = recipe.getInput();
 			ItemStack outStack = recipe.getOutput(inStack);
-			ItemStack outStack2 = new ItemStack(PrimalTech.CLAY_KILN);
+			ItemStack outStack2 = new ItemStack(ModBlocks.CLAY_KILN);
 			output.add(outStack);
 			output.add(outStack2);
 			recipes.add(new KilnRecipeWrapper(inStack, output));

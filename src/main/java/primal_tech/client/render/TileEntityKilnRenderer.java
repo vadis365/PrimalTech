@@ -18,7 +18,7 @@ public class TileEntityKilnRenderer extends TileEntitySpecialRenderer<TileEntity
 	private final RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
 	@Override
-	public void renderTileEntityAt(TileEntityKiln tile, double x, double y, double z, float partialTick, int destroyStage) {
+	public void render(TileEntityKiln tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		if(tile == null || !tile.hasWorld())
 			return;
 		// Item
