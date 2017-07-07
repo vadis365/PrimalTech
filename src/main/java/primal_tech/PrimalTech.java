@@ -26,7 +26,7 @@ import primal_tech.network.FireSticksPacketHandler;
 import primal_tech.proxy.CommonProxy;
 import primal_tech.recipes.ModRecipes;
 
-@Mod(modid = "primal_tech", name = "primal_tech", version = "0.1.24", guiFactory = "primal_tech.configs.ConfigGuiFactory", dependencies = "after:*")
+@Mod(modid = "primal_tech", name = "primal_tech", version = "0.2.0", guiFactory = "primal_tech.configs.ConfigGuiFactory", dependencies = "after:*")
 
 public class PrimalTech {
 
