@@ -57,7 +57,7 @@ public class PrimalTech {
 		ModItems.init();
 		ModSounds.init();
 		ModRecipes.init();
-		
+
 		GameRegistry.registerFuelHandler(new IFuelHandler() {
 			@Override
 			public int getBurnTime(ItemStack fuel) {
@@ -67,9 +67,7 @@ public class PrimalTech {
 			}
 		});
 
-		ModRecipes.addRecipes();
-		ModRecipes.addKilnRecipes();
-		ModRecipes.addWaterSawRecipes();
+		//ModRecipes.addRecipes();
 
 		PROXY.registerTileEntities();
 		PROXY.registerRenderers();
@@ -80,6 +78,8 @@ public class PrimalTech {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		ModRecipes.addKilnRecipes();
+		ModRecipes.addWaterSawRecipes();
 		MinecraftForge.EVENT_BUS.register(new TorchLightEvent());
 		MinecraftForge.EVENT_BUS.register(ConfigHandler.INSTANCE);
 	}
