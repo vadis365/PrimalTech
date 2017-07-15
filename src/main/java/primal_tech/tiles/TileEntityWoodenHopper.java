@@ -461,7 +461,7 @@ public class TileEntityWoodenHopper extends TileEntityInventoryHelper implements
 
     public long getLastUpdateTime() {
     	return tickedGameTime;
-	} // Forge
+	}
 
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
