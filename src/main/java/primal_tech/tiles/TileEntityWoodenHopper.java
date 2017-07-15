@@ -175,8 +175,8 @@ public class TileEntityWoodenHopper extends TileEntityInventoryHelper implements
 		EnumFacing enumfacing = BlockWoodenHopper.getFacing(getBlockMetadata()).getOpposite();
 		TileEntity tile = getWorld().getTileEntity(pos.offset(enumfacing.getOpposite()));
 
-		if (tile != null && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, enumfacing.getOpposite())) {
-			IItemHandler handler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, enumfacing.getOpposite());
+		if (tile != null && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, enumfacing)) {
+			IItemHandler handler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, enumfacing);
 			for (int i = 0; i < this.getSizeInventory(); ++i) {
 				if (!getStackInSlot(i).isEmpty()) {
 					ItemStack stack = getStackInSlot(i).copy();
