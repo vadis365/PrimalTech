@@ -147,6 +147,7 @@ public class TileEntityWaterSaw extends TileEntityInventoryHelper implements ITi
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
 		readFromNBT(packet.getNbtCompound());
+		getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
 	}
 
 	@Override
