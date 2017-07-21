@@ -44,6 +44,7 @@ import primal_tech.blocks.BlockFibreTorch;
 import primal_tech.blocks.BlockFibreTorchLit;
 import primal_tech.blocks.BlockFlint;
 import primal_tech.blocks.BlockStickBundle;
+import primal_tech.blocks.BlockStoneAnvil;
 import primal_tech.blocks.BlockStoneGrill;
 import primal_tech.blocks.BlockWaterSaw;
 import primal_tech.blocks.BlockWoodenHopper;
@@ -63,7 +64,7 @@ import primal_tech.network.FireSticksPacketHandler;
 import primal_tech.proxy.CommonProxy;
 import primal_tech.recipes.ModRecipes;
 
-@Mod(modid = "primal_tech", name = "primal_tech", version = "0.1.26", guiFactory = "primal_tech.configs.ConfigGuiFactory", dependencies = "after:*")
+@Mod(modid = "primal_tech", name = "primal_tech", version = "0.1.27", guiFactory = "primal_tech.configs.ConfigGuiFactory", dependencies = "after:*")
 
 public class PrimalTech {
 
@@ -74,9 +75,9 @@ public class PrimalTech {
 	public static CommonProxy PROXY;
 
 	public static Item FIRE_STICKS, BONE_PICKAXE, BONE_AXE, BONE_SHOVEL, BONE_SWORD, BONE_SHEARS, BONE_KNIFE, FLUID_BLADDER,
-			BONE_SHARD, FLINT_BLOCK_ITEM, CHARCOAL_BLOCK_ITEM, CLAY_KILN_ITEM, STICK_BUNDLE_ITEM, FIBRE_TORCH_ITEM, WOODEN_HOPPER_ITEM, CHARCOAL_HOPPER_ITEM,
+			BONE_SHARD, FLINT_BLOCK_ITEM, CHARCOAL_BLOCK_ITEM, CLAY_KILN_ITEM, STICK_BUNDLE_ITEM, FIBRE_TORCH_ITEM, WOODEN_HOPPER_ITEM, CHARCOAL_HOPPER_ITEM, STONE_ANVIL_ITEM,
 			FIBRE_TORCH_ITEM_LIT, PLANT_FIBRES, TWINE, WORK_STUMP_ITEM, ROCK, WOOD_CLUB, BONE_CLUB, STONE_CLUB, STONE_GRILL_ITEM, WORK_STUMP_II_ITEM, WATER_SAW_ITEM, FLINT_SAW_BLADE;
-	public static Block CLAY_KILN, FLINT_BLOCK, STICK_BUNDLE, FIBRE_TORCH, FIBRE_TORCH_LIT, CHARCOAL_BLOCK, WORK_STUMP, STONE_GRILL, WOODEN_HOPPER, WORK_STUMP_II, CHARCOAL_HOPPER, WATER_SAW;
+	public static Block CLAY_KILN, FLINT_BLOCK, STICK_BUNDLE, FIBRE_TORCH, FIBRE_TORCH_LIT, CHARCOAL_BLOCK, WORK_STUMP, STONE_GRILL, WOODEN_HOPPER, WORK_STUMP_II, CHARCOAL_HOPPER, WATER_SAW, STONE_ANVIL;
 	public static ToolMaterial TOOL_BONE = EnumHelper.addToolMaterial("BONE_TOOLS", 1, 100, 5.0F, 0.0F, 15);
 	public static ToolMaterial TOOL_BONE_KNIFE = EnumHelper.addToolMaterial("BONE_KNIFE", 0, 10, 2.0F, 0.0F, 0);
 	public static SoundEvent BREAKING_STUFF;
@@ -254,6 +255,11 @@ public class PrimalTech {
 		GameRegistry.register(WATER_SAW.setRegistryName("primal_tech", "water_saw").setUnlocalizedName("primal_tech.water_saw"));
 		GameRegistry.register(WATER_SAW_ITEM.setRegistryName(WATER_SAW.getRegistryName()).setUnlocalizedName("primal_tech.water_saw"));
 
+		STONE_ANVIL = new BlockStoneAnvil();
+		STONE_ANVIL_ITEM = new ItemBlock(STONE_ANVIL);
+		GameRegistry.register(STONE_ANVIL.setRegistryName("primal_tech", "stone_anvil").setUnlocalizedName("primal_tech.stone_anvil"));
+		GameRegistry.register(STONE_ANVIL_ITEM.setRegistryName(STONE_ANVIL.getRegistryName()).setUnlocalizedName("primal_tech.stone_anvil"));
+
 		GameRegistry.registerFuelHandler(new IFuelHandler() {
 			@Override
 			public int getBurnTime(ItemStack fuel) {
@@ -266,6 +272,7 @@ public class PrimalTech {
 		ModRecipes.addRecipes();
 		ModRecipes.addKilnRecipes();
 		ModRecipes.addWaterSawRecipes();
+		ModRecipes.addStoneAnvilRecipes();
 
 		PROXY.registerTileEntities();
 		PROXY.registerRenderers();

@@ -85,7 +85,6 @@ public class TileEntityWoodenHopper extends TileEntityInventoryHelper implements
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
 		readFromNBT(packet.getNbtCompound());
-		getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
 	}
 
 	@Override

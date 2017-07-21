@@ -4,27 +4,37 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import primal_tech.blocks.BlockWaterSaw;
-import primal_tech.recipes.WaterSawRecipes;
+import primal_tech.configs.ConfigHandler;
+import primal_tech.recipes.StoneAnvilRecipes;
 
-public class TileEntityWaterSaw extends TileEntityInventoryHelper implements ITickable {
+public class TileEntityStoneAnvil extends TileEntityInventoryHelper implements ITickable {
     private IItemHandler itemHandler;
 	private static final int[] SLOTS = new int[] {0};
 	public boolean active;
-	public int animationTicks, prevAnimationTicks, progress;
-	public TileEntityWaterSaw() {
+	public float itemRotation = 0;
+	public int itemJump = 0;
+	public int itemJumpPrev = 0;
+	public boolean hit = false;
+	public int damage = 0;
+	public int strikes = 0;
+	public TileEntityStoneAnvil() {
 		super(1);
 	}
 
@@ -34,52 +44,45 @@ public class TileEntityWaterSaw extends TileEntityInventoryHelper implements ITi
 	}
 
 	@Override
-    public void update() {
-		if (getWorld().isRemote && getActive()) {
-			prevAnimationTicks = animationTicks;
-			if (animationTicks < 360)
-				animationTicks += 10;
-			if (animationTicks >= 360) {
-				animationTicks -= 360;
-				prevAnimationTicks -= 360;
+	public void update() {
+		if (getWorld().isRemote) {
+			itemJumpPrev = itemJump;
+		}
+		if (gethit()) {
+			if (getWorld().isRemote) {
+					itemJump = 1 + getWorld().rand.nextInt(5);
+					itemRotation = (getWorld().rand.nextFloat() - getWorld().rand.nextFloat()) * 25F;
+			}
+			if (!getWorld().isRemote)
+				getWorld().playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 1F, 0.9F - getWorld().rand.nextFloat() * 0.125F);
+			setHit(false);
+		}
+
+		if (!gethit()) {
+			if (getWorld().isRemote) {
+				if (itemJump > 0)
+					itemJump --;
 			}
 		}
-		
-		if (getWorld().isRemote && !getActive())
-			prevAnimationTicks = animationTicks;
 
 		if (!getWorld().isRemote) {
-			if (getWorld().getBlockState(pos) != null && getActive() && !getItems().get(0).isEmpty() && getChoppingTime() != 0) {
-				setChoppingProgress(getChoppingProgress() + 1);
-				if (getChoppingProgress() >= getChoppingTime()) {
-					ItemStack output = WaterSawRecipes.getOutput(getItems().get(0));
-					if (!output.isEmpty() && output != getItems().get(0)) {
-						getItems().get(0).shrink(1);
-						spawnItemStack(getWorld(), pos.getX() + 0.5D, pos.getY() + 1D, pos.getZ() + 0.5D, output);
-						setChoppingProgress(0);
-					}
+			if (getStrikes() >= ConfigHandler.CRAFTING_STRIKES) {
+				ItemStack input = getItems().get(0);
+				ItemStack output = StoneAnvilRecipes.getOutput(getItems().get(0));
+				if (output.isEmpty() || output.equals(input)) {
+					setStrikes(0);
+					return;
+				} else {
+					decrStackSize(0, 1);
+					spawnItemStack(getWorld(), pos.getX() + 0.5D, pos.getY() + 1D, pos.getZ() + 0.5D, output);
+					setDamage(getDamage() + 1);
+					setStrikes(0);
+					EntityXPOrb orb = new EntityXPOrb(world, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 1);
+					world.spawnEntity(orb);
 				}
-			}
-			// meh - neighbour block changes don't do what I need - so this horrible check is here!
-			if (getWorld().getTotalWorldTime() % 10 == 0) {
-				if (!getActive() && getWaterFlow(getWorld().getBlockState(pos)))
-					setActive(true);
-
-				if (getActive() && !getWaterFlow(getWorld().getBlockState(pos)))
-					setActive(false);
 			}
 		}
     }
-
-	private boolean getWaterFlow(IBlockState state) {
-		EnumFacing enumfacing = ((EnumFacing) state.getValue(BlockWaterSaw.FACING));
-		IBlockState blockBelow = getWorld().getBlockState(pos.down());
-		IBlockState blockBelowBack = getWorld().getBlockState(pos.down().offset(enumfacing.getOpposite()));
-		if(blockBelow.getBlock() == Blocks.WATER && blockBelow.getBlock().getMetaFromState(blockBelow) == 0)
-			if(blockBelowBack.getBlock() == Blocks.WATER && blockBelowBack.getBlock().getMetaFromState(blockBelowBack) == 1)
-				return true;
-		return false;
-	}
 
 	public static void spawnItemStack(World world, double x, double y, double z, ItemStack stack) {
 		EntityItem entityitem = new EntityItem(world, x, y, z, stack);
@@ -90,45 +93,38 @@ public class TileEntityWaterSaw extends TileEntityInventoryHelper implements ITi
 		world.spawnEntity(entityitem);
 	}
 
-	public void setChoppingProgress(int choppingProgress) {
-		progress = choppingProgress;
-		markForUpdate();
+    public boolean gethit() {
+		return hit;
 	}
 
-	public int getChoppingProgress() {
-		return progress;
+    public void setHit(boolean isHit) {
+		hit = isHit;
 	}
 
-	public int getChoppingTime() {
-		return WaterSawRecipes.getChopTime(getItems().get(0));
+	@Override
+	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+	return oldState.getBlock() != newState.getBlock();
 	}
 
-	public boolean getActive() {
-		return active;
-	}
-
-	public void setActive(boolean isActive) {
-		active = isActive;
-		markForUpdate();
-	}
-
-    public void markForUpdate() {
+	public void markForUpdate() {
         IBlockState state = this.getWorld().getBlockState(this.getPos());
-        this.getWorld().notifyBlockUpdate(this.getPos(), state, state, 2);
+        this.getWorld().notifyBlockUpdate(this.getPos(), state, state, 3);
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("progress", progress);
-		nbt.setBoolean("active", active);
+		nbt.setInteger("damage", damage);
+		nbt.setInteger("strikes", strikes);
+		nbt.setBoolean("hit", hit);
 		return nbt;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		progress = nbt.getInteger("progress");
-		active = nbt.getBoolean("active");
+		damage = nbt.getInteger("damage");
+		strikes = nbt.getInteger("strikes");
+		hit = nbt.getBoolean("hit");
 	}
 
 	@Override
@@ -148,26 +144,32 @@ public class TileEntityWaterSaw extends TileEntityInventoryHelper implements ITi
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
 		readFromNBT(packet.getNbtCompound());
 	}
+	
+	@Override
+    public ItemStack decrStackSize(int index, int count) {
+		markForUpdate();
+		return super.decrStackSize(index, count);
+	}
 
+	@Override
+    public void setInventorySlotContents(int index, @Nullable ItemStack stack) {
+		markForUpdate();
+		super.setInventorySlotContents(index, stack);
+    }
+	
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
 		return SLOTS;
 	}
 
 	@Override
-    public void setInventorySlotContents(int index, @Nullable ItemStack stack) {
-		super.setInventorySlotContents(index, stack);
-		markForUpdate();
-    }
-
-	@Override
 	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
-		return index == 0;
+		return false;
 	}
 
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-		return index == 0;
+		return false;
 	}
 
 	@Override
@@ -178,6 +180,24 @@ public class TileEntityWaterSaw extends TileEntityInventoryHelper implements ITi
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		return true;
+	}
+
+	public void setStrikes(int strikes) {
+		this.strikes = strikes;
+		markForUpdate();
+	}
+
+	public int getStrikes() {
+		return strikes;
+	}
+	
+	public void setDamage(int damage) {
+		this.damage = damage;
+		markForUpdate();
+	}
+
+	public int getDamage() {
+		return damage;
 	}
 
 	// INVENTORY CAPABILITIES STUFF

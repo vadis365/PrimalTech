@@ -11,8 +11,9 @@ public class ConfigHandler {
 	public Configuration CONFIG;
 	public static String[] CLAY_KILN_RECIPES;
 	public static String[] WATER_SAW_RECIPES;
+	public static String[] STONE_ANVIL_RECIPES;
 	public static String[] FIRE_SOURCES;
-	public static String[] USED_CATEGORIES = {"Clay Kiln Recipes", "Blocks Considered as Fire Sources", "Work Stump Setting", "Charcoal", "Water Powered Saw Recipes", "Fluid Bladder"};
+	public static String[] USED_CATEGORIES = {"Clay Kiln Recipes", "Blocks Considered as Fire Sources", "Work Stump Setting", "Charcoal", "Water Powered Saw Recipes", "Fluid Bladder", "Stone Anvil Setting", "Stone Anvil Recipes"};
 	public static int WORK_STUMP_DAMAGE;
 	public static int WORK_STUMP_II_DAMAGE;
 	public static int CRAFTING_STRIKES;
@@ -20,6 +21,7 @@ public class ConfigHandler {
 	public static int ROCK_DAMAGE;
 	public static int CHARCOAL_BURN_TIME;
 	public static boolean FLUID_BLADDER_PLACES_FLUID;
+	public static int STONE_ANVIL_DAMAGE;
 	public void loadConfig(FMLPreInitializationEvent event) {
 		CONFIG = new Configuration(event.getSuggestedConfigurationFile());
 		CONFIG.load();
@@ -41,6 +43,9 @@ public class ConfigHandler {
 		"minecraft:planks,5,4#minecraft:log2,1#80"
 		}, "Happy Birthday!");
 
+		CONFIG.addCustomCategoryComment("Stone Anvil Recipes", "output, input syntax is: modName:itemName,metaData,amount#modName:itemName,metaData");
+		STONE_ANVIL_RECIPES = CONFIG.getStringList("Stone Anvil Recipes", "Stone Anvil Recipes", new String[] { "minecraft:flint,0,4#primal_tech:flint_block,0"}, "Happy Birthday!");
+
 		CONFIG.addCustomCategoryComment("Blocks Considered as Fire Sources", "Used By unlit torches (can be used for more later :P ) " );
 		FIRE_SOURCES = CONFIG.getStringList("Fire Source blocks", "Blocks Considered as Fire Sources", new String[] { "minecraft:fire", "primal_tech:fibre_torch_lit"}, "Happy Birthday!");
 
@@ -48,6 +53,8 @@ public class ConfigHandler {
 
 		WORK_STUMP_II_DAMAGE = CONFIG.get("Work Stump Setting", "Crafting Uses Before Upgraded Stump Breaks", 40).getInt(40);
 
+		STONE_ANVIL_DAMAGE = CONFIG.get("Stone Anvil Setting", "Crafting Uses Before Stone Anvil Breaks", 20).getInt(20);
+		
 		CRAFTING_STRIKES = CONFIG.getInt("Craftng Rock Strikes Needed To Craft on The Stump", "Work Stump Setting", 4, 1, Integer.MAX_VALUE, "");
 
 		CRAFTING_STRIKES_II = CONFIG.getInt("Craftng Rock Strikes Needed To Craft on The Upgraded Stump", "Work Stump Setting", 4, 1, Integer.MAX_VALUE, "");
