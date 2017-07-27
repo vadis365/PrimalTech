@@ -1,8 +1,11 @@
 package primal_tech.client.render;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLivingBase;
@@ -60,7 +63,12 @@ public class TileEntityWaterSawRenderer extends TileEntitySpecialRenderer<TileEn
 			GlStateManager.rotate(90F, 1.0F, 0F, 0F);
 			bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+			RenderHelper.disableStandardItemLighting();
+			GlStateManager.enableBlend();
+			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Minecraft.getMinecraft().getRenderItem().renderItem(stack, Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, (World) null, (EntityLivingBase) null));
+			GlStateManager.enableLighting();
+			GlStateManager.disableBlend();
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.popMatrix();
 		}

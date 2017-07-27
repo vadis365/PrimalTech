@@ -59,7 +59,8 @@ public class ClientProxy extends CommonProxy {
 		ModelLoader.setCustomModelResourceLocation(PrimalTech.FLUID_BLADDER, 0, new ModelResourceLocation("primal_tech:fluid_bladder_empty", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(PrimalTech.FLUID_BLADDER, 1, new ModelResourceLocation("primal_tech:fluid_bladder_filled", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(PrimalTech.STONE_ANVIL_ITEM, 0, new ModelResourceLocation("primal_tech:stone_anvil", "inventory"));
-		
+		ModelLoader.setCustomModelResourceLocation(PrimalTech.STONE_MALLET, 0, new ModelResourceLocation("primal_tech:stone_mallet", "inventory"));
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKiln.class, new TileEntityKilnRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWorkStump.class, new TileEntityWorkStumpRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWorkStumpUpgraded.class, new TileEntityWorkStumpUpgradedRenderer());

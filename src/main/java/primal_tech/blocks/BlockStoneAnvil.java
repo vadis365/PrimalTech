@@ -101,9 +101,10 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
+	@Override
 	@Nullable
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(this);
+		return null;
 	}
 
 	@Override
@@ -139,7 +140,7 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 		ItemStack stack = player.getHeldItemMainhand();
 		if (world.getTileEntity(pos) instanceof TileEntityStoneAnvil) {
 			TileEntityStoneAnvil tile = (TileEntityStoneAnvil) world.getTileEntity(pos);
-			if (stack.getItem() != PrimalTech.ROCK) {
+			if (stack.getItem() != PrimalTech.STONE_MALLET) {
 				if (!stack.isEmpty() && tile.getStackInSlot(0).isEmpty()) {
 					if (!world.isRemote) {
 						tile.setInventorySlotContents(0, new ItemStack(stack.getItem(), 1, stack.getItemDamage()));
@@ -163,7 +164,7 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 						}
 					}
 				}
-			} else if (!stack.isEmpty() && stack.getItem() == PrimalTech.ROCK) {
+			} else if (!stack.isEmpty() && stack.getItem() == PrimalTech.STONE_MALLET) {
 				if (!tile.getStackInSlot(0).isEmpty())
 					tile.setStrikes(tile.getStrikes() + 1);
 				stack.damageItem(1, player);
@@ -172,7 +173,7 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 				if (tile.getDamage() >= ConfigHandler.STONE_ANVIL_DAMAGE) {
 					breakBlock(world, pos, state);
 					world.destroyBlock(pos, false);
-					world.playSound((EntityPlayer) null, pos, PrimalTech.BREAKING_STUFF, SoundCategory.BLOCKS, 1F, 1F);
+					world.playSound((EntityPlayer) null, pos, PrimalTech.BREAKING_STUFF, SoundCategory.BLOCKS, 1F, 0.75F);
 				}
 			}
 		}

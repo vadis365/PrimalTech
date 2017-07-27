@@ -77,7 +77,7 @@ public class TileEntityStoneAnvilRenderer extends TileEntitySpecialRenderer<Tile
 			GlStateManager.rotate(-90F + rotation, 0.0F, 0.0F, 1.0F);
 			RenderHelper.disableStandardItemLighting();
 			GlStateManager.enableBlend();
-			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);;
+			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Minecraft.getMinecraft().getRenderItem().renderItem(stack, Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, (World) null, (EntityLivingBase) null));
 			GlStateManager.enableLighting();
 			GlStateManager.disableBlend();

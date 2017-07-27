@@ -1,11 +1,13 @@
 package primal_tech;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -20,6 +22,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
@@ -64,7 +68,7 @@ import primal_tech.network.FireSticksPacketHandler;
 import primal_tech.proxy.CommonProxy;
 import primal_tech.recipes.ModRecipes;
 
-@Mod(modid = "primal_tech", name = "primal_tech", version = "0.1.27", guiFactory = "primal_tech.configs.ConfigGuiFactory", dependencies = "after:*")
+@Mod(modid = "primal_tech", name = "primal_tech", version = "0.1.28", guiFactory = "primal_tech.configs.ConfigGuiFactory", dependencies = "after:*")
 
 public class PrimalTech {
 
@@ -76,7 +80,7 @@ public class PrimalTech {
 
 	public static Item FIRE_STICKS, BONE_PICKAXE, BONE_AXE, BONE_SHOVEL, BONE_SWORD, BONE_SHEARS, BONE_KNIFE, FLUID_BLADDER,
 			BONE_SHARD, FLINT_BLOCK_ITEM, CHARCOAL_BLOCK_ITEM, CLAY_KILN_ITEM, STICK_BUNDLE_ITEM, FIBRE_TORCH_ITEM, WOODEN_HOPPER_ITEM, CHARCOAL_HOPPER_ITEM, STONE_ANVIL_ITEM,
-			FIBRE_TORCH_ITEM_LIT, PLANT_FIBRES, TWINE, WORK_STUMP_ITEM, ROCK, WOOD_CLUB, BONE_CLUB, STONE_CLUB, STONE_GRILL_ITEM, WORK_STUMP_II_ITEM, WATER_SAW_ITEM, FLINT_SAW_BLADE;
+			FIBRE_TORCH_ITEM_LIT, PLANT_FIBRES, TWINE, WORK_STUMP_ITEM, ROCK, WOOD_CLUB, BONE_CLUB, STONE_CLUB, STONE_GRILL_ITEM, WORK_STUMP_II_ITEM, WATER_SAW_ITEM, FLINT_SAW_BLADE, STONE_MALLET;
 	public static Block CLAY_KILN, FLINT_BLOCK, STICK_BUNDLE, FIBRE_TORCH, FIBRE_TORCH_LIT, CHARCOAL_BLOCK, WORK_STUMP, STONE_GRILL, WOODEN_HOPPER, WORK_STUMP_II, CHARCOAL_HOPPER, WATER_SAW, STONE_ANVIL;
 	public static ToolMaterial TOOL_BONE = EnumHelper.addToolMaterial("BONE_TOOLS", 1, 100, 5.0F, 0.0F, 15);
 	public static ToolMaterial TOOL_BONE_KNIFE = EnumHelper.addToolMaterial("BONE_KNIFE", 0, 10, 2.0F, 0.0F, 0);
@@ -174,6 +178,16 @@ public class PrimalTech {
 		FLUID_BLADDER = new ItemFluidBladder(Fluid.BUCKET_VOLUME).setCreativeTab(PrimalTech.TAB);
 		GameRegistry.register(FLUID_BLADDER.setRegistryName("primal_tech", "fluid_bladder").setUnlocalizedName("primal_tech.fluid_bladder"));
 
+		STONE_MALLET = new Item() {
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
+				list.add(TextFormatting.YELLOW + new TextComponentTranslation("tooltip.mallet_1").getFormattedText());
+			}
+		};
+		STONE_MALLET.setMaxDamage(ConfigHandler.MALLET_DAMAGE).setMaxStackSize(1).setCreativeTab(PrimalTech.TAB);
+		GameRegistry.register(STONE_MALLET.setRegistryName("primal_tech", "stone_mallet").setUnlocalizedName("primal_tech.stone_mallet"));
+
 		//Blocks and Item Blocks
 		CLAY_KILN = new BlockClayKiln();
 		CLAY_KILN_ITEM = new ItemBlock(CLAY_KILN);
@@ -196,7 +210,7 @@ public class PrimalTech {
 		GameRegistry.register(FIBRE_TORCH_ITEM.setRegistryName(FIBRE_TORCH.getRegistryName()).setUnlocalizedName("primal_tech.fibre_torch"));
 
 		FIBRE_TORCH_LIT = new BlockFibreTorchLit();
-		FIBRE_TORCH_ITEM_LIT = new ItemBlock(FIBRE_TORCH_LIT ){
+		FIBRE_TORCH_ITEM_LIT = new ItemBlock(FIBRE_TORCH_LIT ) {
 			@Override
 		    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 				target.setFire(5);

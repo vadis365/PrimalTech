@@ -19,6 +19,7 @@ public class ConfigHandler {
 	public static int CRAFTING_STRIKES;
 	public static int CRAFTING_STRIKES_II;
 	public static int ROCK_DAMAGE;
+	public static int MALLET_DAMAGE;
 	public static int CHARCOAL_BURN_TIME;
 	public static boolean FLUID_BLADDER_PLACES_FLUID;
 	public static int STONE_ANVIL_DAMAGE;
@@ -60,6 +61,8 @@ public class ConfigHandler {
 		CRAFTING_STRIKES_II = CONFIG.getInt("Craftng Rock Strikes Needed To Craft on The Upgraded Stump", "Work Stump Setting", 4, 1, Integer.MAX_VALUE, "");
 
 		ROCK_DAMAGE = CONFIG.get("Work Stump Setting", "Max Damage Of Crafing Rock", 160).getInt(160);
+
+		MALLET_DAMAGE = CONFIG.get("Stone Anvil Setting", "Max Damage Of Stone Mallet", 160).getInt(160);
 
 		CHARCOAL_BURN_TIME = CONFIG.getInt("Chance that fire will consume this block. 300 being a 100% chance, 0, being a 0% chance", "Charcoal", 0, 0, 300, "");
 
