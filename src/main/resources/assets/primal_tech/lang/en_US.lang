@@ -12,6 +12,7 @@ tile.primal_tech.wooden_hopper.name=Wopper Mk2 :P
 tile.primal_tech.charcoal_hopper.name=Flame Grilled Wopper
 tile.primal_tech.water_saw.name=Water Powered Saw
 tile.primal_tech.stone_anvil.name=Stone Anvil
+tile.primal_tech.leaf_bed.name=Bed of Straw and Leaves
 
 #Items
 item.primal_tech.fire_sticks.name=Whittled Fire Sticks
@@ -31,6 +32,7 @@ item.primal_tech.bone_club.name=Bone Club
 item.primal_tech.flint_edged_disc.name=Water Powered Saw Blade
 item.primal_tech.fluid_bladder.name=Fluid Bladder
 item.primal_tech.stone_mallet.name=Stone Mallet
+item.primal_tech.leaf_bed.name=Bed of Straw and Leaves
 
 #Creative Tab
 itemGroup.primal_tech=Primal Tech

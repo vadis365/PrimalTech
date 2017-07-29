@@ -7,6 +7,7 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import primal_tech.PrimalTech;
+import primal_tech.blocks.BlockLeafBed;
 import primal_tech.blocks.BlockWoodenHopper;
 import primal_tech.client.render.TileEntityKilnRenderer;
 import primal_tech.client.render.TileEntityStoneAnvilRenderer;
@@ -60,7 +61,9 @@ public class ClientProxy extends CommonProxy {
 		ModelLoader.setCustomModelResourceLocation(PrimalTech.FLUID_BLADDER, 1, new ModelResourceLocation("primal_tech:fluid_bladder_filled", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(PrimalTech.STONE_ANVIL_ITEM, 0, new ModelResourceLocation("primal_tech:stone_anvil", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(PrimalTech.STONE_MALLET, 0, new ModelResourceLocation("primal_tech:stone_mallet", "inventory"));
-
+		ModelLoader.setCustomModelResourceLocation(PrimalTech.LEAF_BED_ITEM, 0, new ModelResourceLocation("primal_tech:leaf_bed", "inventory"));
+		ModelLoader.setCustomStateMapper((PrimalTech.LEAF_BED), (new StateMap.Builder()).ignore(new IProperty[] {BlockLeafBed.OCCUPIED}).build());
+		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKiln.class, new TileEntityKilnRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWorkStump.class, new TileEntityWorkStumpRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWorkStumpUpgraded.class, new TileEntityWorkStumpUpgradedRenderer());
