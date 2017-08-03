@@ -1,7 +1,6 @@
 package primal_tech.items;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBed;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +15,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import primal_tech.ModBlocks;
 import primal_tech.PrimalTech;
+import primal_tech.blocks.BlockLeafBed;
 
 public class ItemLeafBed extends Item {
 
@@ -49,9 +49,9 @@ public class ItemLeafBed extends Item {
 				boolean flag3 = flag1 || world.isAirBlock(blockpos);
 
 				 if (flag2 && flag3 && world.getBlockState(pos.down()).isTopSolid() && world.getBlockState(blockpos.down()).isTopSolid()) {
-					IBlockState iblockstate2 = ModBlocks.LEAF_BED.getDefaultState().withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockBed.FACING, enumfacing).withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT);
+					IBlockState iblockstate2 = ModBlocks.LEAF_BED.getDefaultState().withProperty(BlockLeafBed.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockLeafBed.FACING, enumfacing).withProperty(BlockLeafBed.PART, BlockLeafBed.EnumPartType.FOOT);
 					world.setBlockState(pos, iblockstate2, 10);
-					world.setBlockState(blockpos, iblockstate2.withProperty(BlockBed.PART, BlockBed.EnumPartType.HEAD), 10);
+					world.setBlockState(blockpos, iblockstate2.withProperty(BlockLeafBed.PART, BlockLeafBed.EnumPartType.HEAD), 10);
 					world.notifyNeighborsRespectDebug(pos, block, false);
 					world.notifyNeighborsRespectDebug(blockpos, iblockstate1.getBlock(), false);
 					SoundType soundtype = iblockstate2.getBlock().getSoundType(iblockstate2, world, pos, player);

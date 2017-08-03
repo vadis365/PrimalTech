@@ -152,7 +152,9 @@ public class ModItems {
 					STONE_CLUB,
 					FLINT_SAW_BLADE,
 					BONE_SWORD,
-					BONE_KNIFE
+					BONE_KNIFE,
+					STONE_MALLET,
+					LEAF_BED_ITEM
 			};
 			final IForgeRegistry<Item> registry = event.getRegistry();
 
