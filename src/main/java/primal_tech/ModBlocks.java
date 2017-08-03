@@ -26,7 +26,9 @@ import primal_tech.blocks.BlockClayKiln;
 import primal_tech.blocks.BlockFibreTorch;
 import primal_tech.blocks.BlockFibreTorchLit;
 import primal_tech.blocks.BlockFlint;
+import primal_tech.blocks.BlockLeafBed;
 import primal_tech.blocks.BlockStickBundle;
+import primal_tech.blocks.BlockStoneAnvil;
 import primal_tech.blocks.BlockStoneGrill;
 import primal_tech.blocks.BlockWaterSaw;
 import primal_tech.blocks.BlockWoodenHopper;
@@ -37,9 +39,9 @@ public class ModBlocks {
 
 	public static ItemBlock FLINT_BLOCK_ITEM, CHARCOAL_BLOCK_ITEM, CLAY_KILN_ITEM, STICK_BUNDLE_ITEM, FIBRE_TORCH_ITEM,
 		WOODEN_HOPPER_ITEM, CHARCOAL_HOPPER_ITEM, FIBRE_TORCH_ITEM_LIT, WORK_STUMP_ITEM, STONE_GRILL_ITEM, WORK_STUMP_II_ITEM,
-		WATER_SAW_ITEM;
+		WATER_SAW_ITEM, STONE_ANVIL_ITEM;
 	public static Block CLAY_KILN, FLINT_BLOCK, STICK_BUNDLE, FIBRE_TORCH, FIBRE_TORCH_LIT, CHARCOAL_BLOCK, WORK_STUMP,
-		STONE_GRILL, WOODEN_HOPPER, WORK_STUMP_II, CHARCOAL_HOPPER, WATER_SAW;
+		STONE_GRILL, WOODEN_HOPPER, WORK_STUMP_II, CHARCOAL_HOPPER, WATER_SAW, STONE_ANVIL, LEAF_BED;
 
 	public static void init() {
 		// Blocks and Item Blocks
@@ -122,7 +124,14 @@ public class ModBlocks {
 		WATER_SAW_ITEM = new ItemBlock(WATER_SAW);
 		WATER_SAW.setRegistryName("primal_tech", "water_saw").setUnlocalizedName("primal_tech.water_saw");
 		WATER_SAW_ITEM.setRegistryName(WATER_SAW.getRegistryName()).setUnlocalizedName("primal_tech.water_saw");
+		
+		STONE_ANVIL = new BlockStoneAnvil();
+		STONE_ANVIL_ITEM = new ItemBlock(STONE_ANVIL);
+		STONE_ANVIL.setRegistryName("primal_tech", "stone_anvil").setUnlocalizedName("primal_tech.stone_anvil");
+		STONE_ANVIL_ITEM.setRegistryName(STONE_ANVIL.getRegistryName()).setUnlocalizedName("primal_tech.stone_anvil");
 
+		LEAF_BED = new BlockLeafBed();
+		LEAF_BED.setRegistryName("primal_tech", "leaf_bed").setUnlocalizedName("primal_tech.leaf_bed");
 	}
 
 	@Mod.EventBusSubscriber(modid = "primal_tech")
@@ -144,7 +153,9 @@ public class ModBlocks {
 					WOODEN_HOPPER,
 					WORK_STUMP_II,
 					CHARCOAL_HOPPER,
-					WATER_SAW
+					WATER_SAW,
+					STONE_ANVIL,
+					LEAF_BED
 					};
 			final IForgeRegistry<Block> registry = event.getRegistry();
 			for (final Block block : blocks) {
@@ -167,7 +178,8 @@ public class ModBlocks {
 					WORK_STUMP_ITEM,
 					STONE_GRILL_ITEM,
 					WORK_STUMP_II_ITEM,
-					WATER_SAW_ITEM
+					WATER_SAW_ITEM,
+					STONE_ANVIL_ITEM,
 					};
 			final IForgeRegistry<Item> registry = event.getRegistry();
 			for (final ItemBlock item : items) {

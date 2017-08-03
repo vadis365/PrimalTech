@@ -80,6 +80,7 @@ public class PrimalTech {
 	public void init(FMLInitializationEvent event) {
 		ModRecipes.addKilnRecipes();
 		ModRecipes.addWaterSawRecipes();
+		ModRecipes.addStoneAnvilRecipes();
 		MinecraftForge.EVENT_BUS.register(new TorchLightEvent());
 		MinecraftForge.EVENT_BUS.register(ConfigHandler.INSTANCE);
 	}

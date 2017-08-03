@@ -3,6 +3,9 @@ package primal_tech;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -10,10 +13,15 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import primal_tech.configs.ConfigHandler;
 import primal_tech.items.ItemBoneAxe;
@@ -22,11 +30,12 @@ import primal_tech.items.ItemBoneShears;
 import primal_tech.items.ItemClub;
 import primal_tech.items.ItemFireSticks;
 import primal_tech.items.ItemFluidBladder;
+import primal_tech.items.ItemLeafBed;
 import primal_tech.items.ItemMaterials;
 
 public class ModItems {
 	public static Item FIRE_STICKS, BONE_PICKAXE, BONE_AXE, BONE_SHOVEL, BONE_SHEARS, FLUID_BLADDER, BONE_SHARD,
-	PLANT_FIBRES, TWINE, ROCK, WOOD_CLUB, BONE_CLUB, STONE_CLUB, FLINT_SAW_BLADE;
+	PLANT_FIBRES, TWINE, ROCK, WOOD_CLUB, BONE_CLUB, STONE_CLUB, FLINT_SAW_BLADE, STONE_MALLET, LEAF_BED_ITEM;
 	public static ItemSword BONE_SWORD, BONE_KNIFE;
 	public static void init() {
 
@@ -106,6 +115,20 @@ public class ModItems {
 
 		FLUID_BLADDER = new ItemFluidBladder(Fluid.BUCKET_VOLUME).setCreativeTab(PrimalTech.TAB);
 		FLUID_BLADDER.setRegistryName("primal_tech", "fluid_bladder").setUnlocalizedName("primal_tech.fluid_bladder");
+		
+		LEAF_BED_ITEM = new ItemLeafBed();
+		LEAF_BED_ITEM.setRegistryName("primal_tech", "leaf_bed").setUnlocalizedName("primal_tech.leaf_bed");
+		
+		STONE_MALLET = new Item() {
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void addInformation(ItemStack stack, @Nullable World world, List<String> list, ITooltipFlag flagIn) {
+				list.add(TextFormatting.YELLOW + new TextComponentTranslation("tooltip.mallet_1").getFormattedText());
+			}
+		};
+		STONE_MALLET.setMaxDamage(ConfigHandler.MALLET_DAMAGE).setMaxStackSize(1).setCreativeTab(PrimalTech.TAB);
+		STONE_MALLET.setRegistryName("primal_tech", "stone_mallet").setUnlocalizedName("primal_tech.stone_mallet");
+
 	}
 	
 	@Mod.EventBusSubscriber(modid = "primal_tech")

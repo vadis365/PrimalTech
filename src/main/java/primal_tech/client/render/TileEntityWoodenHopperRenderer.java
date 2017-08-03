@@ -49,15 +49,19 @@ public class TileEntityWoodenHopperRenderer extends TileEntitySpecialRenderer<Ti
 	public void renderItemInSlot(TileEntityWoodenHopper hopper, ItemStack stack, float x, float y, float z, float scale) {
 		if (!stack.isEmpty()) {
 			GlStateManager.pushMatrix();
-			bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-			Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
 			GlStateManager.translate(x, y, z);
 			GlStateManager.scale(-scale, -scale, scale);
 			GlStateManager.rotate(-90F, 0.0F, 1.0F, 0.0F);
 			GlStateManager.rotate(180F, 1.0F, 0.0F, 0.0F);
 			GlStateManager.rotate(0F, 0.0F, 0.0F, 1.0F);
+			bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+			Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
 			RenderHelper.disableStandardItemLighting();
+			GlStateManager.enableBlend();
+			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Minecraft.getMinecraft().getRenderItem().renderItem(stack, Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, (World) null, (EntityLivingBase) null));
+			GlStateManager.enableLighting();
+			GlStateManager.disableBlend();
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.popMatrix();
 		}

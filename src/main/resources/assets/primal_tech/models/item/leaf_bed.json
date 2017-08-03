@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "primal_tech:items/leaf_bed"
+    }
+}

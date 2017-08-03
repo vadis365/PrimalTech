@@ -166,6 +166,44 @@ public class ModRecipes {
 		}
 	}
 
+	public static void addStoneAnvilRecipes() {
+		//I mean it's also an inefficient mess but it works O.o
+		for (int items = 0; items < ConfigHandler.STONE_ANVIL_RECIPES.length; items++) {
+			List<String> outputItemList = new ArrayList<String>();
+			List<String> inputItemList = new ArrayList<String>();
+			List<String> finalOutPutItem = new ArrayList<String>();
+			List<String> finalInPutItem = new ArrayList<String>();
+			String[] entry = ConfigHandler.STONE_ANVIL_RECIPES[items].trim().split("#");
+			if (entry.length != 2)
+				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + ConfigHandler.STONE_ANVIL_RECIPES[items]);
+			outputItemList.add(entry[0]);
+			inputItemList.add(entry[1]);
+
+		for (int finalItem = 0; finalItem < 3; finalItem++) {
+			String[] finalEntry = outputItemList.get(0).trim().split(",");
+			if (finalEntry.length != 3)
+				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + outputItemList.get(0));
+			finalOutPutItem.add(finalEntry[0]);
+			finalOutPutItem.add(finalEntry[1]);
+			finalOutPutItem.add(finalEntry[2]);
+		}
+
+		for (int finalItem = 0; finalItem < 2; finalItem++) {
+			String[] finalEntry = inputItemList.get(0).trim().split(",");
+			if (finalEntry.length != 2)
+				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + inputItemList.get(0));
+			finalInPutItem.add(finalEntry[0]);
+			finalInPutItem.add(finalEntry[1]);
+		}
+
+		ItemStack outStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalOutPutItem.get(0))), Integer.valueOf(finalOutPutItem.get(2)), Integer.valueOf(finalOutPutItem.get(1)));
+		ItemStack inStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalInPutItem.get(0))), 1, Integer.valueOf(finalInPutItem.get(1)));
+
+		if(!outStack.isEmpty() && !inStack.isEmpty())
+			StoneAnvilRecipes.addRecipe(outStack, inStack);
+		}
+	}
+
 	private static ResourceLocation getResource(String inName) {
 		return new ResourceLocation(inName);
 	}

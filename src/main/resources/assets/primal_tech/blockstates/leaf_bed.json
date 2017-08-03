@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,part=foot": { "model": "primal_tech:leaf_bed", "y": 180 },
+        "facing=east,part=foot":  { "model": "primal_tech:leaf_bed", "y": 270 },
+        "facing=south,part=foot": { "model": "primal_tech:leaf_bed" },
+        "facing=west,part=foot":  { "model": "primal_tech:leaf_bed", "y": 90 },
+        "facing=north,part=head": { "model": "primal_tech:leaf_bed" },
+        "facing=east,part=head":  { "model": "primal_tech:leaf_bed", "y": 90 },
+        "facing=south,part=head": { "model": "primal_tech:leaf_bed", "y": 180 },
+        "facing=west,part=head":  { "model": "primal_tech:leaf_bed", "y": 270 }
+    }
+}

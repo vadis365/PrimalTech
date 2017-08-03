@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import primal_tech.blocks.BlockLeafBed;
 import primal_tech.blocks.BlockWoodenHopper;
 
 @Mod.EventBusSubscriber(modid = "primal_tech", value = Side.CLIENT)
@@ -47,5 +48,9 @@ public class ModModels {
 		ModelLoader.setCustomModelResourceLocation(ModItems.FLINT_SAW_BLADE, 0, new ModelResourceLocation("primal_tech:flint_edged_disc", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.FLUID_BLADDER, 0, new ModelResourceLocation("primal_tech:fluid_bladder_empty", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.FLUID_BLADDER, 1, new ModelResourceLocation("primal_tech:fluid_bladder_filled", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModBlocks.STONE_ANVIL_ITEM, 0, new ModelResourceLocation("primal_tech:stone_anvil", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.STONE_MALLET, 0, new ModelResourceLocation("primal_tech:stone_mallet", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.LEAF_BED_ITEM, 0, new ModelResourceLocation("primal_tech:leaf_bed", "inventory"));
+		ModelLoader.setCustomStateMapper((ModBlocks.LEAF_BED), (new StateMap.Builder()).ignore(new IProperty[] {BlockLeafBed.OCCUPIED}).build());
 	}
 }	

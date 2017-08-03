@@ -1,7 +1,10 @@
 package primal_tech.client.render;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -18,7 +21,7 @@ public class TileEntityKilnRenderer extends TileEntitySpecialRenderer<TileEntity
 	private final RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
 	@Override
-	public void render(TileEntityKiln tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+	public void render(TileEntityKiln tile, double x, double y, double z, float partialTick, int destroyStage, float alpha) {
 		if(tile == null || !tile.hasWorld())
 			return;
 		// Item
@@ -39,7 +42,12 @@ public class TileEntityKilnRenderer extends TileEntitySpecialRenderer<TileEntity
 				GlStateManager.rotate(90, 0, 1, 0);
 			bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+			RenderHelper.disableStandardItemLighting();
+			GlStateManager.enableBlend();
+			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Minecraft.getMinecraft().getRenderItem().renderItem(stack, Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, (World) null, (EntityLivingBase) null));
+			GlStateManager.enableLighting();
+			GlStateManager.disableBlend();
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.popMatrix();
 			//could probably shrink this down :P
@@ -56,7 +64,12 @@ public class TileEntityKilnRenderer extends TileEntitySpecialRenderer<TileEntity
 				GlStateManager.rotate(90, 0, 1, 0);
 			bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+			RenderHelper.disableStandardItemLighting();
+			GlStateManager.enableBlend();
+			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Minecraft.getMinecraft().getRenderItem().renderItem(stack, Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, (World) null, (EntityLivingBase) null));
+			GlStateManager.enableLighting();
+			GlStateManager.disableBlend();
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.popMatrix();
 		}
