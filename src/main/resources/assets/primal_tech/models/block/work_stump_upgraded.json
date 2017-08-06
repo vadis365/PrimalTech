@@ -5,12 +5,7 @@
         "1": "blocks/log_oak_top",
         "2": "blocks/planks_oak",
         "3": "primal_tech:blocks/work_stump_top",
-        "4": "blocks/bed_head_side",
-        "5": "blocks/bed_head_end",
-        "6": "blocks/bed_head_top",
-        "7": "blocks/bed_feet_side",
-        "8": "blocks/bed_feet_end",
-        "9": "blocks/bed_feet_top",
+        "4": "entity/bed/red",
         "particle": "blocks/log_oak"
     },
     "elements": [
@@ -177,15 +172,15 @@
                 "down": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
             }
         },
-        {
+       {
             "name": "bed_head",
             "from": [ 6.0, 6.0, 7.0 ], 
             "to": [ 10.0, 7.0, 10.0 ], 
             "faces": {
-                "north": { "texture": "#4", "uv": [ 16.0, 16.0, 0.0, 7.0 ], "rotation": 180 },
-                "east": { "texture": "#5", "uv": [ 0.0, 7.0, 16.0, 16.0 ] },
-                "west": { "texture": "#5", "uv": [ 16.0, 7.0, 0.0, 16.0 ] },
-                "up": { "texture": "#6", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "rotation": 270 }
+                "north": { "texture": "#4", "uv": [ 2.0, 2.0, 5.0, 3.0 ], "rotation": 180 },
+                "east": { "texture": "#4", "uv": [ 1.0, 1.0, 2.0, 5.0 ], "rotation": 90 },
+                "west": { "texture": "#4", "uv": [ 5.0, 2.0, 6.0, 5.0 ], "rotation": 270 },
+                "up": { "texture": "#4", "uv": [ 2.0, 2.0, 5.0, 5.0 ] }
             }
         },
         {
@@ -193,10 +188,10 @@
             "from": [ 6.0, 6.0, 10.0 ], 
             "to": [ 10.0, 7.0, 13.0 ], 
             "faces": {
-                "east": { "texture": "#7", "uv": [ 0.0, 7.0, 16.0, 16.0 ] },
-                "south": { "texture": "#8", "uv": [ 0.0, 16.0, 16.0, 7.0 ], "rotation": 180 },
-                "west": { "texture": "#7", "uv": [ 16.0, 7.0, 0.0, 16.0 ] },
-                "up": { "texture": "#9", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "rotation": 180 }
+                "east": { "texture": "#4", "uv": [ 6.0, 6.0, 9.0, 7.0 ], "rotation": 180 },
+                "south": { "texture": "#4", "uv": [ 6.0, 7.0, 9.0, 6.0 ] },
+                "west": { "texture": "#4", "uv": [ 9.0, 6.0, 6.0, 7.0 ], "rotation": 180 },
+                "up": { "texture": "#4", "uv": [ 1.0, 7.0, 6.0, 11.0 ] }
             }
         }
     ]

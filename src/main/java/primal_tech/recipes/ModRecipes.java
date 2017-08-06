@@ -26,40 +26,40 @@ public class ModRecipes {
 
 	public static void init() {
 		CLAY_KILN = new ShapedOreRecipe(getResource("recipe_clay_kiln"), new ItemStack(ModBlocks.CLAY_KILN_ITEM), "CCC", "C C", "CCC", 'C', new ItemStack(Items.CLAY_BALL));
-		CLAY_KILN.setRegistryName(getResource("primal_tech:recipe_clay_kiln"));
+		CLAY_KILN.setRegistryName(getResource("recipe_clay_kiln"));
 
 		BONE_KNIFE = new ShapedOreRecipe(getResource("recipe_bone_knife"), new ItemStack(ModItems.BONE_KNIFE), " B", "S ", 'B', new ItemStack(ModItems.BONE_SHARD), 'S', "stickWood");
-		BONE_KNIFE.setRegistryName(getResource("primal_tech:recipe_bone_knife"));
+		BONE_KNIFE.setRegistryName(getResource("recipe_bone_knife"));
 
 		STICK_BUNDLE = new ShapedOreRecipe(getResource("recipe_stick_bundle"), new ItemStack(ModBlocks.STICK_BUNDLE_ITEM), "STS", "SSS", "STS", 'T', new ItemStack(ModItems.TWINE), 'S', "stickWood");
-		STICK_BUNDLE.setRegistryName(getResource("primal_tech:recipe_stick_bundle"));
+		STICK_BUNDLE.setRegistryName(getResource("recipe_stick_bundle"));
 
 		FIBRE_TORCH = new ShapedOreRecipe(getResource("recipe_fibre_torch"), new ItemStack(ModBlocks.FIBRE_TORCH_ITEM, 4, 0), "F", "S", 'F', new ItemStack(ModItems.PLANT_FIBRES, 1, 0), 'S', "stickWood");
-		FIBRE_TORCH.setRegistryName(getResource("primal_tech:recipe_fibre_torch"));
+		FIBRE_TORCH.setRegistryName(getResource("recipe_fibre_torch"));
 
 		CHARCOAL = new ShapelessOreRecipe(getResource("recipe_charcoal"), new ItemStack(Items.COAL, 4, 1), new ItemStack(ModBlocks.CHARCOAL_BLOCK_ITEM));
-		CHARCOAL.setRegistryName(getResource("primal_tech:recipe_charcoal"));
+		CHARCOAL.setRegistryName(getResource("recipe_charcoal"));
 
 		ROCK = new ShapelessOreRecipe(getResource("recipe_rock"), new ItemStack(ModItems.ROCK, 4, 0), "cobblestone");
-		ROCK.setRegistryName(getResource("primal_tech:recipe_rock")); 
+		ROCK.setRegistryName(getResource("recipe_rock")); 
 
 		WOOD_CLUB = new ShapedOreRecipe(getResource("recipe_wood_club"), new ItemStack(ModItems.WOOD_CLUB), "L", "S", 'L', "logWood", 'S', "stickWood");
-		WOOD_CLUB.setRegistryName(getResource("primal_tech:recipe_wood_club"));
+		WOOD_CLUB.setRegistryName(getResource("recipe_wood_club"));
 
 		STONE_CLUB = new ShapedOreRecipe(getResource("recipe_stone_club"), new ItemStack(ModItems.STONE_CLUB), "C", "S", 'C', "cobblestone", 'S', "stickWood");
-		STONE_CLUB.setRegistryName(getResource("primal_tech:recipe_stone_club"));
+		STONE_CLUB.setRegistryName(getResource("recipe_stone_club"));
 
 		BONE_CLUB = new ShapedOreRecipe(getResource("recipe_bone_club"), new ItemStack(ModItems.BONE_CLUB), "B", "S", 'B', new ItemStack(Blocks.BONE_BLOCK), 'S', "stickWood");
-		BONE_CLUB.setRegistryName(getResource("primal_tech:recipe_bone_club"));
+		BONE_CLUB.setRegistryName(getResource("recipe_bone_club"));
 
 		PLANT_FIBRES = new ShapelessOreRecipe(getResource("recipe_plant_fibres"), new ItemStack(ModItems.PLANT_FIBRES), new ItemStack(Blocks.TALLGRASS, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(ModItems.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE));
-		PLANT_FIBRES.setRegistryName(getResource("primal_tech:recipe_plant_fibres"));
+		PLANT_FIBRES.setRegistryName(getResource("recipe_plant_fibres"));
 
 		TWINE = new ShapelessOreRecipe(getResource("recipe_twine"), new ItemStack(ModItems.TWINE, 3, 0), new ItemStack(ModItems.PLANT_FIBRES), new ItemStack(ModItems.PLANT_FIBRES), new ItemStack(ModItems.PLANT_FIBRES));
-		TWINE.setRegistryName(getResource("primal_tech:recipe_twine"));
+		TWINE.setRegistryName(getResource("recipe_twine"));
 
 		FIRE_STICKS = new ShapelessOreRecipe(getResource("recipe_fire_sticks"), new ItemStack(ModItems.FIRE_STICKS), "stickWood", new ItemStack(ModItems.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE));
-		FIRE_STICKS.setRegistryName(getResource("primal_tech:recipe_fire_sticks"));
+		FIRE_STICKS.setRegistryName(getResource("recipe_fire_sticks"));
 	}
 
 	@Mod.EventBusSubscriber(modid = "primal_tech")
@@ -205,7 +205,7 @@ public class ModRecipes {
 	}
 
 	private static ResourceLocation getResource(String inName) {
-		return new ResourceLocation(inName);
+		return new ResourceLocation("primal_tech", inName);
 	}
 
 }
