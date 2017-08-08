@@ -17,7 +17,7 @@ public class BlockFibreTorchLit extends BlockTorch {
 
 	public BlockFibreTorchLit() {
 		setSoundType(SoundType.WOOD);
-		setLightLevel(0.6F);
+		setLightLevel(0.7F);
 		setCreativeTab(PrimalTech.TAB);
 	}
 
