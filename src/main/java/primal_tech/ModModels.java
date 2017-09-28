@@ -52,5 +52,6 @@ public class ModModels {
 		ModelLoader.setCustomModelResourceLocation(ModItems.STONE_MALLET, 0, new ModelResourceLocation("primal_tech:stone_mallet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.LEAF_BED_ITEM, 0, new ModelResourceLocation("primal_tech:leaf_bed", "inventory"));
 		ModelLoader.setCustomStateMapper((ModBlocks.LEAF_BED), (new StateMap.Builder()).ignore(new IProperty[] {BlockLeafBed.OCCUPIED}).build());
+		ModelLoader.setCustomModelResourceLocation(ModBlocks.WOODEN_BASIN_ITEM, 0, new ModelResourceLocation("primal_tech:wooden_basin", "inventory"));
 	}
 }	

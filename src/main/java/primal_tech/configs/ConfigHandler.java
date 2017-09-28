@@ -13,7 +13,7 @@ public class ConfigHandler {
 	public static String[] WATER_SAW_RECIPES;
 	public static String[] STONE_ANVIL_RECIPES;
 	public static String[] FIRE_SOURCES;
-	public static String[] USED_CATEGORIES = {"Clay Kiln Recipes", "Blocks Considered as Fire Sources", "Work Stump Setting", "Charcoal", "Water Powered Saw Recipes", "Fluid Bladder", "Stone Anvil Setting", "Stone Anvil Recipes"};
+	public static String[] USED_CATEGORIES = { "Clay Kiln Recipes", "Blocks Considered as Fire Sources", "Work Stump Setting", "Charcoal", "Water Powered Saw Recipes", "Fluid Bladder", "Stone Anvil Setting", "Stone Anvil Recipes", "Wooden Basin Setting", "Wooden Basin Recipes" };
 	public static int WORK_STUMP_DAMAGE;
 	public static int WORK_STUMP_II_DAMAGE;
 	public static int CRAFTING_STRIKES;
@@ -23,6 +23,7 @@ public class ConfigHandler {
 	public static int CHARCOAL_BURN_TIME;
 	public static boolean FLUID_BLADDER_PLACES_FLUID;
 	public static int STONE_ANVIL_DAMAGE;
+	public static int WOODEN_BASIN_STIRS;
 	public void loadConfig(FMLPreInitializationEvent event) {
 		CONFIG = new Configuration(event.getSuggestedConfigurationFile());
 		CONFIG.load();
@@ -66,6 +67,8 @@ public class ConfigHandler {
 		CHARCOAL_BURN_TIME = CONFIG.getInt("Chance that fire will consume this block. 300 being a 100% chance, 0, being a 0% chance", "Charcoal", 0, 0, 300, "");
 
 		FLUID_BLADDER_PLACES_FLUID = CONFIG.get("Fluid Bladder", "Can Place Fluids in World", true).getBoolean(true);
+		
+		WOODEN_BASIN_STIRS = CONFIG.get("Wooden Basin Setting", "How Many Stirs Before Sesult", 3).getInt(3);
 
 		if (CONFIG.hasChanged())
 			CONFIG.save();

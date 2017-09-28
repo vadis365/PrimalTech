@@ -31,6 +31,7 @@ import primal_tech.blocks.BlockStickBundle;
 import primal_tech.blocks.BlockStoneAnvil;
 import primal_tech.blocks.BlockStoneGrill;
 import primal_tech.blocks.BlockWaterSaw;
+import primal_tech.blocks.BlockWoodenBasin;
 import primal_tech.blocks.BlockWoodenHopper;
 import primal_tech.blocks.BlockWorkStump;
 import primal_tech.blocks.BlockWorkStumpUpgrade;
@@ -39,9 +40,9 @@ public class ModBlocks {
 
 	public static ItemBlock FLINT_BLOCK_ITEM, CHARCOAL_BLOCK_ITEM, CLAY_KILN_ITEM, STICK_BUNDLE_ITEM, FIBRE_TORCH_ITEM,
 		WOODEN_HOPPER_ITEM, CHARCOAL_HOPPER_ITEM, FIBRE_TORCH_ITEM_LIT, WORK_STUMP_ITEM, STONE_GRILL_ITEM, WORK_STUMP_II_ITEM,
-		WATER_SAW_ITEM, STONE_ANVIL_ITEM;
+		WATER_SAW_ITEM, STONE_ANVIL_ITEM, WOODEN_BASIN_ITEM;
 	public static Block CLAY_KILN, FLINT_BLOCK, STICK_BUNDLE, FIBRE_TORCH, FIBRE_TORCH_LIT, CHARCOAL_BLOCK, WORK_STUMP,
-		STONE_GRILL, WOODEN_HOPPER, WORK_STUMP_II, CHARCOAL_HOPPER, WATER_SAW, STONE_ANVIL, LEAF_BED;
+		STONE_GRILL, WOODEN_HOPPER, WORK_STUMP_II, CHARCOAL_HOPPER, WATER_SAW, STONE_ANVIL, LEAF_BED, WOODEN_BASIN;
 
 	public static void init() {
 		// Blocks and Item Blocks
@@ -132,6 +133,12 @@ public class ModBlocks {
 
 		LEAF_BED = new BlockLeafBed();
 		LEAF_BED.setRegistryName("primal_tech", "leaf_bed").setUnlocalizedName("primal_tech.leaf_bed");
+		
+		WOODEN_BASIN = new BlockWoodenBasin();
+		WOODEN_BASIN_ITEM = new ItemBlock(WOODEN_BASIN);
+		WOODEN_BASIN.setRegistryName("primal_tech", "wooden_basin").setUnlocalizedName("primal_tech.wooden_basin");
+		WOODEN_BASIN_ITEM.setRegistryName(WOODEN_BASIN.getRegistryName()).setUnlocalizedName("primal_tech.wooden_basin");
+
 	}
 
 	@Mod.EventBusSubscriber(modid = "primal_tech")
@@ -155,7 +162,8 @@ public class ModBlocks {
 					CHARCOAL_HOPPER,
 					WATER_SAW,
 					STONE_ANVIL,
-					LEAF_BED
+					LEAF_BED, 
+					WOODEN_BASIN
 					};
 			final IForgeRegistry<Block> registry = event.getRegistry();
 			for (final Block block : blocks) {
@@ -179,7 +187,8 @@ public class ModBlocks {
 					STONE_GRILL_ITEM,
 					WORK_STUMP_II_ITEM,
 					WATER_SAW_ITEM,
-					STONE_ANVIL_ITEM,
+					STONE_ANVIL_ITEM, 
+					WOODEN_BASIN_ITEM
 					};
 			final IForgeRegistry<Item> registry = event.getRegistry();
 			for (final ItemBlock item : items) {

@@ -13,6 +13,7 @@ tile.primal_tech.charcoal_hopper.name=Flame Grilled Wopper
 tile.primal_tech.water_saw.name=Water Powered Saw
 tile.primal_tech.stone_anvil.name=Stone Anvil
 tile.primal_tech.leaf_bed.name=Bed of Straw and Leaves
+tile.primal_tech.wooden_basin.name=Wooden Basin
 
 #Items
 item.primal_tech.fire_sticks.name=Whittled Fire Sticks

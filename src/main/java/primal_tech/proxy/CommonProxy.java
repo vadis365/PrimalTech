@@ -6,6 +6,7 @@ import primal_tech.tiles.TileEntityKiln;
 import primal_tech.tiles.TileEntityStoneAnvil;
 import primal_tech.tiles.TileEntityStoneGrill;
 import primal_tech.tiles.TileEntityWaterSaw;
+import primal_tech.tiles.TileEntityWoodenBasin;
 import primal_tech.tiles.TileEntityWoodenHopper;
 import primal_tech.tiles.TileEntityWorkStump;
 import primal_tech.tiles.TileEntityWorkStumpUpgraded;
@@ -22,6 +23,7 @@ public class CommonProxy {
 		registerTileEntity(TileEntityWorkStumpUpgraded.class, "work_stump_upgraded");
 		registerTileEntity(TileEntityWaterSaw.class, "water_saw");
 		registerTileEntity(TileEntityStoneAnvil.class, "stone_anvil");
+		registerTileEntity(TileEntityWoodenBasin.class, "wooden_basin");
 	}
 
 	private void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {
