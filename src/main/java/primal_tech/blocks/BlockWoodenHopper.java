@@ -107,7 +107,7 @@ public class BlockWoodenHopper extends BlockDirectional implements ITileEntityPr
 			if (side.getIndex() == 1) {
 				int slotClicked = getSlotClicked(direction, hitX, hitZ);
 				if (!player.isSneaking()) {
-					if (!stack.isEmpty() && (tile.getStackInSlot(slotClicked).isEmpty() || tile.getStackInSlot(slotClicked).getItem() == stack.getItem() && tile.getStackInSlot(slotClicked).getCount() < 64 && tile.getStackInSlot(slotClicked).isStackable())) {
+					if (!stack.isEmpty() && (tile.getStackInSlot(slotClicked).isEmpty() || tile.getStackInSlot(slotClicked).getItem() == stack.getItem() && tile.getStackInSlot(slotClicked).getItemDamage() == stack.getItemDamage() && tile.getStackInSlot(slotClicked).getCount() < 64 && tile.getStackInSlot(slotClicked).isStackable())) {
 						if (!world.isRemote) {
 							if (!tile.getStackInSlot(slotClicked).isEmpty()) {
 								tile.getStackInSlot(slotClicked).grow(1);

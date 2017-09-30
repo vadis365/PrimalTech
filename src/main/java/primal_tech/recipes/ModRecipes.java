@@ -10,6 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
@@ -201,6 +203,52 @@ public class ModRecipes {
 
 		if(!outStack.isEmpty() && !inStack.isEmpty())
 			StoneAnvilRecipes.addRecipe(outStack, inStack);
+		}
+	}
+	
+	public static void addWoodenBasinRecipes() {
+		//I mean it's also an inefficient mess but it works O.o
+		for (int items = 0; items < ConfigHandler.WOODEN_BASIN_RECIPES.length; items++) {
+			List<String> outputItemList = new ArrayList<String>();
+			List<String> inputItemList = new ArrayList<String>();
+			String[] entry = ConfigHandler.WOODEN_BASIN_RECIPES[items].trim().split("#");
+			if (entry.length != 3)
+				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + ConfigHandler.WOODEN_BASIN_RECIPES[items]);
+			outputItemList.add(entry[0]);
+
+			Fluid inputFluid;
+			if (FluidRegistry.isFluidRegistered(entry[1]))
+				inputFluid = FluidRegistry.getFluid(entry[1]);
+			else
+				throw new IllegalArgumentException("Illegal Fluid entry found when reading Primal Tech config file: " + ConfigHandler.WOODEN_BASIN_RECIPES[items]);
+			inputItemList.add(entry[2]);
+
+			String[] finalOutPutEntry = outputItemList.get(0).trim().split(",");
+			if (finalOutPutEntry.length != 3)
+				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + outputItemList.get(0));
+			ItemStack outStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalOutPutEntry[0])), Integer.valueOf(finalOutPutEntry[2]), Integer.valueOf(finalOutPutEntry[1]));
+
+			String[] finalInputEntry = inputItemList.get(0).trim().split(",");
+			if (finalInputEntry.length < 2)
+				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + inputItemList.get(0));
+
+			ItemStack inStack1 = ItemStack.EMPTY;
+			ItemStack inStack2 = ItemStack.EMPTY;
+			ItemStack inStack3 = ItemStack.EMPTY;
+			ItemStack inStack4 = ItemStack.EMPTY;
+
+			if (finalInputEntry.length > 0)
+				inStack1 = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalInputEntry[0])), 1, Integer.valueOf(finalInputEntry[1]));
+			if (finalInputEntry.length > 2)
+				inStack2 = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalInputEntry[2])), 1, Integer.valueOf(finalInputEntry[3]));
+			if (finalInputEntry.length > 4)
+				inStack3 = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalInputEntry[4])), 1, Integer.valueOf(finalInputEntry[5]));
+			if (finalInputEntry.length > 6)
+				inStack4 = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalInputEntry[6])), 1, Integer.valueOf(finalInputEntry[7]));
+
+		if(!outStack.isEmpty() && !inStack1.isEmpty())
+			WoodenBasinRecipes.addRecipe(outStack, inputFluid, inStack1, inStack2, inStack3, inStack4);
+
 		}
 	}
 

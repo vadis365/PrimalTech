@@ -155,7 +155,7 @@ public class BlockStoneGrill extends Block implements ITileEntityProvider {
 			if (side.getIndex() == 1) {
 				int slotClicked = getSlotClicked(direction, hitX, hitZ);
 				if (slotClicked == 0 && !player.isSneaking()) {
-					if (!stack.isEmpty() && (tile.getStackInSlot(slotClicked).isEmpty() || tile.getStackInSlot(slotClicked).getItem() == stack.getItem() && tile.getStackInSlot(slotClicked).getCount() < 16 && tile.getStackInSlot(slotClicked).isStackable())) {
+					if (!stack.isEmpty() && (tile.getStackInSlot(slotClicked).isEmpty() || tile.getStackInSlot(slotClicked).getItem() == stack.getItem() && tile.getStackInSlot(slotClicked).getItemDamage() == stack.getItemDamage() && tile.getStackInSlot(slotClicked).getCount() < 16 && tile.getStackInSlot(slotClicked).isStackable())) {
 						if (!world.isRemote) {
 							if (!tile.getStackInSlot(slotClicked).isEmpty()) {
 								tile.getStackInSlot(slotClicked).grow(1);

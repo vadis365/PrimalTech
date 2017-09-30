@@ -13,6 +13,7 @@ public class ConfigHandler {
 	public static String[] WATER_SAW_RECIPES;
 	public static String[] STONE_ANVIL_RECIPES;
 	public static String[] FIRE_SOURCES;
+	public static String[] WOODEN_BASIN_RECIPES;
 	public static String[] USED_CATEGORIES = { "Clay Kiln Recipes", "Blocks Considered as Fire Sources", "Work Stump Setting", "Charcoal", "Water Powered Saw Recipes", "Fluid Bladder", "Stone Anvil Setting", "Stone Anvil Recipes", "Wooden Basin Setting", "Wooden Basin Recipes" };
 	public static int WORK_STUMP_DAMAGE;
 	public static int WORK_STUMP_II_DAMAGE;
@@ -33,7 +34,7 @@ public class ConfigHandler {
 	private void syncConfigs() {
 		CONFIG.addCustomCategoryComment("Clay Kiln Recipes", "output, input syntax is: modName:itemName,metaData#modName:itemName,metaData#cookingSpeedInTicks");
 		CLAY_KILN_RECIPES = CONFIG.getStringList("Clay Kiln Recipes", "Clay Kiln Recipes", new String[] { "primal_tech:flint_block,0#minecraft:gravel,0#200"}, "Happy Birthday!");
-
+		
 		CONFIG.addCustomCategoryComment("Water Powered Saw Recipes", "output, input syntax is: modName:itemName,metaData,outputAmount#modName:itemName,metaData#choppingSpeedInTicks");
 		WATER_SAW_RECIPES = CONFIG.getStringList("Water Powered Saw Recipes", "Water Powered Saw Recipes", new String[] {
 		"minecraft:planks,0,4#minecraft:log,0#80",
@@ -49,6 +50,12 @@ public class ConfigHandler {
 
 		CONFIG.addCustomCategoryComment("Blocks Considered as Fire Sources", "Used By unlit torches (can be used for more later :P ) " );
 		FIRE_SOURCES = CONFIG.getStringList("Fire Source blocks", "Blocks Considered as Fire Sources", new String[] { "minecraft:fire", "primal_tech:fibre_torch_lit"}, "Happy Birthday!");
+
+		CONFIG.addCustomCategoryComment("Wooden Basin Recipes", "output, input syntax is: modName:itemName,metaData,outputAmount#fluidName#modName:itemName,metaData (up to 4 input Items seperated with commas");
+		WOODEN_BASIN_RECIPES = CONFIG.getStringList("Wooden Basin Recipes", "Wooden Basin Recipes", new String[] {
+		"minecraft:diamond,0,1#water#minecraft:dirt,0,minecraft:dirt,0,minecraft:dirt,0,minecraft:dirt,0",
+		"minecraft:obsidian,0,1#lava#minecraft:cobblestone,0,minecraft:cobblestone,0"
+		}, "Happy Birthday!");
 
 		WORK_STUMP_DAMAGE = CONFIG.get("Work Stump Setting", "Crafting Uses Before Stump Breaks", 20).getInt(20);
 
@@ -68,7 +75,7 @@ public class ConfigHandler {
 
 		FLUID_BLADDER_PLACES_FLUID = CONFIG.get("Fluid Bladder", "Can Place Fluids in World", true).getBoolean(true);
 		
-		WOODEN_BASIN_STIRS = CONFIG.get("Wooden Basin Setting", "How Many Stirs Before Sesult", 3).getInt(3);
+		WOODEN_BASIN_STIRS = CONFIG.get("Wooden Basin Setting", "How Many Stirs Before Result", 3).getInt(3);
 
 		if (CONFIG.hasChanged())
 			CONFIG.save();

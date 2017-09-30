@@ -55,7 +55,7 @@ public class BlockWorkStumpUpgrade extends BlockWorkStump {
 				int slotClicked = getSlotClicked(direction, hitX, hitZ);
 				if (!player.isSneaking()) {
 					if (stack.getItem() != ModItems.ROCK && getSlotClicked(direction, hitX, hitZ) != 10) {
-						if (!stack.isEmpty() && (tile.getStackInSlot(slotClicked).isEmpty() || tile.getStackInSlot(slotClicked).getItem() == stack.getItem() && tile.getStackInSlot(slotClicked).getCount() < 64 && tile.getStackInSlot(slotClicked).isStackable())) {
+						if (!stack.isEmpty() && (tile.getStackInSlot(slotClicked).isEmpty() || tile.getStackInSlot(slotClicked).getItem() == stack.getItem()  && tile.getStackInSlot(slotClicked).getItemDamage() == stack.getItemDamage() && tile.getStackInSlot(slotClicked).getCount() < 64 && tile.getStackInSlot(slotClicked).isStackable())) {
 							if (!world.isRemote) {
 								if (!tile.getStackInSlot(slotClicked).isEmpty()) {
 									tile.getStackInSlot(slotClicked).grow(1);

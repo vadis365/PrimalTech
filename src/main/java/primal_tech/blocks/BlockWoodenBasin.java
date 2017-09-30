@@ -10,6 +10,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,10 +19,12 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -92,15 +95,16 @@ public class BlockWoodenBasin extends Block implements ITileEntityProvider {
 			final IFluidHandler fluidHandler = getFluidHandler(world, pos);
 
 			if (fluidHandler != null && FluidUtil.getFluidHandler(heldItem) != null) {
-				FluidUtil.interactWithFluidHandler(player, hand, world, pos, side);// (heldItem, fluidHandler, player);
+				FluidUtil.interactWithFluidHandler(player, hand, world, pos, side);
 				return FluidUtil.getFluidHandler(heldItem) != null;
 			}
 
 			if (!player.isSneaking()) {
-				if (tile != null && heldItem.isEmpty()) {
+				if (tile != null && heldItem.isEmpty() && tile.tank.getFluidAmount() >= Fluid.BUCKET_VOLUME) {
 					if(!tile.getMixing()) {
 						tile.setMixing(true);
 						tile.setStirCount(tile.getStirCount() + 1);
+						world.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_PLAYER_SWIM, SoundCategory.BLOCKS, 0.5F, 0.25F);
 						world.notifyBlockUpdate(pos, state, state, 3);
 					return true;
 					}
@@ -114,6 +118,8 @@ public class BlockWoodenBasin extends Block implements ITileEntityProvider {
 							if (!player.capabilities.isCreativeMode)
 								heldItem.shrink(1);
 							tile.setStirCount(0);
+							tile.setMixing(false);
+							world.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_PLAYER_SPLASH, SoundCategory.BLOCKS, 0.75F, 2F);
 							world.notifyBlockUpdate(pos, state, state, 3);
 							return true;
 						}
@@ -128,6 +134,8 @@ public class BlockWoodenBasin extends Block implements ITileEntityProvider {
 							ForgeHooks.onPlayerTossEvent(player, tile.getStackInSlot(i), false);
 						tile.setInventorySlotContents(i, ItemStack.EMPTY);
 						tile.setStirCount(0);
+						tile.setMixing(false);
+						world.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.5F, 2F);
 						world.notifyBlockUpdate(pos, state, state, 3);
 						return true;
 					}

@@ -57,25 +57,23 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 		}
 
 		if (!getWorld().isRemote) {
-			if (getStirCount() >= ConfigHandler.WOODEN_BASIN_STIRS && tank.getFluidAmount() >= Fluid.BUCKET_VOLUME) {
-				ItemStack[] inputs = new ItemStack[4];
-				for (int i = 0; i < 4; i++)
-					inputs[i] = getItems().get(i);
-				WoodenBasinRecipes recipe = WoodenBasinRecipes.getRecipe(inputs);
-				ItemStack output = recipe.getOutput().copy();
-				if (recipe == null || output.isEmpty()) {
+			if (getStirCount() >= ConfigHandler.WOODEN_BASIN_STIRS && tank.getFluidAmount() >= Fluid.BUCKET_VOLUME && stirProgress == 90) {
+				ItemStack output = ItemStack.EMPTY;
+				WoodenBasinRecipes recipe = WoodenBasinRecipes.getRecipe(tank, getItems().get(0), getItems().get(1), getItems().get(2), getItems().get(3));
+				if (recipe == null) {
 					setStirCount(0);
 					return;
-				} else {
-					for (int index = 0; index < 4; index++) {
+				}
+				if (recipe != null) {
+					output = recipe.getOutput();
+					for (int index = 0; index < 4; index++)
 						if (!getItems().get(index).isEmpty())
 							setInventorySlotContents(index, ItemStack.EMPTY);
-						tank.drain(Fluid.BUCKET_VOLUME, true);
-						setStirCount(0);
-						spawnItemStack(getWorld(), pos.getX() + 0.5D, pos.getY() + 1D, pos.getZ() + 0.5D, output);
-						EntityXPOrb orb = new EntityXPOrb(world, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 1);
-						world.spawnEntity(orb);
-					}
+					tank.drain(Fluid.BUCKET_VOLUME, true);
+					setStirCount(0);
+					spawnItemStack(getWorld(), pos.getX() + 0.5D, pos.getY() + 1D, pos.getZ() + 0.5D, output);
+					EntityXPOrb orb = new EntityXPOrb(world, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 1);
+					world.spawnEntity(orb);
 				}
 			}
 		}
