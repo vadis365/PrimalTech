@@ -16,14 +16,15 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import primal_tech.configs.ConfigHandler;
-import primal_tech.inventory.InventoryWrapperKilnGrill;
 import primal_tech.recipes.WoodenBasinRecipes;
 
 public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements ITickable {
     public FluidTankTile tank;
 	private IItemHandler itemHandler;
     private int stirProgress = 0;
+    private int prevStirProgress = 0;
     private int itemBob = 0;
     private int stirCount = 0;
 	private boolean countUp = true;
@@ -36,6 +37,7 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 
 	@Override
 	public void update() {
+		prevStirProgress = stirProgress;
 		if (getWorld().isRemote) {
 			if (countUp && itemBob <= 20) {
 				itemBob++;
@@ -50,7 +52,7 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 		}
 
 		if (getMixing() && stirProgress <= 90)
-			stirProgress++;
+			stirProgress += 2;
 		if (stirProgress > 90) {
 			setMixing(false);
 			stirProgress = 0;
@@ -114,6 +116,10 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 	public int getStirProgress() {
 		return stirProgress;
 	}
+	
+	public int getPrevStirProgress() {
+		return prevStirProgress;
+	}
 
 	public int getItemBob() {
 		return itemBob;
@@ -165,7 +171,7 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 	// INVENTORY CAPABILITIES STUFF
 
 	protected IItemHandler createUnSidedHandler() {
-		return new InventoryWrapperKilnGrill(this);
+		return new InvWrapper(this);
 	}
 
 	@Override
@@ -184,6 +190,11 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 	}
 
 	// INVENTORY LEGACY SUPPORT
+
+	@Override
+	public int getInventoryStackLimit() {
+		return 1;
+	}
 
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {

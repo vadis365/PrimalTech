@@ -3,6 +3,7 @@ package primal_tech.blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -88,6 +89,7 @@ public class BlockWorkStumpUpgrade extends BlockWorkStump {
 						tile.setInventorySlotContents(slotClicked, stack2.splitStack(1));
 						tile.setStrikes(0);
 						tile.markForUpdate();
+						world.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.5F, 2F);
 						return true;
 					}
 				}

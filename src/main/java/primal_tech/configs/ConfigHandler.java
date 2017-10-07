@@ -24,6 +24,7 @@ public class ConfigHandler {
 	public static int CHARCOAL_BURN_TIME;
 	public static boolean FLUID_BLADDER_PLACES_FLUID;
 	public static int STONE_ANVIL_DAMAGE;
+	public static int STONE_ANVIL_CRAFTING_STRIKES;
 	public static int WOODEN_BASIN_STIRS;
 	public void loadConfig(FMLPreInitializationEvent event) {
 		CONFIG = new Configuration(event.getSuggestedConfigurationFile());
@@ -70,6 +71,8 @@ public class ConfigHandler {
 		ROCK_DAMAGE = CONFIG.get("Work Stump Setting", "Max Damage Of Crafing Rock", 160).getInt(160);
 
 		MALLET_DAMAGE = CONFIG.get("Stone Anvil Setting", "Max Damage Of Stone Mallet", 160).getInt(160);
+		
+		STONE_ANVIL_CRAFTING_STRIKES = CONFIG.getInt("Strikes Needed To Craft on The Stone Avil", "Stone Anvil Setting", 4, 1, Integer.MAX_VALUE, "");
 
 		CHARCOAL_BURN_TIME = CONFIG.getInt("Chance that fire will consume this block. 300 being a 100% chance, 0, being a 0% chance", "Charcoal", 0, 0, 300, "");
 

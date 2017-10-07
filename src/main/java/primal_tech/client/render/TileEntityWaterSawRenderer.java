@@ -72,7 +72,8 @@ public class TileEntityWaterSawRenderer extends TileEntitySpecialRenderer<TileEn
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.popMatrix();
 		}
-
+		GlStateManager.pushMatrix();
+		RenderHelper.disableStandardItemLighting();
 		GlStateManager.pushMatrix();
 		bindTexture(BASE_TEXTURE);
 		GlStateManager.translate(0F, -1.1875F, 0F);
@@ -93,6 +94,8 @@ public class TileEntityWaterSawRenderer extends TileEntitySpecialRenderer<TileEn
 		GlStateManager.enableCull();
 		GlStateManager.popMatrix();
 		
+		GlStateManager.enableLighting();
+		GlStateManager.popMatrix();
 		GlStateManager.popMatrix();
 		GlStateManager.popMatrix();
 

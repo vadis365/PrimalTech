@@ -4,13 +4,16 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -51,6 +54,8 @@ public class TileEntityWaterSaw extends TileEntityInventoryHelper implements ITi
 		if (!getWorld().isRemote) {
 			if (getWorld().getBlockState(pos) != null && getActive() && !getItems().get(0).isEmpty() && getChoppingTime() != 0) {
 				setChoppingProgress(getChoppingProgress() + 1);
+				if(getChoppingProgress()%5 == 0)
+					world.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_FENCE_GATE_OPEN, SoundCategory.BLOCKS, 0.25F, 0.5F);
 				if (getChoppingProgress() >= getChoppingTime()) {
 					ItemStack output = WaterSawRecipes.getOutput(getItems().get(0));
 					if (!output.isEmpty() && output != getItems().get(0)) {

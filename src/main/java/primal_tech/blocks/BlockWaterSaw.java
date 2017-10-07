@@ -17,6 +17,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,6 +27,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -33,7 +36,6 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import primal_tech.PrimalTech;
-import primal_tech.recipes.WaterSawRecipes;
 import primal_tech.tiles.TileEntityWaterSaw;
 
 public class BlockWaterSaw extends Block implements ITileEntityProvider {
@@ -99,6 +101,11 @@ public class BlockWaterSaw extends Block implements ITileEntityProvider {
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
+    @SideOnly(Side.CLIENT)
+    public boolean addDestroyEffects(World world, BlockPos pos, net.minecraft.client.particle.ParticleManager manager) {
+        return true;
+    }
+
 	@Nullable
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return Item.getItemFromBlock(this);
@@ -143,8 +150,8 @@ public class BlockWaterSaw extends Block implements ITileEntityProvider {
 					tile.setChoppingProgress(0);
 					if (!player.capabilities.isCreativeMode)
 						stack.shrink(1);
-					if (!world.isRemote)
 						tile.markForUpdate();
+						world.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_FENCE_GATE_OPEN, SoundCategory.BLOCKS, 0.5F, 2F);
 					return true;
 				}
 			} else {
@@ -155,6 +162,7 @@ public class BlockWaterSaw extends Block implements ITileEntityProvider {
 							ForgeHooks.onPlayerTossEvent(player, stack2, false);
 						tile.setInventorySlotContents(0, ItemStack.EMPTY);
 						tile.setChoppingProgress(0);
+						world.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.5F, 2F);
 						tile.markForUpdate();
 					}
 				}
@@ -169,6 +177,7 @@ public class BlockWaterSaw extends Block implements ITileEntityProvider {
 		if (tile != null) {
 			InventoryHelper.dropInventoryItems(world, pos, tile);
 		}
+		world.playEvent(2001, pos, Block.getStateId(Blocks.LOG.getDefaultState()));
 		super.breakBlock(world, pos, state);
 	}
 

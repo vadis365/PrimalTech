@@ -172,8 +172,8 @@ public class TileEntityWoodenHopper extends TileEntityInventoryHelper implements
 
 	private boolean transferItemsOut() {
 		IInventory iinventory = getInventoryForHopperTransfer();
-		EnumFacing enumfacing = BlockWoodenHopper.getFacing(getBlockMetadata()).getOpposite();
-		TileEntity tile = getWorld().getTileEntity(pos.offset(enumfacing.getOpposite()));
+		EnumFacing enumfacing = BlockWoodenHopper.getFacing(getBlockMetadata());
+		TileEntity tile = getWorld().getTileEntity(pos.offset(enumfacing));
 
 		if (tile != null && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, enumfacing.getOpposite())) {
 			IItemHandler handler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, enumfacing.getOpposite());

@@ -105,21 +105,17 @@ public class ModRecipes {
 			inputItemList.add(entry[1]);
 			int itemCookTime = Integer.valueOf(entry[2]);
 
-		for (int finalItem = 0; finalItem < 2; finalItem++) {
 			String[] finalEntry = outputItemList.get(0).trim().split(",");
 			if (finalEntry.length != 2)
 				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + outputItemList.get(0));
 			finalOutPutItem.add(finalEntry[0]);
 			finalOutPutItem.add(finalEntry[1]);
-		}
 
-		for (int finalItem = 0; finalItem < 2; finalItem++) {
-			String[] finalEntry = inputItemList.get(0).trim().split(",");
-			if (finalEntry.length != 2)
+			String[] finalEntry2 = inputItemList.get(0).trim().split(",");
+			if (finalEntry2.length != 2)
 				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + inputItemList.get(0));
-			finalInPutItem.add(finalEntry[0]);
-			finalInPutItem.add(finalEntry[1]);
-		}
+			finalInPutItem.add(finalEntry2[0]);
+			finalInPutItem.add(finalEntry2[1]);
 
 		ItemStack outStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalOutPutItem.get(0))), 1, Integer.valueOf(finalOutPutItem.get(1)));
 		ItemStack inStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalInPutItem.get(0))), 1, Integer.valueOf(finalInPutItem.get(1)));
@@ -143,22 +139,18 @@ public class ModRecipes {
 			inputItemList.add(entry[1]);
 			int choppingTime = Integer.valueOf(entry[2]);
 
-		for (int finalItem = 0; finalItem < 3; finalItem++) {
 			String[] finalEntry = outputItemList.get(0).trim().split(",");
 			if (finalEntry.length != 3)
 				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + outputItemList.get(0));
 			finalOutPutItem.add(finalEntry[0]);
 			finalOutPutItem.add(finalEntry[1]);
 			finalOutPutItem.add(finalEntry[2]);
-		}
 
-		for (int finalItem = 0; finalItem < 2; finalItem++) {
-			String[] finalEntry = inputItemList.get(0).trim().split(",");
-			if (finalEntry.length != 2)
+			String[] finalEntry2 = inputItemList.get(0).trim().split(",");
+			if (finalEntry2.length != 2)
 				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + inputItemList.get(0));
-			finalInPutItem.add(finalEntry[0]);
-			finalInPutItem.add(finalEntry[1]);
-		}
+			finalInPutItem.add(finalEntry2[0]);
+			finalInPutItem.add(finalEntry2[1]);
 
 		ItemStack outStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalOutPutItem.get(0))), Integer.valueOf(finalOutPutItem.get(2)), Integer.valueOf(finalOutPutItem.get(1)));
 		ItemStack inStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalInPutItem.get(0))), 1, Integer.valueOf(finalInPutItem.get(1)));
@@ -181,22 +173,18 @@ public class ModRecipes {
 			outputItemList.add(entry[0]);
 			inputItemList.add(entry[1]);
 
-		for (int finalItem = 0; finalItem < 3; finalItem++) {
 			String[] finalEntry = outputItemList.get(0).trim().split(",");
 			if (finalEntry.length != 3)
 				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + outputItemList.get(0));
 			finalOutPutItem.add(finalEntry[0]);
 			finalOutPutItem.add(finalEntry[1]);
 			finalOutPutItem.add(finalEntry[2]);
-		}
 
-		for (int finalItem = 0; finalItem < 2; finalItem++) {
-			String[] finalEntry = inputItemList.get(0).trim().split(",");
-			if (finalEntry.length != 2)
+			String[] finalEntry2 = inputItemList.get(0).trim().split(",");
+			if (finalEntry2.length != 2)
 				throw new IllegalArgumentException("Illegal entry found when reading Primal Tech config file: " + inputItemList.get(0));
-			finalInPutItem.add(finalEntry[0]);
-			finalInPutItem.add(finalEntry[1]);
-		}
+			finalInPutItem.add(finalEntry2[0]);
+			finalInPutItem.add(finalEntry2[1]);
 
 		ItemStack outStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalOutPutItem.get(0))), Integer.valueOf(finalOutPutItem.get(2)), Integer.valueOf(finalOutPutItem.get(1)));
 		ItemStack inStack = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(finalInPutItem.get(0))), 1, Integer.valueOf(finalInPutItem.get(1)));

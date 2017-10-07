@@ -16,6 +16,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -124,6 +126,7 @@ public class BlockWoodenHopper extends BlockDirectional implements ITileEntityPr
 						if (!player.inventory.addItemStackToInventory(stack2))
 							ForgeHooks.onPlayerTossEvent(player, stack2, false);
 						tile.setInventorySlotContents(slotClicked, stack2.splitStack(1));
+						world.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.5F, 2F);
 					}
 					tile.markForUpdate();
 					return true;

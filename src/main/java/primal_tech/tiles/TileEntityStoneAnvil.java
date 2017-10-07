@@ -65,7 +65,7 @@ public class TileEntityStoneAnvil extends TileEntityInventoryHelper implements I
 		}
 
 		if (!getWorld().isRemote) {
-			if (getStrikes() >= ConfigHandler.CRAFTING_STRIKES) {
+			if (getStrikes() >= ConfigHandler.STONE_ANVIL_CRAFTING_STRIKES) {
 				ItemStack input = getItems().get(0);
 				ItemStack output = StoneAnvilRecipes.getOutput(getItems().get(0));
 				if (output.isEmpty() || output.equals(input)) {

@@ -48,6 +48,9 @@ public class InventoryWrapperKilnGrill implements IItemHandlerModifiable {
 	public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 		if (stack.isEmpty())
 			return ItemStack.EMPTY;
+		
+		if (slot == 1)
+			return stack;
 
 		ItemStack stackInSlot = getInv().getStackInSlot(slot);
 

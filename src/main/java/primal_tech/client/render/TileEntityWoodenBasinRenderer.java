@@ -74,6 +74,8 @@ public class TileEntityWoodenBasinRenderer extends TileEntitySpecialRenderer<Til
 		
 		int itemBob = tile.getItemBob();
 		int stirProgress = tile.getStirProgress();
+		int prevStirProgress = tile.getPrevStirProgress();
+		float stirTicks = stirProgress + (stirProgress - prevStirProgress) * partialTick;
 		double itemY = y + 0.25D + height;
 		Random rand = new Random();
 		rand.setSeed((long) (tile.getPos().getX() + tile.getPos().getY() + tile.getPos().getZ()));
@@ -81,7 +83,7 @@ public class TileEntityWoodenBasinRenderer extends TileEntitySpecialRenderer<Til
 			float randRot = rand.nextFloat() * 360.0F;
 			double xo = -0.2D + rand.nextFloat() * 0.4D;
 			double zo = -0.2D + rand.nextFloat() * 0.4D;
-			double rot = (stirProgress < 90 && fluidLevel > 0 ? stirProgress * 4D + 45D : 45D) + randRot;
+			double rot = (stirTicks < 90 && fluidLevel > 0 ? stirTicks * 4D + 45D : 45D) + randRot;
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(x + 0.5D, 0, z + 0.5D);
 			GlStateManager.rotate((float) -rot, 0, 1, 0);
@@ -91,7 +93,7 @@ public class TileEntityWoodenBasinRenderer extends TileEntitySpecialRenderer<Til
 		}
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) x + 0.5F, (float) y + 0.25F, (float) z + 0.5F);
-		GlStateManager.rotate(tile.getStirProgress() * 4, 0.0F, -1F, 0F);
+		GlStateManager.rotate(stirTicks * 4, 0.0F, -1F, 0F);
 		GlStateManager.rotate(35F, 1F, 0F, 0F);
 		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);

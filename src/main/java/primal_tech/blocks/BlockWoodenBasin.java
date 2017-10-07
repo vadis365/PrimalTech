@@ -69,7 +69,7 @@ public class BlockWoodenBasin extends Block implements ITileEntityProvider {
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityWoodenBasin();
 	}
-	
+
 	@Nullable
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return Item.getItemFromBlock(this);
@@ -86,19 +86,16 @@ public class BlockWoodenBasin extends Block implements ITileEntityProvider {
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (world.isRemote)
-			return true;
+		ItemStack heldItem = player.getHeldItem(hand);
+		final IFluidHandler fluidHandler = getFluidHandler(world, pos);
+
+		if (fluidHandler != null && FluidUtil.getFluidHandler(heldItem) != null) {
+			FluidUtil.interactWithFluidHandler(player, hand, world, pos, side);
+			return FluidUtil.getFluidHandler(heldItem) != null;
+		}
 
 		if (!world.isRemote && world.getTileEntity(pos) instanceof TileEntityWoodenBasin) {
 			TileEntityWoodenBasin tile = (TileEntityWoodenBasin) world.getTileEntity(pos);
-			ItemStack heldItem = player.getHeldItem(hand);
-			final IFluidHandler fluidHandler = getFluidHandler(world, pos);
-
-			if (fluidHandler != null && FluidUtil.getFluidHandler(heldItem) != null) {
-				FluidUtil.interactWithFluidHandler(player, hand, world, pos, side);
-				return FluidUtil.getFluidHandler(heldItem) != null;
-			}
-
 			if (!player.isSneaking()) {
 				if (tile != null && heldItem.isEmpty() && tile.tank.getFluidAmount() >= Fluid.BUCKET_VOLUME) {
 					if(!tile.getMixing()) {
@@ -142,7 +139,7 @@ public class BlockWoodenBasin extends Block implements ITileEntityProvider {
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Nullable

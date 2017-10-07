@@ -176,7 +176,12 @@ public class TileEntityStoneGrill extends TileEntityInventoryHelper implements I
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		return true;
 	}
-	
+
+	@Override
+	public int getInventoryStackLimit() {
+		return 16;
+	}
+
 	// INVENTORY CAPABILITIES STUFF
 
 	protected IItemHandler createUnSidedHandler() {
