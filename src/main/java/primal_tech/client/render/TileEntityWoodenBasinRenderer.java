@@ -83,7 +83,7 @@ public class TileEntityWoodenBasinRenderer extends TileEntitySpecialRenderer<Til
 			float randRot = rand.nextFloat() * 360.0F;
 			double xo = -0.2D + rand.nextFloat() * 0.4D;
 			double zo = -0.2D + rand.nextFloat() * 0.4D;
-			double rot = (stirTicks < 90 && fluidLevel > 0 ? stirTicks * 4D + 45D : 45D) + randRot;
+			double rot = (stirTicks < 90 && fluidLevel > 0 ? stirTicks * 4D + 45D  + randRot: 45D + randRot);
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(x + 0.5D, 0, z + 0.5D);
 			GlStateManager.rotate((float) -rot, 0, 1, 0);

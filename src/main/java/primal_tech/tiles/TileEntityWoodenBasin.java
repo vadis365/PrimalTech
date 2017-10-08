@@ -39,6 +39,7 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 	public void update() {
 		prevStirProgress = stirProgress;
 		if (getWorld().isRemote) {
+			
 			if (countUp && itemBob <= 20) {
 				itemBob++;
 				if (itemBob == 20)
@@ -51,11 +52,12 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 			}
 		}
 
-		if (getMixing() && stirProgress <= 90)
+		if (getMixing() && stirProgress <= 88)
 			stirProgress += 2;
-		if (stirProgress > 90) {
+		if (stirProgress >= 90) {
 			setMixing(false);
 			stirProgress = 0;
+			prevStirProgress = 0;
 		}
 
 		if (!getWorld().isRemote) {
