@@ -13,6 +13,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBloc
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import primal_tech.ModBlocks;
+import primal_tech.blocks.BlockFibreTorchLit;
 import primal_tech.configs.ConfigHandler;
 
 public class TorchLightEvent {
@@ -51,7 +52,7 @@ public class TorchLightEvent {
 			Block outBlock = Block.REGISTRY.getObject(new ResourceLocation(entry));
 			blockList.add(outBlock);
 		}
-		if(blockList.contains(block))
+		if(blockList.contains(block) || block instanceof BlockFibreTorchLit)
 			return true;
 		return false;
 	}
