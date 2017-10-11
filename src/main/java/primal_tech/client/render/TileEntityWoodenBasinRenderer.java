@@ -7,7 +7,6 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -40,13 +39,12 @@ public class TileEntityWoodenBasinRenderer extends TileEntitySpecialRenderer<Til
 			BufferBuilder buffer = tessellator.getBuffer();
 			int fluidColor = fluidStack.getFluid().getColor(fluidStack);
 
-			GlStateManager.disableLighting();
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(x, y + 0.25F, z);
 			GlStateManager.enableBlend();
 			GlStateManager.enableAlpha();
 			GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+			bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			setGLColorFromInt(fluidColor);
 			buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 			float xMax, zMax, xMin, zMin, yMin = 0;
@@ -69,7 +67,6 @@ public class TileEntityWoodenBasinRenderer extends TileEntitySpecialRenderer<Til
 			tessellator.draw();
 			GlStateManager.disableBlend();
 			GlStateManager.popMatrix();
-			GlStateManager.enableLighting();
 		}
 		
 		int itemBob = tile.getItemBob();
@@ -96,17 +93,10 @@ public class TileEntityWoodenBasinRenderer extends TileEntitySpecialRenderer<Til
 		GlStateManager.rotate(stirTicks * 4, 0.0F, -1F, 0F);
 		GlStateManager.rotate(35F, 1F, 0F, 0F);
 		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-		Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
-		RenderHelper.disableStandardItemLighting();
-		GlStateManager.enableBlend();
-		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(0.125F, 0.6875F, 0.125F);
 		Minecraft.getMinecraft().getBlockRendererDispatcher().renderBlockBrightness(Blocks.LOG.getDefaultState(), 1.0F);
 		GlStateManager.popMatrix();
-		GlStateManager.enableLighting();
-		GlStateManager.disableBlend();
-		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.popMatrix();
 	}
 

@@ -52,7 +52,7 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 			}
 		}
 
-		if (getMixing() && stirProgress <= 88)
+		if (getMixing() && stirProgress < 90)
 			stirProgress += 2;
 		if (stirProgress >= 90) {
 			setMixing(false);
@@ -61,7 +61,7 @@ public class TileEntityWoodenBasin extends TileEntityInventoryHelper implements 
 		}
 
 		if (!getWorld().isRemote) {
-			if (getStirCount() >= ConfigHandler.WOODEN_BASIN_STIRS && tank.getFluidAmount() >= Fluid.BUCKET_VOLUME && stirProgress == 90) {
+			if (getStirCount() >= ConfigHandler.WOODEN_BASIN_STIRS && tank.getFluidAmount() >= Fluid.BUCKET_VOLUME && stirProgress >= 88) {
 				ItemStack output = ItemStack.EMPTY;
 				WoodenBasinRecipes recipe = WoodenBasinRecipes.getRecipe(tank, getItems().get(0), getItems().get(1), getItems().get(2), getItems().get(3));
 				if (recipe == null) {
