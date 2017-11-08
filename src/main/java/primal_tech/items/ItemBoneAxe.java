@@ -8,7 +8,7 @@ import primal_tech.PrimalTech;
 public class ItemBoneAxe extends ItemAxe {
 
 	public ItemBoneAxe(ToolMaterial material) {
-		super(material, material.getDamageVsEntity() + 7F, -3.0F);
+		super(material, material.getAttackDamage() + 7F, -3.0F);
 		setCreativeTab(PrimalTech.TAB);
 	}
 

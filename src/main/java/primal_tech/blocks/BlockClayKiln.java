@@ -135,7 +135,10 @@ public class BlockClayKiln extends Block implements ITileEntityProvider {
 			int activeSlot = !tile.getStackInSlot(1).isEmpty() ? 1 : 0;
 			if (!stack.isEmpty() && tile.getStackInSlot(0).isEmpty() && tile.getStackInSlot(1).isEmpty()) {
 				if (!world.isRemote) {
-					tile.setInventorySlotContents(0, new ItemStack(stack.getItem(), 1, stack.getItemDamage()));
+					ItemStack stackInput = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
+					if(stack.hasTagCompound())
+						stackInput.setTagCompound(stack.getTagCompound());
+					tile.setInventorySlotContents(0, stackInput);
 					tile.setCookingDuration(0);
 					if (!player.capabilities.isCreativeMode)
 						stack.shrink(1);

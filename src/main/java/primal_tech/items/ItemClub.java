@@ -2,17 +2,20 @@ package primal_tech.items;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import primal_tech.PrimalTech;
 
 public class ItemClub extends ItemTool {
 	ToolMaterial material;
+	Item repairItem;
 
-	public ItemClub(ToolMaterial materialIn) {
+	public ItemClub(ToolMaterial materialIn, Item itemIn) {
 		super(1F, 1F, materialIn, null);
 		setCreativeTab(PrimalTech.TAB);
 		this.material = materialIn;
+		this.repairItem = itemIn;
 	}
 
 	@Override
@@ -23,9 +26,9 @@ public class ItemClub extends ItemTool {
 	}
 
 	@Override
-	public float getStrVsBlock(ItemStack stack, IBlockState state) {
+	public float getDestroySpeed(ItemStack stack, IBlockState state) {
 		if (isToolEffective(state))
-			return material.getEfficiencyOnProperMaterial();
+			return material.getEfficiency();
 		return 1.0F;
 	}
 
@@ -35,6 +38,6 @@ public class ItemClub extends ItemTool {
 
 	@Override
 	public boolean getIsRepairable(ItemStack stack, ItemStack material) {
-		return material.getItem() != null;
+		return repairItem != null && material.getItem() == repairItem;
 	}
 }

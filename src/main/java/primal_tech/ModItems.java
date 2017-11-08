@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -104,13 +105,13 @@ public class ModItems {
 		ROCK.setRegistryName("primal_tech", "rock").setUnlocalizedName("primal_tech.rock");
 		ROCK.setCreativeTab(PrimalTech.TAB);
 
-		WOOD_CLUB = new ItemClub(ToolMaterial.WOOD).setCreativeTab(PrimalTech.TAB);
+		WOOD_CLUB = new ItemClub(ToolMaterial.WOOD, Items.STICK).setCreativeTab(PrimalTech.TAB);
 		WOOD_CLUB.setRegistryName("primal_tech", "wood_club").setUnlocalizedName("primal_tech.wood_club");
 
-		STONE_CLUB = new ItemClub(ToolMaterial.STONE).setCreativeTab(PrimalTech.TAB);
+		STONE_CLUB = new ItemClub(ToolMaterial.STONE, Items.FLINT).setCreativeTab(PrimalTech.TAB);
 		STONE_CLUB.setRegistryName("primal_tech", "stone_club").setUnlocalizedName("primal_tech.stone_club");
 
-		BONE_CLUB = new ItemClub(PrimalTech.TOOL_BONE).setCreativeTab(PrimalTech.TAB);
+		BONE_CLUB = new ItemClub(PrimalTech.TOOL_BONE, ModItems.BONE_SHARD).setCreativeTab(PrimalTech.TAB);
 		BONE_CLUB.setRegistryName("primal_tech", "bone_club").setUnlocalizedName("primal_tech.bone_club");
 
 		FLUID_BLADDER = new ItemFluidBladder(Fluid.BUCKET_VOLUME).setCreativeTab(PrimalTech.TAB);

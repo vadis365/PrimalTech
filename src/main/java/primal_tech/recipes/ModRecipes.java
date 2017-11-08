@@ -13,6 +13,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -33,7 +34,7 @@ public class ModRecipes {
 		BONE_KNIFE = new ShapedOreRecipe(getResource("recipe_bone_knife"), new ItemStack(ModItems.BONE_KNIFE), " B", "S ", 'B', new ItemStack(ModItems.BONE_SHARD), 'S', "stickWood");
 		BONE_KNIFE.setRegistryName(getResource("recipe_bone_knife"));
 
-		STICK_BUNDLE = new ShapedOreRecipe(getResource("recipe_stick_bundle"), new ItemStack(ModBlocks.STICK_BUNDLE_ITEM), "STS", "SSS", "STS", 'T', new ItemStack(ModItems.TWINE), 'S', "stickWood");
+		STICK_BUNDLE = new ShapedOreRecipe(getResource("recipe_stick_bundle"), new ItemStack(ModBlocks.STICK_BUNDLE_ITEM), "STS", "SSS", "STS", 'T', "string", 'S', "stickWood");
 		STICK_BUNDLE.setRegistryName(getResource("recipe_stick_bundle"));
 
 		FIBRE_TORCH = new ShapedOreRecipe(getResource("recipe_fibre_torch"), new ItemStack(ModBlocks.FIBRE_TORCH_ITEM, 4, 0), "F", "S", 'F', new ItemStack(ModItems.PLANT_FIBRES, 1, 0), 'S', "stickWood");
@@ -85,10 +86,14 @@ public class ModRecipes {
 				);
 		}
 	}
-
-	public static void addRecipes() {
-		// OreDictionary.registerOre("string", ModItems.TWINE);
-		// OreDictionary.registerOre("flakeBone", ModItems.BONE_SHARD);
+	
+	@Mod.EventBusSubscriber(modid = "primal_tech")
+	public static class RegistrationHandler {
+		@SubscribeEvent(priority = EventPriority.LOWEST)
+		public static void registerOreDictEntries(final RegistryEvent.Register<Item> event) {
+			OreDictionary.registerOre("string", ModItems.TWINE);
+			OreDictionary.registerOre("flakeBone", ModItems.BONE_SHARD);
+		}
 	}
 
 	public static void addKilnRecipes() {
