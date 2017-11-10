@@ -8,6 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
@@ -24,10 +25,13 @@ import primal_tech.ModItems;
 import primal_tech.configs.ConfigHandler;
 
 public class ModRecipes {
+	public static final ItemStack NBT_FIRE_STICKS = new ItemStack(ModItems.FIRE_STICKS);
 	public static IRecipe CLAY_KILN, BONE_KNIFE, STICK_BUNDLE, FIBRE_TORCH, CHARCOAL, ROCK, WOOD_CLUB, STONE_CLUB, BONE_CLUB,
 	PLANT_FIBRES, TWINE, FIRE_STICKS;
 
 	public static void init() {
+		makeNBTStuffForMePlease();
+
 		CLAY_KILN = new ShapedOreRecipe(getResource("recipe_clay_kiln"), new ItemStack(ModBlocks.CLAY_KILN_ITEM), "CCC", "C C", "CCC", 'C', new ItemStack(Items.CLAY_BALL));
 		CLAY_KILN.setRegistryName(getResource("recipe_clay_kiln"));
 
@@ -61,8 +65,14 @@ public class ModRecipes {
 		TWINE = new ShapelessOreRecipe(getResource("recipe_twine"), new ItemStack(ModItems.TWINE, 3, 0), new ItemStack(ModItems.PLANT_FIBRES), new ItemStack(ModItems.PLANT_FIBRES), new ItemStack(ModItems.PLANT_FIBRES));
 		TWINE.setRegistryName(getResource("recipe_twine"));
 
-		FIRE_STICKS = new ShapelessOreRecipe(getResource("recipe_fire_sticks"), new ItemStack(ModItems.FIRE_STICKS), "stickWood", new ItemStack(ModItems.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE));
+		FIRE_STICKS = new ShapelessOreRecipe(getResource("recipe_fire_sticks"), NBT_FIRE_STICKS, "stickWood", new ItemStack(ModItems.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE));
 		FIRE_STICKS.setRegistryName(getResource("recipe_fire_sticks"));
+	}
+
+	private static void makeNBTStuffForMePlease() {
+		NBT_FIRE_STICKS.setTagCompound(new NBTTagCompound());
+		NBT_FIRE_STICKS.getTagCompound().setInteger("rubbingCount", 0);
+		NBT_FIRE_STICKS.getTagCompound().setBoolean("animate", false);
 	}
 
 	@Mod.EventBusSubscriber(modid = "primal_tech")
