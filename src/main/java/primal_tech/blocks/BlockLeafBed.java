@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -41,6 +42,8 @@ public class BlockLeafBed extends BlockHorizontal {
 
 	public BlockLeafBed() {
 		super(Material.LEAVES);
+		setSoundType(SoundType.PLANT);
+		setHardness(0.2F);
 		disableStats();
 	}
 
