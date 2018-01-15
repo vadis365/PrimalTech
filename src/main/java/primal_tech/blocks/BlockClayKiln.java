@@ -87,7 +87,7 @@ public class BlockClayKiln extends Block implements ITileEntityProvider {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.getFront(meta);
+		EnumFacing facing = EnumFacing.getHorizontal(meta);
 		if (facing.getAxis() == EnumFacing.Axis.Y)
 			facing = EnumFacing.NORTH;
 		return getDefaultState().withProperty(FACING, facing).withProperty(FIRED, Boolean.valueOf((meta & 8) > 0));
@@ -96,7 +96,7 @@ public class BlockClayKiln extends Block implements ITileEntityProvider {
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int meta = 0;
-		meta = meta | ((EnumFacing) state.getValue(FACING)).getIndex();
+		meta = meta | ((EnumFacing) state.getValue(FACING)).getHorizontalIndex();
 
 		if (((Boolean) state.getValue(FIRED)).booleanValue())
 			meta |= 8;
