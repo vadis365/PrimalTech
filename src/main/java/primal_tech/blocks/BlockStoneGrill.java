@@ -193,9 +193,9 @@ public class BlockStoneGrill extends Block implements ITileEntityProvider {
 							slotItemCount = 0;
 						}
 						if (!player.inventory.addItemStackToInventory(stack2))
-							ForgeHooks.onPlayerTossEvent(player, stack2, false);
+							ForgeHooks.onPlayerTossEvent(player, stack2.splitStack(1), false);
 						world.playSound((EntityPlayer)null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.5F, 2F);
-						tile.setInventorySlotContents(slotClicked, stack2.splitStack(1));
+						tile.setInventorySlotContents(slotClicked, stack2);
 					}
 					tile.markForUpdate();
 					return true;

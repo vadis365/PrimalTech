@@ -146,7 +146,10 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 			if (stack.getItem() != ModItems.STONE_MALLET) {
 				if (!stack.isEmpty() && tile.getStackInSlot(0).isEmpty()) {
 					if (!world.isRemote) {
-						tile.setInventorySlotContents(0, new ItemStack(stack.getItem(), 1, stack.getItemDamage()));
+						ItemStack stackInput = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
+						if(stack.hasTagCompound())
+							stackInput.setTagCompound(stack.getTagCompound());
+						tile.setInventorySlotContents(0, stackInput);
 						if (!player.capabilities.isCreativeMode)
 							stack.shrink(1);
 						if (!world.isRemote) {
