@@ -53,14 +53,8 @@ public class BlockLeafBed extends BlockHorizontal {
 	}
 
 	@Override
-	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
-		if (state.getValue(PART) == BlockLeafBed.EnumPartType.FOOT)
-			super.dropBlockAsItemWithChance(worldIn, pos, state, chance, 0);
-	}
-	
-	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return state.getValue(PART) == BlockLeafBed.EnumPartType.HEAD ? null : ModItems.LEAF_BED_ITEM;
+		return null;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -156,8 +150,6 @@ public class BlockLeafBed extends BlockHorizontal {
 				worldIn.setBlockToAir(pos);
 		} else if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock() != this) {
 			worldIn.setBlockToAir(pos);
-			if (!worldIn.isRemote)
-				this.dropBlockAsItem(worldIn, pos, state, 0);
 		}
 	}
 

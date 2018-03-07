@@ -42,3 +42,4 @@ itemGroup.primal_tech=Primal Tech
 tooltip.fire_sticks_1=Hold in both hands and right click a block.
 tooltip.fire_sticks_2=Sets a fire at block looked at. Single use.
 tooltip.mallet_1=Bash on the Stone Anvil. Just A Refined Rock on a stick.
+tooltip.leaf_bed=Will be destroyed if broken once placed.

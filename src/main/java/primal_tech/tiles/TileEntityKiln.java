@@ -1,11 +1,7 @@
 package primal_tech.tiles;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -14,7 +10,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -22,7 +17,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import primal_tech.ModBlocks;
 import primal_tech.blocks.BlockClayKiln;
-import primal_tech.configs.ConfigHandler;
 import primal_tech.inventory.InventoryWrapperKilnGrill;
 import primal_tech.recipes.ClayKilnRecipes;
 
@@ -54,12 +48,12 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
         if (getWorld().isRemote) 
             return;
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || isFireSource(getWorld().getBlockState(pos.down()).getBlock()) || getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER) && getTemp() < 200) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER) && getTemp() < 200) {
         	setTemp(getTemp() + 1);
         	markForUpdate();
         }
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE && !isFireSource(getWorld().getBlockState(pos.down()).getBlock()) && getWorld().getBlockState(pos.down()).getBlock() != ModBlocks.CHARCOAL_HOPPER) && getTemp() > 0) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE && getWorld().getBlockState(pos.down()).getBlock() != ModBlocks.CHARCOAL_HOPPER) && getTemp() > 0) {
         	setTemp(getTemp() - 1);
         	markForUpdate();
         }
@@ -84,18 +78,6 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
 			}
 		}
     }
-
-	private static Boolean isFireSource(Block block) {
-		List<Block> blockList = new ArrayList<Block>();
-		for (int blocks = 0; blocks < ConfigHandler.FIRE_SOURCES.length; blocks++) {
-			String entry = ConfigHandler.FIRE_SOURCES[blocks].trim();
-			Block outBlock = Block.REGISTRY.getObject(new ResourceLocation(entry));
-			blockList.add(outBlock);
-		}
-		if(blockList.contains(block))
-			return true;
-		return false;
-	}
 
 	public void setActive(boolean isActive) {
 		active = isActive;

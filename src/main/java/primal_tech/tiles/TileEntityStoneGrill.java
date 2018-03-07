@@ -1,9 +1,5 @@
 package primal_tech.tiles;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -13,14 +9,12 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import primal_tech.ModBlocks;
-import primal_tech.configs.ConfigHandler;
 import primal_tech.inventory.InventoryWrapperKilnGrill;
 
 public class TileEntityStoneGrill extends TileEntityInventoryHelper implements ITickable {
@@ -45,12 +39,12 @@ public class TileEntityStoneGrill extends TileEntityInventoryHelper implements I
         if (getWorld().isRemote) 
             return;
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER || getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || isFireSource(getWorld().getBlockState(pos.down()).getBlock())) && getTemp() < 200 && canSmelt()) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER || getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE) && getTemp() < 200 && canSmelt()) {
         	setTemp(getTemp() + 1);
         	markForUpdate();
         }
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() != ModBlocks.CHARCOAL_HOPPER && getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE && !isFireSource(getWorld().getBlockState(pos.down()).getBlock())) && getTemp() > 0) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() != ModBlocks.CHARCOAL_HOPPER && getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE) && getTemp() > 0) {
         	setTemp(getTemp() - 1);
         	markForUpdate();
         }
@@ -64,18 +58,6 @@ public class TileEntityStoneGrill extends TileEntityInventoryHelper implements I
 		if(!canSmelt())
 			setTemp(0);
     }
-
-	private static Boolean isFireSource(Block block) {
-		List<Block> blockList = new ArrayList<Block>();
-		for (int blocks = 0; blocks < ConfigHandler.FIRE_SOURCES.length; blocks++) {
-			String entry = ConfigHandler.FIRE_SOURCES[blocks].trim();
-			Block outBlock = Block.REGISTRY.getObject(new ResourceLocation(entry));
-			blockList.add(outBlock);
-		}
-		if(blockList.contains(block))
-			return true;
-		return false;
-	}
 
 	private boolean canSmelt() {
 		if (getItems().get(0).isEmpty())

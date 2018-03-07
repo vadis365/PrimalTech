@@ -67,8 +67,6 @@ public class PrimalTech {
 			}
 		});
 
-		//ModRecipes.addRecipes();
-
 		PROXY.registerTileEntities();
 		PROXY.registerRenderers();
 

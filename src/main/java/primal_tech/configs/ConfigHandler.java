@@ -34,7 +34,15 @@ public class ConfigHandler {
 
 	private void syncConfigs() {
 		CONFIG.addCustomCategoryComment("Clay Kiln Recipes", "output, input syntax is: modName:itemName,metaData#modName:itemName,metaData#cookingSpeedInTicks");
-		CLAY_KILN_RECIPES = CONFIG.getStringList("Clay Kiln Recipes", "Clay Kiln Recipes", new String[] { "primal_tech:flint_block,0#minecraft:gravel,0#200"}, "Happy Birthday!");
+		CLAY_KILN_RECIPES = CONFIG.getStringList("Clay Kiln Recipes", "Clay Kiln Recipes", new String[] { 
+				"primal_tech:flint_block,0#minecraft:gravel,0#200",
+				"primal_tech:charcoal_block,0#minecraft:log,0#200",
+				"primal_tech:charcoal_block,0#minecraft:log,1#200",
+				"primal_tech:charcoal_block,0#minecraft:log,2#200",
+				"primal_tech:charcoal_block,0#minecraft:log,3#200",
+				"primal_tech:charcoal_block,0#minecraft:log2,0#200",
+				"primal_tech:charcoal_block,0#minecraft:log2,1#200"
+				}, "Happy Birthday!");
 		
 		CONFIG.addCustomCategoryComment("Water Powered Saw Recipes", "output, input syntax is: modName:itemName,metaData,outputAmount#modName:itemName,metaData#choppingSpeedInTicks");
 		WATER_SAW_RECIPES = CONFIG.getStringList("Water Powered Saw Recipes", "Water Powered Saw Recipes", new String[] {
@@ -54,7 +62,6 @@ public class ConfigHandler {
 
 		CONFIG.addCustomCategoryComment("Wooden Basin Recipes", "output, input syntax is: modName:itemName,metaData,outputAmount#fluidName#modName:itemName,metaData (up to 4 input Items seperated with commas");
 		WOODEN_BASIN_RECIPES = CONFIG.getStringList("Wooden Basin Recipes", "Wooden Basin Recipes", new String[] {
-		"minecraft:diamond,0,1#water#minecraft:dirt,0,minecraft:dirt,0,minecraft:dirt,0,minecraft:dirt,0",
 		"minecraft:obsidian,0,1#lava#minecraft:cobblestone,0,minecraft:cobblestone,0"
 		}, "Happy Birthday!");
 
