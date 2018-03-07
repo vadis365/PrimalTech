@@ -148,6 +148,7 @@ public class ModBlocks {
 
 		@SubscribeEvent
 		public static void registerBlocks(final RegistryEvent.Register<Block> event) {
+			init();
 			final Block[] blocks = {
 					CLAY_KILN,
 					FLINT_BLOCK,

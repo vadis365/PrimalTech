@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -138,6 +137,7 @@ public class ModItems {
 
 		@SubscribeEvent
 		public static void registerItems(final RegistryEvent.Register<Item> event) {
+			init();
 			final Item[] items = {
 					FIRE_STICKS,
 					BONE_PICKAXE,

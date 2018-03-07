@@ -17,6 +17,7 @@ public class ModSounds {
 	public static class RegistrationHandlerSounds {
 		@SubscribeEvent
 		public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
+			init();
 			event.getRegistry().registerAll(BREAKING_STUFF);
 		}
 	}

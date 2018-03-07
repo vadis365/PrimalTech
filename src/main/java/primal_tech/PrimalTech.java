@@ -53,10 +53,6 @@ public class PrimalTech {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigHandler.INSTANCE.loadConfig(event);
-		ModBlocks.init();
-		ModItems.init();
-		ModSounds.init();
-		ModRecipes.init();
 
 		GameRegistry.registerFuelHandler(new IFuelHandler() {
 			@Override

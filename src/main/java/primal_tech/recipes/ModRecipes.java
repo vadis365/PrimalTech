@@ -27,7 +27,7 @@ import primal_tech.configs.ConfigHandler;
 public class ModRecipes {
 	public static final ItemStack NBT_FIRE_STICKS = new ItemStack(ModItems.FIRE_STICKS);
 	public static IRecipe CLAY_KILN, BONE_KNIFE, STICK_BUNDLE, FIBRE_TORCH, CHARCOAL, ROCK, WOOD_CLUB, STONE_CLUB, BONE_CLUB,
-	PLANT_FIBRES, TWINE, FIRE_STICKS;
+	PLANT_FIBRES, TWINE, FIRE_STICKS, BONE_SWORD, BONE_AXE, BONE_PICKAXE, BONE_SHOVEL, BONE_SHEARS;
 
 	public static void init() {
 		makeNBTStuffForMePlease();
@@ -35,7 +35,23 @@ public class ModRecipes {
 		CLAY_KILN = new ShapedOreRecipe(getResource("recipe_clay_kiln"), new ItemStack(ModBlocks.CLAY_KILN_ITEM), "CCC", "C C", "CCC", 'C', new ItemStack(Items.CLAY_BALL));
 		CLAY_KILN.setRegistryName(getResource("recipe_clay_kiln"));
 
-		BONE_KNIFE = new ShapedOreRecipe(getResource("recipe_bone_knife"), new ItemStack(ModItems.BONE_KNIFE), " B", "S ", 'B', new ItemStack(ModItems.BONE_SHARD), 'S', "stickWood");
+		// Bone tools
+		BONE_PICKAXE = new ShapedOreRecipe(getResource("recipe_bone_pickaxe"), new ItemStack(ModItems.BONE_PICKAXE, 1), "XXX", " # ", " # ", '#', "stickWood", 'X', "flakeBone");
+		BONE_PICKAXE.setRegistryName(getResource("recipe_bone_pickaxe"));
+
+		BONE_SHOVEL = new ShapedOreRecipe(getResource("recipe_bone_shovel"), new ItemStack(ModItems.BONE_SHOVEL, 1), "X", "#", "#", '#', "stickWood", 'X', "flakeBone");
+		BONE_SHOVEL.setRegistryName(getResource("recipe_bone_shovel"));
+
+		BONE_AXE = new ShapedOreRecipe(getResource("recipe_bone_axe"), new ItemStack(ModItems.BONE_AXE, 1), "XX", "X#", " #", '#', "stickWood", 'X', "flakeBone");
+		BONE_AXE.setRegistryName(getResource("recipe_bone_axe"));
+
+		BONE_SWORD = new ShapedOreRecipe(getResource("recipe_bone_sword"), new ItemStack(ModItems.BONE_SWORD, 1), "X", "X", "#", '#', "stickWood", 'X', "flakeBone");
+		BONE_SWORD.setRegistryName(getResource("recipe_bone_sword"));
+
+		BONE_SHEARS = new ShapedOreRecipe(getResource("recipe_bone_shears"), new ItemStack(ModItems.BONE_SHEARS, 1), " #", "# ", '#', "flakeBone");
+		BONE_SHEARS.setRegistryName(getResource("recipe_bone_shears"));
+
+		BONE_KNIFE = new ShapedOreRecipe(getResource("recipe_bone_knife"), new ItemStack(ModItems.BONE_KNIFE), " B", "S ", 'B', "flakeBone", 'S', "stickWood");
 		BONE_KNIFE.setRegistryName(getResource("recipe_bone_knife"));
 
 		STICK_BUNDLE = new ShapedOreRecipe(getResource("recipe_stick_bundle"), new ItemStack(ModBlocks.STICK_BUNDLE_ITEM), "STS", "SSS", "STS", 'T', "string", 'S', "stickWood");
@@ -79,6 +95,7 @@ public class ModRecipes {
 	public static class RegistrationHandlerRecipes {
 		@SubscribeEvent
 		public static void registerRecipes(final RegistryEvent.Register<IRecipe> event) {
+			init();
 		final IForgeRegistry<IRecipe> registry = event.getRegistry();
 		event.getRegistry().registerAll(
 				CLAY_KILN,
