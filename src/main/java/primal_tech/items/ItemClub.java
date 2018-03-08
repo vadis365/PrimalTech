@@ -1,10 +1,20 @@
 package primal_tech.items;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import primal_tech.PrimalTech;
 
 public class ItemClub extends ItemTool {
@@ -16,6 +26,12 @@ public class ItemClub extends ItemTool {
 		setCreativeTab(PrimalTech.TAB);
 		this.material = materialIn;
 		this.repairItem = itemIn;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flag) {
+		list.add(TextFormatting.YELLOW + new TextComponentTranslation("tooltip.clubs").getFormattedText());
 	}
 
 	@Override

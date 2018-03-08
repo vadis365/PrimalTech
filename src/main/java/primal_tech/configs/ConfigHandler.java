@@ -14,7 +14,7 @@ public class ConfigHandler {
 	public static String[] STONE_ANVIL_RECIPES;
 	public static String[] FIRE_SOURCES;
 	public static String[] WOODEN_BASIN_RECIPES;
-	public static String[] USED_CATEGORIES = { "Clay Kiln Recipes", "Blocks Considered as Fire Sources", "Work Stump Setting", "Charcoal", "Water Powered Saw Recipes", "Fluid Bladder", "Stone Anvil Setting", "Stone Anvil Recipes", "Wooden Basin Setting", "Wooden Basin Recipes" };
+	public static String[] USED_CATEGORIES = { "Clay Kiln Recipes", "Blocks Considered as Fire Sources", "Work Stump Setting", "Charcoal", "Water Powered Saw Recipes", "Fluid Bladder", "Stone Anvil Setting", "Stone Anvil Recipes", "Wooden Basin Setting", "Wooden Basin Recipes", "Clubs and Bone Shards" };
 	public static int WORK_STUMP_DAMAGE;
 	public static int WORK_STUMP_II_DAMAGE;
 	public static int CRAFTING_STRIKES;
@@ -26,6 +26,8 @@ public class ConfigHandler {
 	public static int STONE_ANVIL_DAMAGE;
 	public static int STONE_ANVIL_CRAFTING_STRIKES;
 	public static int WOODEN_BASIN_STIRS;
+	public static boolean DROP_BONE_SHARD;
+	public static int BONE_SHARD_RATE;
 	public void loadConfig(FMLPreInitializationEvent event) {
 		CONFIG = new Configuration(event.getSuggestedConfigurationFile());
 		CONFIG.load();
@@ -70,7 +72,7 @@ public class ConfigHandler {
 		WORK_STUMP_II_DAMAGE = CONFIG.get("Work Stump Setting", "Crafting Uses Before Upgraded Stump Breaks", 40).getInt(40);
 
 		STONE_ANVIL_DAMAGE = CONFIG.get("Stone Anvil Setting", "Crafting Uses Before Stone Anvil Breaks", 20).getInt(20);
-		
+
 		CRAFTING_STRIKES = CONFIG.getInt("Craftng Rock Strikes Needed To Craft on The Stump", "Work Stump Setting", 4, 1, Integer.MAX_VALUE, "");
 
 		CRAFTING_STRIKES_II = CONFIG.getInt("Craftng Rock Strikes Needed To Craft on The Upgraded Stump", "Work Stump Setting", 4, 1, Integer.MAX_VALUE, "");
@@ -78,14 +80,18 @@ public class ConfigHandler {
 		ROCK_DAMAGE = CONFIG.get("Work Stump Setting", "Max Damage Of Crafing Rock", 160).getInt(160);
 
 		MALLET_DAMAGE = CONFIG.get("Stone Anvil Setting", "Max Damage Of Stone Mallet", 160).getInt(160);
-		
+
 		STONE_ANVIL_CRAFTING_STRIKES = CONFIG.getInt("Strikes Needed To Craft on The Stone Avil", "Stone Anvil Setting", 4, 1, Integer.MAX_VALUE, "");
 
 		CHARCOAL_BURN_TIME = CONFIG.getInt("Chance that fire will consume this block. 300 being a 100% chance, 0, being a 0% chance", "Charcoal", 0, 0, 300, "");
 
 		FLUID_BLADDER_PLACES_FLUID = CONFIG.get("Fluid Bladder", "Can Place Fluids in World", true).getBoolean(true);
-		
+
 		WOODEN_BASIN_STIRS = CONFIG.get("Wooden Basin Setting", "How Many Stirs Before Result", 3).getInt(3);
+
+		DROP_BONE_SHARD = CONFIG.get("Clubs and Bone Shards", "Boneshards drop when Mobs are killed with Clubs.", true).getBoolean(true);
+
+		BONE_SHARD_RATE = CONFIG.getInt("Chance Boneshards drop when killed with Clubs. Higher numbers = less chance", "Clubs and Bone Shards", 3, 1, Integer.MAX_VALUE, "");
 
 		if (CONFIG.hasChanged())
 			CONFIG.save();

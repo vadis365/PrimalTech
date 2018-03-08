@@ -20,13 +20,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import primal_tech.configs.ConfigHandler;
+import primal_tech.events.EntityBoneShardEvent;
 import primal_tech.events.TorchLightEvent;
 import primal_tech.network.FireSticksMessage;
 import primal_tech.network.FireSticksPacketHandler;
 import primal_tech.proxy.CommonProxy;
 import primal_tech.recipes.ModRecipes;
 
-@Mod(modid = "primal_tech", name = "primal_tech", version = "0.2.96", guiFactory = "primal_tech.configs.ConfigGuiFactory", dependencies = "after:*")
+@Mod(modid = "primal_tech", name = "primal_tech", version = "0.2.97", guiFactory = "primal_tech.configs.ConfigGuiFactory", dependencies = "after:*")
 
 public class PrimalTech {
 
@@ -77,6 +78,7 @@ public class PrimalTech {
 		ModRecipes.addStoneAnvilRecipes();
 		ModRecipes.addWoodenBasinRecipes();
 		MinecraftForge.EVENT_BUS.register(new TorchLightEvent());
+		MinecraftForge.EVENT_BUS.register(new EntityBoneShardEvent());
 		MinecraftForge.EVENT_BUS.register(ConfigHandler.INSTANCE);
 	}
 

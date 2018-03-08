@@ -3,6 +3,7 @@ package primal_tech.recipes;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -27,7 +28,8 @@ import primal_tech.configs.ConfigHandler;
 public class ModRecipes {
 	public static final ItemStack NBT_FIRE_STICKS = new ItemStack(ModItems.FIRE_STICKS);
 	public static IRecipe CLAY_KILN, BONE_KNIFE, STICK_BUNDLE, FIBRE_TORCH, CHARCOAL, ROCK, WOOD_CLUB, STONE_CLUB, BONE_CLUB,
-	PLANT_FIBRES, TWINE, FIRE_STICKS, BONE_SWORD, BONE_AXE, BONE_PICKAXE, BONE_SHOVEL, BONE_SHEARS;
+	PLANT_FIBRES, TWINE, FIRE_STICKS, BONE_SWORD, BONE_AXE, BONE_PICKAXE, BONE_SHOVEL, BONE_SHEARS, WOODEN_HOPPER, CHARCOAL_HOPPER,
+	FLUID_BLADDER, FLINT_SAW_BLADE, STONE_MALLET, WORK_STUMP, WORK_STUMP_II, STONE_GRILL, WATER_SAW, STONE_ANVIL, WOODEN_BASIN, LEAF_BED;
 
 	public static void init() {
 		makeNBTStuffForMePlease();
@@ -83,6 +85,42 @@ public class ModRecipes {
 
 		FIRE_STICKS = new ShapelessOreRecipe(getResource("recipe_fire_sticks"), NBT_FIRE_STICKS, "stickWood", new ItemStack(ModItems.BONE_KNIFE, 1, OreDictionary.WILDCARD_VALUE));
 		FIRE_STICKS.setRegistryName(getResource("recipe_fire_sticks"));
+
+		WOODEN_HOPPER = new ShapedOreRecipe(getResource("recipe_wooden_hopper"), new ItemStack(ModBlocks.WOODEN_HOPPER_ITEM), "I I", "ICI", " I ", 'I', "plankWood", 'C', new ItemStack(Blocks.TRAPDOOR));
+		WOODEN_HOPPER.setRegistryName(getResource("recipe_wooden_hopper"));
+
+		CHARCOAL_HOPPER = new ShapedOreRecipe(getResource("recipe_charcoal_hopper"), new ItemStack(ModBlocks.CHARCOAL_HOPPER_ITEM), "I I", "ICI", " I ", 'I', new ItemStack(ModBlocks.CHARCOAL_BLOCK_ITEM), 'C', new ItemStack(Blocks.TRAPDOOR));
+		CHARCOAL_HOPPER.setRegistryName(getResource("recipe_charcoal_hopper"));
+
+		FLUID_BLADDER = new ShapedOreRecipe(getResource("recipe_fluid_bladder"), new ItemStack(ModItems.FLUID_BLADDER), "TL ", "L L", " L ", 'L', new ItemStack(Items.LEATHER), 'T', "string");
+		FLUID_BLADDER.setRegistryName(getResource("recipe_fluid_bladder"));
+
+		FLINT_SAW_BLADE = new ShapedOreRecipe(getResource("recipe_flint_saw_blade"), new ItemStack(ModItems.FLINT_SAW_BLADE), "F F", " B ", "F F", 'F', new ItemStack(Items.FLINT), 'B', new ItemStack(ModBlocks.FLINT_BLOCK_ITEM));
+		FLINT_SAW_BLADE.setRegistryName(getResource("recipe_flint_saw_blade"));
+
+		STONE_MALLET = new ShapedOreRecipe(getResource("recipe_stone_mallet"), new ItemStack(ModItems.STONE_MALLET), " BS", " SB", "S  ", 'B', "stone", 'S', "stickWood");
+		STONE_MALLET.setRegistryName(getResource("recipe_stone_mallet"));
+
+		WORK_STUMP = new ShapedOreRecipe(getResource("recipe_work_stump"), new ItemStack(ModBlocks.WORK_STUMP_ITEM), "S", "L", 'S', "slabWood", 'L', "logWood");
+		WORK_STUMP.setRegistryName(getResource("recipe_work_stump"));
+
+		WORK_STUMP_II = new ShapedOreRecipe(getResource("recipe_work_stump_2"), new ItemStack(ModBlocks.WORK_STUMP_II_ITEM), "PPP", "PWP", "PPP", 'P', "plankWood", 'W', new ItemStack(ModBlocks.WORK_STUMP_ITEM));
+		WORK_STUMP_II.setRegistryName(getResource("recipe_work_stump_2"));
+
+		STONE_GRILL = new ShapedOreRecipe(getResource("recipe_stone_grill"), new ItemStack(ModBlocks.STONE_GRILL_ITEM), "SSS", "C C", " C ", 'S', new ItemStack(Blocks.STONE_SLAB, 1, BlockStoneSlab.EnumType.COBBLESTONE.ordinal()), 'C', "cobblestone");
+		STONE_GRILL.setRegistryName(getResource("recipe_stone_grill"));
+
+		STONE_ANVIL = new ShapedOreRecipe(getResource("recipe_stone_anvil"), new ItemStack(ModBlocks.STONE_ANVIL_ITEM), "H", "S", 'H', new ItemStack(Blocks.STONE_SLAB, 1, BlockStoneSlab.EnumType.STONE.ordinal()), 'S', "stone");
+		STONE_ANVIL.setRegistryName(getResource("recipe_stone_anvil"));
+
+		WATER_SAW = new ShapedOreRecipe(getResource("recipe_water_saw"), new ItemStack(ModBlocks.WATER_SAW_ITEM), "PBP", "SLS", "PLP", 'P', new ItemStack(Blocks.WOODEN_PRESSURE_PLATE), 'B', new ItemStack(ModItems.FLINT_SAW_BLADE), 'S', "stickWood", 'L', "logWood");
+		WATER_SAW.setRegistryName(getResource("recipe_water_saw"));
+
+		WOODEN_BASIN = new ShapedOreRecipe(getResource("recipe_wooden_basin"), new ItemStack(ModBlocks.WOODEN_BASIN_ITEM), "PSP", "PPP", "B B", 'P', "plankWood", 'S', "stickWood", 'B', "stone");
+		WOODEN_BASIN.setRegistryName(getResource("recipe_wooden_basin"));
+
+		LEAF_BED = new ShapedOreRecipe(getResource("recipe_leaf_bed"), new ItemStack(ModItems.LEAF_BED_ITEM), "LLS", "HHH", 'L', "treeLeaves", 'S', "slabWood", 'H', new ItemStack(Blocks.HAY_BLOCK));
+		LEAF_BED.setRegistryName(getResource("recipe_leaf_bed"));
 	}
 
 	private static void makeNBTStuffForMePlease() {
@@ -109,7 +147,24 @@ public class ModRecipes {
 				BONE_CLUB,
 				PLANT_FIBRES,
 				TWINE,
-				FIRE_STICKS
+				FIRE_STICKS,
+				BONE_SWORD,
+				BONE_AXE,
+				BONE_PICKAXE,
+				BONE_SHOVEL,
+				BONE_SHEARS,
+				WOODEN_HOPPER,
+				CHARCOAL_HOPPER,
+				FLUID_BLADDER,
+				FLINT_SAW_BLADE,
+				STONE_MALLET,
+				WORK_STUMP,
+				WORK_STUMP_II,
+				STONE_GRILL,
+				WATER_SAW,
+				STONE_ANVIL,
+				WOODEN_BASIN,
+				LEAF_BED
 				);
 		}
 	}
