@@ -65,7 +65,7 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
         	markForUpdate();
         }
 
-		if (getWorld().getBlockState(pos) != null && active && !getItems().get(0).isEmpty() && getTemp() >= 200) {
+		if (getWorld().getBlockState(pos) != null && active && !getItems().get(0).isEmpty() && getItems().get(1).isEmpty() && getTemp() >= 200) {
 			setCookingDuration(getCookingDuration() + 1);
 			if (getCookingDuration() >= ClayKilnRecipes.getCooktime(getItems().get(0))) {
 				ItemStack output = ClayKilnRecipes.getOutput(getItems().get(0));
@@ -86,7 +86,6 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
 
 	public void setTemp(int temperature) {
 		temp = temperature;
-		markForUpdate();
 	}
 
 	public int getTemp() {
@@ -144,7 +143,6 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
 	@Override
     public void setInventorySlotContents(int index, @Nullable ItemStack stack) {
 		super.setInventorySlotContents(index, stack);
-		markForUpdate();
     }
 	
 	@Override
@@ -154,12 +152,12 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
 
 	@Override
 	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
-		return index == 0;
+		return index == 0 && getItems().get(1).isEmpty();
 	}
 
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-		return index == 1;
+		return index == 1 && getItems().get(0).isEmpty();
 	}
 
 	@Override

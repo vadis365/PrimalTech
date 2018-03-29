@@ -14,10 +14,10 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -92,7 +92,7 @@ public class BlockWaterSaw extends Block implements ITileEntityProvider {
 
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class BlockWaterSaw extends Block implements ITileEntityProvider {
 	}
 
     @SideOnly(Side.CLIENT)
-    public boolean addDestroyEffects(World world, BlockPos pos, net.minecraft.client.particle.ParticleManager manager) {
+    public boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager) {
         return true;
     }
 
@@ -177,7 +177,7 @@ public class BlockWaterSaw extends Block implements ITileEntityProvider {
 		if (tile != null) {
 			InventoryHelper.dropInventoryItems(world, pos, tile);
 		}
-		world.playEvent(2001, pos, Block.getStateId(Blocks.LOG.getDefaultState()));
+		//world.playEvent(2001, pos, Block.getStateId(Blocks.LOG.getDefaultState()));
 		super.breakBlock(world, pos, state);
 	}
 
