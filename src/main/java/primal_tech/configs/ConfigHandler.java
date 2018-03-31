@@ -23,6 +23,7 @@ public class ConfigHandler {
 	public static int MALLET_DAMAGE;
 	public static int CHARCOAL_BURN_TIME;
 	public static boolean FLUID_BLADDER_PLACES_FLUID;
+	public static boolean FLUID_BLADDER_LAVA_PICKUP;
 	public static int STONE_ANVIL_DAMAGE;
 	public static int STONE_ANVIL_CRAFTING_STRIKES;
 	public static int WOODEN_BASIN_STIRS;
@@ -86,6 +87,8 @@ public class ConfigHandler {
 		CHARCOAL_BURN_TIME = CONFIG.getInt("Chance that fire will consume this block. 300 being a 100% chance, 0, being a 0% chance", "Charcoal", 0, 0, 300, "");
 
 		FLUID_BLADDER_PLACES_FLUID = CONFIG.get("Fluid Bladder", "Can Place Fluids in World", true).getBoolean(true);
+
+		FLUID_BLADDER_LAVA_PICKUP = CONFIG.get("Fluid Bladder", "Can Pick Up Lava", false).getBoolean(false);
 
 		WOODEN_BASIN_STIRS = CONFIG.get("Wooden Basin Setting", "How Many Stirs Before Result", 3).getInt(3);
 

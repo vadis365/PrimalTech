@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +17,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
@@ -29,6 +31,7 @@ import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
+import primal_tech.ModSounds;
 import primal_tech.configs.ConfigHandler;
 
 public class ItemFluidBladder extends ItemFluidContainer {
@@ -79,6 +82,12 @@ public class ItemFluidBladder extends ItemFluidContainer {
 			if (target == null || target.typeOfHit != RayTraceResult.Type.BLOCK)
 				return ActionResult.newResult(EnumActionResult.PASS, itemstack);
 			BlockPos pos = target.getBlockPos();
+			IBlockState iblockstate = world.getBlockState(pos);
+			Material material = iblockstate.getMaterial();
+			if (material == Material.LAVA && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0 && !ConfigHandler.FLUID_BLADDER_LAVA_PICKUP) {
+				world.playSound((EntityPlayer)null, pos, ModSounds.CABBAGE_FART, SoundCategory.PLAYERS, 1F, 1F);
+				return ActionResult.newResult(EnumActionResult.PASS, itemstack);
+			}
 			FluidActionResult filledResult = FluidUtil.tryPickUpFluid(itemstack, player, world, pos, target.sideHit);
 			if (filledResult.isSuccess()) {
 				ItemStack filledStack = filledResult.getResult().copy();

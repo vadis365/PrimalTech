@@ -4,5 +4,11 @@
     "sounds": [
       "primal_tech:breaking_stuff"
     ]
+  },
+    "cabbage_fart": {
+    "category": "players",
+    "sounds": [
+      "primal_tech:cabbage_fart"
+    ]
   }
 }
