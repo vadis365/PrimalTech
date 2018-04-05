@@ -88,8 +88,13 @@ public class TileEntityWorkStump extends TileEntityInventoryHelper implements IT
 				}
 				NonNullList<ItemStack> stuffLeft = CraftingManager.getRemainingItems(craftMatrix, getWorld());
 				for (int index = 0; index < 9; index++) {
-					if(!stuffLeft.get(index).isEmpty())
-						setInventorySlotContents(index, stuffLeft.get(index));
+					if(!stuffLeft.get(index).isEmpty()) 
+						if (stuffLeft.get(index).getItem() != getItems().get(index).getItem()) {
+							spawnItemStack(getWorld(), pos.getX() + 0.5D, pos.getY() + 1D, pos.getZ() + 0.5D, stuffLeft.get(index));
+							decrStackSize(index, 1);
+						}
+						else
+							setInventorySlotContents(index, stuffLeft.get(index));
 					else
 						decrStackSize(index, 1);
 				}
