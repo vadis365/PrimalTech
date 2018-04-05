@@ -162,7 +162,7 @@ public class TileEntityStoneGrill extends TileEntityInventoryHelper implements I
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return true;
+		return getItems().get(0).isEmpty() || getItems().get(0).getCount() < getInventoryStackLimit();
 	}
 
 	@Override
