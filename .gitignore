@@ -38,6 +38,7 @@ $RECYCLE.BIN/
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+*.iml
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -48,3 +49,4 @@ Temporary Items
 build/
 bin/
 .gradle/
+.idea
