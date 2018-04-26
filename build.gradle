@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "mezz.jei:jei_1.12.2:4.8.5.133"
+    deobfCompile "mezz.jei:jei_1.12.2:4.9.1.169"
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.0.9.289"
 }
 
