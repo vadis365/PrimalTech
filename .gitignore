@@ -50,3 +50,5 @@ build/
 bin/
 .gradle/
 .idea
+run/
+out/
