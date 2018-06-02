@@ -58,7 +58,7 @@ public class WoodenBasinRecipes {
 	private WoodenBasinRecipes(ItemStack output, FluidStack fluidIn, Object... input) {
 		this.output = output.copy();
 		this.fluidStack = fluidIn;
-		this.input = new Object[input.length];
+		this.input = new Object[4];
 
 		if (input.length > 4)
 			throw new IllegalArgumentException("Input must be 1 to 4.");
@@ -70,6 +70,10 @@ public class WoodenBasinRecipes {
 				this.input[c] = OreDictionary.getOres((String) input[c]);
 			else
 				throw new IllegalArgumentException("Input must be an ItemStack or an OreDictionary name");
+
+		for (int i = input.length; i < 4; i++) {
+			this.input[i] = ItemStack.EMPTY.copy();
+		}
 	}
 
 	public Object[] getInputs() {
@@ -82,13 +86,16 @@ public class WoodenBasinRecipes {
 
 	//Urgh... fugly as all hell... it works though
 	public boolean matches(IFluidTank tankIn, ItemStack... stacks) {
-		if (tankIn.getFluidAmount() >= getFluidStack().amount && tankIn.getFluid().isFluidEqual(getFluidStack())) {
-			if(areStacksTheSame(getInputs()[0], stacks[0]))
-				if(areStacksTheSame(getInputs()[1], stacks[1]))
-					if(areStacksTheSame(getInputs()[2], stacks[2]))
-						if(areStacksTheSame(getInputs()[3], stacks[3]))
-							return true;
-					}
+		if (tankIn.getFluid() == null || !tankIn.getFluid().isFluidEqual(getFluidStack()))
+			return false;
+		if (tankIn.getFluidAmount() < getFluidStack().amount)
+			return false;
+
+		if (areStacksTheSame(getInputs()[0], stacks[0]))
+			if (areStacksTheSame(getInputs()[1], stacks[1]))
+				if (areStacksTheSame(getInputs()[2], stacks[2]))
+					return areStacksTheSame(getInputs()[3], stacks[3]);
+
 		return false;
 	}
 
