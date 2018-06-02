@@ -80,7 +80,8 @@ public class ItemFireSticks extends Item {
 							if (world.isBlockModifiable(player, clickPos)) {
 								BlockPos targetPos = clickPos.offset(mop.sideHit);
 								if (player.canPlayerEdit(targetPos, mop.sideHit, mainHandItem))
-									PrimalTech.NETWORK_WRAPPER.sendToServer(new FireSticksMessage(player, targetPos));
+									if(world.isRemote)
+										PrimalTech.NETWORK_WRAPPER.sendToServer(new FireSticksMessage(player, targetPos));
 							}
 						}
 					}
@@ -100,8 +101,10 @@ public class ItemFireSticks extends Item {
 
 			if (!mainHandItem.isEmpty() && !offHandItem.isEmpty()) {
 				if (mainHandItem.getItem() == ModItems.FIRE_STICKS && offHandItem.getItem() == ModItems.FIRE_STICKS) {
-					mainHandItem.getTagCompound().setInteger("rubbingCount", 0);
-					mainHandItem.getTagCompound().setBoolean("animate", true);
+					if(world.isRemote) {
+						mainHandItem.getTagCompound().setInteger("rubbingCount", 0);
+						mainHandItem.getTagCompound().setBoolean("animate", true);
+					}
 					return EnumActionResult.SUCCESS;
 				}
 			}
