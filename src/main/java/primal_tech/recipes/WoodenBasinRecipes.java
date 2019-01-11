@@ -13,8 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class WoodenBasinRecipes {
 
 	private static final List<WoodenBasinRecipes> recipes = new ArrayList<WoodenBasinRecipes>();
-	
-	
+
 	public static void addRecipe(ItemStack output, Fluid fluid, Object... input) {
 		addRecipe(output, new FluidStack(fluid, Fluid.BUCKET_VOLUME), input);
 	}
