@@ -48,6 +48,7 @@ public class BlockStickBundle extends Block {
 		setDefaultState(blockState.getBaseState().withProperty(IGNITION_STAGE, Integer.valueOf(0)));
 		setTickRandomly(true);
 		setCreativeTab(PrimalTech.TAB);
+		Blocks.FIRE.setFireInfo(this, 5, 20);
 	}
 
 	@Override
