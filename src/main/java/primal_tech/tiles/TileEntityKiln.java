@@ -48,34 +48,61 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
         if (getWorld().isRemote) 
             return;
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER) && getTemp() < 200) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER) && getTemp() < 200 && canSmelt()) {
         	setTemp(getTemp() + 1);
-        	markForUpdate();
         }
 
         if ((getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE && getWorld().getBlockState(pos.down()).getBlock() != ModBlocks.CHARCOAL_HOPPER) && getTemp() > 0) {
         	setTemp(getTemp() - 1);
-        	markForUpdate();
         }
 
         if (getWorld().getBlockState(pos) != null && !active && getTemp() >= 200) {
         	IBlockState state = getWorld().getBlockState(pos);
         	((BlockClayKiln) state.getBlock()).setState(getWorld(), pos);
         	setTemp(0);
-        	markForUpdate();
         }
 
-		if (getWorld().getBlockState(pos) != null && active && !getItems().get(0).isEmpty() && getItems().get(1).isEmpty() && getTemp() >= 200) {
+		if (getWorld().getBlockState(pos) != null && getTemp() >= 200 && canSmelt()) {
 			setCookingDuration(getCookingDuration() + 1);
-			if (getCookingDuration() >= ClayKilnRecipes.getCooktime(getItems().get(0))) {
-				ItemStack output = ClayKilnRecipes.getOutput(getItems().get(0));
-				if(!output.isEmpty() && output != getItems().get(0)) {
-				getItems().get(0).shrink(1);
-				setInventorySlotContents(1, output);
-				setCookingDuration(0);
-				markForUpdate();
-				}
+			if (getCookingDuration() >= ClayKilnRecipes.getCooktime(getItems().get(0)))
+				smeltItem();
+		}
+
+		if(!canSmelt())
+			setTemp(0);
+    }
+	
+	
+	private boolean canSmelt() {
+		if (!active && getItems().get(0).isEmpty() && !getItems().get(1).isEmpty() && getTemp() < 200)
+			return false;
+		else {
+			ItemStack output = ClayKilnRecipes.getOutput(getItems().get(0));
+
+			if (output.isEmpty())
+				return false;
+			else {
+				ItemStack itemstack1 = getItems().get(1);
+				if (itemstack1.isEmpty())
+					return true;
+				if (!itemstack1.isItemEqual(output))
+					return false;
+				int result = itemstack1.getCount() + output.getCount();
+				return result <= 1;
 			}
+		}
+	}
+
+    public void smeltItem() {
+		if (canSmelt()) {
+			ItemStack itemstack = getItems().get(0);
+			ItemStack output = ClayKilnRecipes.getOutput(getItems().get(0));
+			ItemStack itemstack2 = getItems().get(1);
+
+			if (itemstack2.isEmpty())
+				getItems().set(1, output.copy());
+			setCookingDuration(0);
+			itemstack.shrink(1);
 		}
     }
 
@@ -86,6 +113,7 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
 
 	public void setTemp(int temperature) {
 		temp = temperature;
+		markForUpdate();
 	}
 
 	public int getTemp() {

@@ -41,20 +41,17 @@ public class TileEntityStoneGrill extends TileEntityInventoryHelper implements I
 
         if ((getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER || getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE) && getTemp() < 200 && canSmelt()) {
         	setTemp(getTemp() + 1);
-        	markForUpdate();
         }
 
         if ((getWorld().getBlockState(pos.down()).getBlock() != ModBlocks.CHARCOAL_HOPPER && getWorld().getBlockState(pos.down()).getBlock() != Blocks.FIRE) && getTemp() > 0) {
         	setTemp(getTemp() - 1);
-        	markForUpdate();
         }
 
 		if (getWorld().getBlockState(pos) != null && getTemp() >= 200 && canSmelt()) {
 			smeltItem();
 			setTemp(0);
-			markForUpdate();
 		}
-		
+
 		if(!canSmelt())
 			setTemp(0);
     }
