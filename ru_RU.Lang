@@ -1,0 +1,57 @@
+#Blocks
+tile.primal_tech.clay_kiln.name=Глинянная Печь
+tile.primal_tech.flint_block.name=Кремневый Блок
+tile.primal_tech.stick_bundle.name=Пачка Палочек
+tile.primal_tech.fibre_torch.name=Потухший Волоконный Факел
+tile.primal_tech.fibre_torch_lit.name=Горящий Волоконный Факел
+tile.primal_tech.charcoal_block.name=Древесный уголь низкого качества
+tile.primal_tech.work_stump.name=Рабочий Пень
+tile.primal_tech.work_stump_upgraded.name=Рабочий Пень Mk2
+tile.primal_tech.stone_grill.name=Каменный Гриль
+tile.primal_tech.wooden_hopper.name=Воронка Mk2 :P
+tile.primal_tech.charcoal_hopper.name=Горящий гриль
+tile.primal_tech.water_saw.name=Водяная пила
+tile.primal_tech.stone_anvil.name=Каменная Наковальня
+tile.primal_tech.leaf_bed.name=Кровать из соломы и листьев
+tile.primal_tech.wooden_basin.name=Деревянный Таз
+
+#Items
+item.primal_tech.fire_sticks.name=Палки Для Костра
+item.primal_tech.bone_pickaxe.name=Костянная Кирка
+item.primal_tech.bone_axe.name=Костянной Топор
+item.primal_tech.bone_shovel.name=Костянная Лопата
+item.primal_tech.bone_sword.name=Костянной Меч
+item.primal_tech.bone_knife.name=Костянной Нож
+item.primal_tech.bone_shard.name=Костянной Осколок
+item.primal_tech.plant_fibres.name=Растительное Волокно
+item.primal_tech.twine.name=Шпагат
+item.primal_tech.bone_shears.name=Костянные Ножницы
+item.primal_tech.rock.name=Крафтовый Камень
+item.primal_tech.wood_club.name=Деревянная Булова
+item.primal_tech.stone_club.name=Каменная Булова
+item.primal_tech.bone_club.name=Костянная Булава
+item.primal_tech.flint_edged_disc.name=Водопильный диск
+item.primal_tech.fluid_bladder.name=Жидкостный Баллон
+item.primal_tech.stone_mallet.name=Каменный Молоток
+item.primal_tech.leaf_bed.name=Кровать из Соломы и Листьев
+
+#Creative Tab
+itemGroup.primal_tech=Primal Tech
+
+#Tool Tips
+tooltip.fire_sticks_1=Держите в обеих руках и щелкните правой кнопкой мыши блок.
+tooltip.fire_sticks_2=Поджигает блок, на который смотрят. Одноразового использования.
+tooltip.mallet_1=Баш на каменной наковальне. Просто Изысканный Камень на палочке.
+tooltip.clubs=Оригинальный мультиинструмент. Разбивает блоки и черепа.
+tooltip.leaf_bed=Будет уничтожен, если сломать после размещения.
+tooltip.clay_kiln=Требуется противопожарная защита, чтобы достичь рабочей температуры. Запускает одиночные блоки.
+tooltip.stick_bundle=Кликните правой кнопкой ванильной палочкой до сгорания.
+tooltip.charcoal_block=Будет постоянно гореть огонь на вершине блока. Может использоваться в качестве топлива.
+tooltip.work_stump=Содержит один предмет на слот. Ударьте Крафтовым Камнем, когда рецепт выложен. Имеет полку для хранения Крафтового Камня.
+tooltip.stone_grill=Печь малой мощности. Требуется огненный блок внизу.
+tooltip.wooden_hopper=4 Слот бункер из дерева.
+tooltip.charcoal_hopper=При помещении под глиняную печь или каменный гриль, работает как источник огня для базовой автоматизации.
+tooltip.work_stump_mk2=Принимает полные стеки на слот. Модернизированная версия Рабочего Пня.
+tooltip.water_saw=Нужна проточная вода. Распиливает бревна на доски.
+tooltip.stone_anvil=Поместите Предметы на это. Ударьте каменным молотком.
+tooltip.wooden_basin=Заполните с ингредиентами и щелкните правой кнопкой мыши, чтобы перемешать.
