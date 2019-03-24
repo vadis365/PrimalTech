@@ -146,12 +146,15 @@ public class BlockWaterSaw extends Block implements ITileEntityProvider {
 			TileEntityWaterSaw tile = (TileEntityWaterSaw) world.getTileEntity(pos);
 			if (!stack.isEmpty() && tile.getStackInSlot(0).isEmpty()) {
 				if (!world.isRemote) {
-					tile.setInventorySlotContents(0, new ItemStack(stack.getItem(), 1, stack.getItemDamage()));
+					ItemStack stackInput = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
+					if(stack.hasTagCompound())
+						stackInput.setTagCompound(stack.getTagCompound());
+					tile.setInventorySlotContents(0, stackInput);
 					tile.setChoppingProgress(0);
 					if (!player.capabilities.isCreativeMode)
 						stack.shrink(1);
-						tile.markForUpdate();
-						world.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_FENCE_GATE_OPEN, SoundCategory.BLOCKS, 0.5F, 2F);
+					tile.markForUpdate();
+					world.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_FENCE_GATE_OPEN, SoundCategory.BLOCKS, 0.5F, 2F);
 					return true;
 				}
 			} else {

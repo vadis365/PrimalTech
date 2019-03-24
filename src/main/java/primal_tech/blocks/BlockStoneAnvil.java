@@ -152,10 +152,8 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 						tile.setInventorySlotContents(0, stackInput);
 						if (!player.capabilities.isCreativeMode)
 							stack.shrink(1);
-						if (!world.isRemote) {
-							tile.setStrikes(0);
-							tile.markForUpdate();
-							}
+						tile.setStrikes(0);
+						tile.markForUpdate();
 						return true;
 					}
 				} else {
