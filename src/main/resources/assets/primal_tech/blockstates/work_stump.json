@@ -1,8 +1,16 @@
 {
     "variants": {
-        "facing=north": { "model": "primal_tech:work_stump", "y": 180 },
-        "facing=south": { "model": "primal_tech:work_stump" },
-        "facing=west":  { "model": "primal_tech:work_stump", "y": 90},
-        "facing=east":  { "model": "primal_tech:work_stump" , "y": 270 }
+        "damage=0,facing=north": { "model": "primal_tech:work_stump", "y": 180 },
+        "damage=0,facing=south": { "model": "primal_tech:work_stump" },
+        "damage=0,facing=west":  { "model": "primal_tech:work_stump", "y": 90},
+        "damage=0,facing=east":  { "model": "primal_tech:work_stump", "y": 270 },
+        "damage=1,facing=north": { "model": "primal_tech:work_stump_stage_1", "y": 180 },
+        "damage=1,facing=south": { "model": "primal_tech:work_stump_stage_1" },
+        "damage=1,facing=west":  { "model": "primal_tech:work_stump_stage_1", "y": 90},
+        "damage=1,facing=east":  { "model": "primal_tech:work_stump_stage_1" , "y": 270 },
+        "damage=2,facing=north": { "model": "primal_tech:work_stump_stage_2", "y": 180 },
+        "damage=2,facing=south": { "model": "primal_tech:work_stump_stage_2" },
+        "damage=2,facing=west":  { "model": "primal_tech:work_stump_stage_2", "y": 90},
+        "damage=2,facing=east":  { "model": "primal_tech:work_stump_stage_2", "y": 270 }
     }
 }

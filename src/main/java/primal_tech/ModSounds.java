@@ -7,11 +7,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ModSounds {
-	public static SoundEvent BREAKING_STUFF, CABBAGE_FART;
+	public static SoundEvent BREAKING_STUFF, CABBAGE_FART, BENTLEY;
 
 	public static void init() {
 		BREAKING_STUFF = new SoundEvent(new ResourceLocation("primal_tech", "breaking_stuff")).setRegistryName("primal_tech", "breaking_stuff");
 		CABBAGE_FART = new SoundEvent(new ResourceLocation("primal_tech", "cabbage_fart")).setRegistryName("primal_tech", "cabbage_fart");
+		BENTLEY = new SoundEvent(new ResourceLocation("primal_tech", "bentley")).setRegistryName("primal_tech", "bentley");
 	}
 
 	@Mod.EventBusSubscriber(modid = "primal_tech")
@@ -19,7 +20,7 @@ public class ModSounds {
 		@SubscribeEvent
 		public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
 			init();
-			event.getRegistry().registerAll(BREAKING_STUFF, CABBAGE_FART);
+			event.getRegistry().registerAll(BREAKING_STUFF, CABBAGE_FART, BENTLEY);
 		}
 	}
 }

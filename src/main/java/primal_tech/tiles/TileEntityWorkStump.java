@@ -131,7 +131,7 @@ public class TileEntityWorkStump extends TileEntityInventoryHelper implements IT
 
 	public void markForUpdate() {
         IBlockState state = this.getWorld().getBlockState(this.getPos());
-        this.getWorld().notifyBlockUpdate(this.getPos(), state, state, 2);
+        this.getWorld().notifyBlockUpdate(this.getPos(), state, state, 3);
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {

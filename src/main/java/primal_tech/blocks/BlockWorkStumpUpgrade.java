@@ -75,9 +75,19 @@ public class BlockWorkStumpUpgrade extends BlockWorkStump {
 						stack.damageItem(1, player);
 						tile.setHit(true);
 						tile.markForUpdate();
+						if (tile.getDamage() >= ConfigHandler.WORK_STUMP_II_DAMAGE- 2) {
+							state = state.withProperty(DAMAGE, 1);
+							world.setBlockState(pos, state, 3);
+						}
+						if (tile.getDamage() >= ConfigHandler.WORK_STUMP_II_DAMAGE - 1) {
+							state = state.withProperty(DAMAGE, 2);
+							world.setBlockState(pos, state, 3);
+						}
 						if (tile.getDamage() >= ConfigHandler.WORK_STUMP_II_DAMAGE) {
 							breakBlock(world, pos, state);
 							world.destroyBlock(pos, false);
+							if(player.getName().equals("Darkosto"))
+								world.playSound((EntityPlayer)null, pos, ModSounds.BENTLEY, SoundCategory.BLOCKS, 1F, 1F);
 							world.playSound((EntityPlayer)null, pos, ModSounds.BREAKING_STUFF, SoundCategory.BLOCKS, 1F, 1F);
 						}
 					}

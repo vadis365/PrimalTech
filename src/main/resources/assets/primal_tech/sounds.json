@@ -10,5 +10,11 @@
     "sounds": [
       "primal_tech:cabbage_fart"
     ]
+  },
+    "bentley": {
+    "category": "blocks",
+    "sounds": [
+      "primal_tech:bentley"
+    ]
   }
 }

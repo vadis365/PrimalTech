@@ -34,7 +34,11 @@ public class ModModels {
 		ModelLoader.setCustomModelResourceLocation(ModBlocks.FIBRE_TORCH_ITEM, 0, new ModelResourceLocation("primal_tech:fibre_torch", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModBlocks.FIBRE_TORCH_ITEM_LIT, 0, new ModelResourceLocation("primal_tech:fibre_torch_lit", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModBlocks.WORK_STUMP_ITEM, 0, new ModelResourceLocation("primal_tech:work_stump", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModBlocks.WORK_STUMP_ITEM, 1, new ModelResourceLocation("primal_tech:work_stump_stage_1", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModBlocks.WORK_STUMP_ITEM, 2, new ModelResourceLocation("primal_tech:work_stump_stage_2", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModBlocks.WORK_STUMP_II_ITEM, 0, new ModelResourceLocation("primal_tech:work_stump_upgraded", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModBlocks.WORK_STUMP_II_ITEM, 1, new ModelResourceLocation("primal_tech:work_stump_upgraded_stage_1", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModBlocks.WORK_STUMP_II_ITEM, 2, new ModelResourceLocation("primal_tech:work_stump_upgraded_stage_2", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.ROCK, 0, new ModelResourceLocation("primal_tech:rock", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.WOOD_CLUB, 0, new ModelResourceLocation("primal_tech:wood_club", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.STONE_CLUB, 0, new ModelResourceLocation("primal_tech:stone_club", "inventory"));
