@@ -53,6 +53,8 @@ public class ModModels {
 		ModelLoader.setCustomModelResourceLocation(ModItems.FLUID_BLADDER, 0, new ModelResourceLocation("primal_tech:fluid_bladder_empty", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.FLUID_BLADDER, 1, new ModelResourceLocation("primal_tech:fluid_bladder_filled", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModBlocks.STONE_ANVIL_ITEM, 0, new ModelResourceLocation("primal_tech:stone_anvil", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModBlocks.STONE_ANVIL_ITEM, 1, new ModelResourceLocation("primal_tech:stone_anvil_stage_1", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModBlocks.STONE_ANVIL_ITEM, 2, new ModelResourceLocation("primal_tech:stone_anvil_stage_2", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.STONE_MALLET, 0, new ModelResourceLocation("primal_tech:stone_mallet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.LEAF_BED_ITEM, 0, new ModelResourceLocation("primal_tech:leaf_bed", "inventory"));
 		ModelLoader.setCustomStateMapper((ModBlocks.LEAF_BED), (new StateMap.Builder()).ignore(new IProperty[] {BlockLeafBed.OCCUPIED}).build());

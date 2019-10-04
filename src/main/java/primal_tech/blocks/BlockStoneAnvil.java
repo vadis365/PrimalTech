@@ -12,6 +12,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -43,11 +44,12 @@ import primal_tech.tiles.TileEntityStoneAnvil;
 
 public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
+	public static final PropertyInteger DAMAGE = PropertyInteger.create("damage", 0, 2);
 	public static final AxisAlignedBB SAW_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.5D, 1D);
 
 	public BlockStoneAnvil() {
 		super(Material.ROCK);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(DAMAGE, 0));
 		setHardness(1.5F);
 		setResistance(10.0F);
 		setSoundType(SoundType.STONE);
@@ -117,23 +119,20 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing facing = EnumFacing.getFront(meta);
-		if (facing.getAxis() == EnumFacing.Axis.Y)
-			facing = EnumFacing.NORTH;
-		return getDefaultState().withProperty(FACING, facing);
+		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta & 3)).withProperty(DAMAGE, Integer.valueOf((meta & 15) >> 2));
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int meta = 0;
-		meta = meta | ((EnumFacing) state.getValue(FACING)).getIndex();
-
+		meta = meta | state.getValue(FACING).getHorizontalIndex();
+		meta = meta | state.getValue(DAMAGE).intValue() << 2;
 		return meta;
 	}
 
 	@Override
 	 public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+		return getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(DAMAGE, Integer.valueOf(meta >> 2));
 	}
 
 	@Override
@@ -175,10 +174,22 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 				stack.damageItem(1, player);
 				tile.setHit(true);
 				tile.markForUpdate();
+				if (ConfigHandler.SHOW_BREAKING_STONE_ANVIL) {
+					if (tile.getDamage() == ConfigHandler.STONE_ANVIL_DAMAGE - 2) {
+						state = state.withProperty(DAMAGE, 1);
+						world.setBlockState(pos, state, 3);
+					}
+					if (tile.getDamage() == ConfigHandler.STONE_ANVIL_DAMAGE - 1) {
+						state = state.withProperty(DAMAGE, 2);
+						world.setBlockState(pos, state, 3);
+					}
+				}
 				if (tile.getDamage() >= ConfigHandler.STONE_ANVIL_DAMAGE) {
 					breakBlock(world, pos, state);
 					world.destroyBlock(pos, false);
-					world.playSound((EntityPlayer) null, pos, ModSounds.BREAKING_STUFF, SoundCategory.BLOCKS, 1F, 0.75F);
+					if(player.getName().equals("Darkosto"))
+						world.playSound((EntityPlayer)null, pos, ModSounds.BENTLEY, SoundCategory.BLOCKS, 1F, 1F);
+					world.playSound((EntityPlayer)null, pos, ModSounds.BREAKING_STUFF, SoundCategory.BLOCKS, 1F, 1F);
 				}
 			}
 		}
@@ -198,7 +209,7 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 				}
 				NBTTagCompound nbt = new NBTTagCompound();
 				tile.writeToNBT(nbt);
-				ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, 0);
+				ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, damageDropped(state));
 				if (tile.getDamage() > 0)
 					stack.setTagCompound(nbt);
 				InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
@@ -206,6 +217,11 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 			}
 		}
 	}
+
+	@Override
+    public int damageDropped(IBlockState state) {
+        return state.getValue(DAMAGE).intValue();
+    }
 
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
@@ -216,6 +232,16 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 				if (stack.getTagCompound().hasKey("damage")) {
 					tile.setDamage(stack.getTagCompound().getInteger("damage"));
 					tile.markForUpdate();
+				}
+			}
+			if (ConfigHandler.SHOW_BREAKING_STONE_ANVIL) {
+				if (tile.getDamage() == ConfigHandler.STONE_ANVIL_DAMAGE - 2) {
+					state = state.withProperty(DAMAGE, 1);
+					world.setBlockState(pos, state, 3);
+				}
+				if (tile.getDamage() == ConfigHandler.STONE_ANVIL_DAMAGE - 1) {
+					state = state.withProperty(DAMAGE, 2);
+					world.setBlockState(pos, state, 3);
 				}
 			}
 		}
@@ -237,7 +263,7 @@ public class BlockStoneAnvil extends Block implements ITileEntityProvider {
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {FACING});
+		return new BlockStateContainer(this, new IProperty[] {FACING, DAMAGE});
 	}
 
 }

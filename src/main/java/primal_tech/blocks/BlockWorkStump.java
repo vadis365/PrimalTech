@@ -43,6 +43,7 @@ import primal_tech.ModSounds;
 import primal_tech.PrimalTech;
 import primal_tech.configs.ConfigHandler;
 import primal_tech.tiles.TileEntityWorkStump;
+import primal_tech.tiles.TileEntityWorkStumpUpgraded;
 
 public class BlockWorkStump extends Block implements ITileEntityProvider {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -51,7 +52,7 @@ public class BlockWorkStump extends Block implements ITileEntityProvider {
 
 	public BlockWorkStump() {
 		super(Material.WOOD);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(DAMAGE, Integer.valueOf(0)));
+		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(DAMAGE, 0));
 		setHardness(1.5F);
 		setResistance(10.0F);
 		setSoundType(SoundType.WOOD);
@@ -100,15 +101,6 @@ public class BlockWorkStump extends Block implements ITileEntityProvider {
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.MODEL;
-	}
-
-	@Override
-	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-		if (itemIn == PrimalTech.TAB) {
-			items.add(new ItemStack(this));
-			items.add(new ItemStack(this, 1, 1));
-			items.add(new ItemStack(this, 1, 2));
-		}
 	}
 
 	@Nullable
@@ -163,7 +155,7 @@ public class BlockWorkStump extends Block implements ITileEntityProvider {
 
 	@Override
     public int damageDropped(IBlockState state) {
-        return ((Integer)state.getValue(DAMAGE)).intValue();
+        return state.getValue(DAMAGE).intValue();
     }
 
 	@Override
@@ -176,15 +168,30 @@ public class BlockWorkStump extends Block implements ITileEntityProvider {
 					tile.setDamage(stack.getTagCompound().getInteger("damage"));
 					tile.markForUpdate();
 				}
+				if (!(tile instanceof TileEntityWorkStumpUpgraded))
+					if (ConfigHandler.SHOW_BREAKING_WORK_STUMP) {
+						if (tile.getDamage() == ConfigHandler.WORK_STUMP_DAMAGE - 2) {
+							state = state.withProperty(DAMAGE, 1);
+							world.setBlockState(pos, state, 3);
+						}
+						if (tile.getDamage() == ConfigHandler.WORK_STUMP_DAMAGE - 1) {
+							state = state.withProperty(DAMAGE, 2);
+							world.setBlockState(pos, state, 3);
+						}
+					}
+				if (tile instanceof TileEntityWorkStumpUpgraded)
+					if (ConfigHandler.SHOW_BREAKING_WORK_STUMP_II) {
+						if (tile.getDamage() == ConfigHandler.WORK_STUMP_II_DAMAGE - 2) {
+							state = state.withProperty(DAMAGE, 1);
+							world.setBlockState(pos, state, 3);
+						}
+						if (tile.getDamage() == ConfigHandler.WORK_STUMP_II_DAMAGE - 1) {
+							state = state.withProperty(DAMAGE, 2);
+							world.setBlockState(pos, state, 3);
+						}
+					}
 			}
-			if (tile.getDamage() == ConfigHandler.WORK_STUMP_DAMAGE - 2) {
-				state = state.withProperty(DAMAGE, 1);
-				world.setBlockState(pos, state, 3);
-			}
-			if (tile.getDamage() == ConfigHandler.WORK_STUMP_DAMAGE - 1) {
-				state = state.withProperty(DAMAGE, 2);
-				world.setBlockState(pos, state, 3);
-			}
+
 		}
 		((TileEntityWorkStump) world.getTileEntity(pos)).rotation = (byte) (((MathHelper.floor((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) + 1) % 4);
 	}
@@ -239,13 +246,16 @@ public class BlockWorkStump extends Block implements ITileEntityProvider {
 					stack.damageItem(1, player);
 					tile.setHit(true);
 					tile.markForUpdate();
-					if (tile.getDamage() == ConfigHandler.WORK_STUMP_DAMAGE - 2) {
-						state = state.withProperty(DAMAGE, 1);
-						world.setBlockState(pos, state, 3);
-					}
-					if (tile.getDamage() == ConfigHandler.WORK_STUMP_DAMAGE - 1) {
-						state = state.withProperty(DAMAGE, 2);
-						world.setBlockState(pos, state, 3);
+					if (ConfigHandler.SHOW_BREAKING_WORK_STUMP) {
+						if (tile.getDamage() == ConfigHandler.WORK_STUMP_DAMAGE - 2) {
+							state = state.withProperty(DAMAGE, 1);
+							world.setBlockState(pos, state, 3);
+						}
+
+						if (tile.getDamage() == ConfigHandler.WORK_STUMP_DAMAGE - 1) {
+							state = state.withProperty(DAMAGE, 2);
+							world.setBlockState(pos, state, 3);
+						}
 					}
 					if (tile.getDamage() >= ConfigHandler.WORK_STUMP_DAMAGE) {
 						breakBlock(world, pos, state);

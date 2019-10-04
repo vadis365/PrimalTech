@@ -29,6 +29,10 @@ public class ConfigHandler {
 	public static int WOODEN_BASIN_STIRS;
 	public static boolean DROP_BONE_SHARD;
 	public static int BONE_SHARD_RATE;
+	public static boolean SHOW_BREAKING_WORK_STUMP;
+	public static boolean SHOW_BREAKING_WORK_STUMP_II;
+	public static boolean SHOW_BREAKING_STONE_ANVIL;
+
 	public void loadConfig(FMLPreInitializationEvent event) {
 		CONFIG = new Configuration(event.getSuggestedConfigurationFile());
 		CONFIG.load();
@@ -82,7 +86,7 @@ public class ConfigHandler {
 
 		MALLET_DAMAGE = CONFIG.get("Stone Anvil Setting", "Max Damage Of Stone Mallet", 160).getInt(160);
 
-		STONE_ANVIL_CRAFTING_STRIKES = CONFIG.getInt("Strikes Needed To Craft on The Stone Avil", "Stone Anvil Setting", 4, 1, Integer.MAX_VALUE, "");
+		STONE_ANVIL_CRAFTING_STRIKES = CONFIG.getInt("Strikes Needed To Craft on The Stone Anvil", "Stone Anvil Setting", 4, 1, Integer.MAX_VALUE, "");
 
 		CHARCOAL_BURN_TIME = CONFIG.getInt("Chance that fire will consume this block. 300 being a 100% chance, 0, being a 0% chance", "Charcoal", 0, 0, 300, "");
 
@@ -95,6 +99,12 @@ public class ConfigHandler {
 		DROP_BONE_SHARD = CONFIG.get("Clubs and Bone Shards", "Boneshards drop when Mobs are killed with Clubs.", true).getBoolean(true);
 
 		BONE_SHARD_RATE = CONFIG.getInt("Chance Boneshards drop when killed with Clubs. Higher numbers = less chance", "Clubs and Bone Shards", 3, 1, Integer.MAX_VALUE, "");
+
+		SHOW_BREAKING_WORK_STUMP = CONFIG.get("Work Stump Setting", "Stump Shows Cracks Before Breaking.", false).getBoolean(false);
+
+		SHOW_BREAKING_WORK_STUMP_II = CONFIG.get("Work Stump Setting", "Upgraded Stump Shows Cracks Before Breaking.", false).getBoolean(false);
+
+		SHOW_BREAKING_STONE_ANVIL = CONFIG.get("Stone Anvil Setting", "Stone Anvil Shows Cracks Before Breaking.", false).getBoolean(false);
 
 		if (CONFIG.hasChanged())
 			CONFIG.save();

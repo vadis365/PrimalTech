@@ -75,13 +75,15 @@ public class BlockWorkStumpUpgrade extends BlockWorkStump {
 						stack.damageItem(1, player);
 						tile.setHit(true);
 						tile.markForUpdate();
-						if (tile.getDamage() >= ConfigHandler.WORK_STUMP_II_DAMAGE- 2) {
-							state = state.withProperty(DAMAGE, 1);
-							world.setBlockState(pos, state, 3);
-						}
-						if (tile.getDamage() >= ConfigHandler.WORK_STUMP_II_DAMAGE - 1) {
-							state = state.withProperty(DAMAGE, 2);
-							world.setBlockState(pos, state, 3);
+						if (ConfigHandler.SHOW_BREAKING_WORK_STUMP_II) {
+							if (tile.getDamage() >= ConfigHandler.WORK_STUMP_II_DAMAGE - 2) {
+								state = state.withProperty(DAMAGE, 1);
+								world.setBlockState(pos, state, 3);
+							}
+							if (tile.getDamage() >= ConfigHandler.WORK_STUMP_II_DAMAGE - 1) {
+								state = state.withProperty(DAMAGE, 2);
+								world.setBlockState(pos, state, 3);
+							}
 						}
 						if (tile.getDamage() >= ConfigHandler.WORK_STUMP_II_DAMAGE) {
 							breakBlock(world, pos, state);

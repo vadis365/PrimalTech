@@ -68,7 +68,7 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
 				smeltItem();
 		}
 
-		if(!canSmelt())
+		if(!canSmelt() && active)
 			setTemp(0);
     }
 	
