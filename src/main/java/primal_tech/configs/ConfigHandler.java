@@ -68,11 +68,11 @@ public class ConfigHandler {
 		"minecraft:obsidian,0,1#lava#minecraft:cobblestone,0,minecraft:cobblestone,0"
 		}, "Happy Birthday!");
 
-		WORK_STUMP_DAMAGE = CONFIG.get("Work Stump Setting", "Crafting Uses Before Stump Breaks", 20).getInt(20);
+		WORK_STUMP_DAMAGE = CONFIG.getInt("Crafting Uses Before Stump Breaks", "Work Stump Setting", 20, 3, Integer.MAX_VALUE, "");
 
-		WORK_STUMP_II_DAMAGE = CONFIG.get("Work Stump Setting", "Crafting Uses Before Upgraded Stump Breaks", 40).getInt(40);
+		WORK_STUMP_II_DAMAGE = CONFIG.getInt("Crafting Uses Before Upgraded Stump Breaks", "Work Stump Setting", 40, 3, Integer.MAX_VALUE, "");
 
-		STONE_ANVIL_DAMAGE = CONFIG.get("Stone Anvil Setting", "Crafting Uses Before Stone Anvil Breaks", 20).getInt(20);
+		STONE_ANVIL_DAMAGE = CONFIG.getInt("Crafting Uses Before Stone Anvil Breaks", "Stone Anvil Setting", 20, 3, Integer.MAX_VALUE, "");
 
 		CRAFTING_STRIKES = CONFIG.getInt("Craftng Rock Strikes Needed To Craft on The Stump", "Work Stump Setting", 4, 1, Integer.MAX_VALUE, "");
 
