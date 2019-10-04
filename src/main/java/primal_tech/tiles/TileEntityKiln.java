@@ -48,7 +48,7 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
         if (getWorld().isRemote) 
             return;
 
-        if ((getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER) && getTemp() < 200 && canSmelt()) {
+        if ((getWorld().getBlockState(pos.down()).getBlock() == Blocks.FIRE || getWorld().getBlockState(pos.down()).getBlock() == ModBlocks.CHARCOAL_HOPPER) && getTemp() < 200) {
         	setTemp(getTemp() + 1);
         }
 
@@ -56,13 +56,13 @@ public class TileEntityKiln extends TileEntityInventoryHelper implements ITickab
         	setTemp(getTemp() - 1);
         }
 
-        if (getWorld().getBlockState(pos) != null && !active && getTemp() >= 200) {
+        if (getWorld().getBlockState(pos).getBlock() instanceof BlockClayKiln && !active && getTemp() >= 200) {
         	IBlockState state = getWorld().getBlockState(pos);
         	((BlockClayKiln) state.getBlock()).setState(getWorld(), pos);
         	setTemp(0);
         }
 
-		if (getWorld().getBlockState(pos) != null && getTemp() >= 200 && canSmelt()) {
+		if (getWorld().getBlockState(pos).getBlock() instanceof BlockClayKiln && getTemp() >= 200 && canSmelt()) {
 			setCookingDuration(getCookingDuration() + 1);
 			if (getCookingDuration() >= ClayKilnRecipes.getCooktime(getItems().get(0)))
 				smeltItem();

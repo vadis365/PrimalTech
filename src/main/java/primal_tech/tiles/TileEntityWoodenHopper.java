@@ -120,7 +120,7 @@ public class TileEntityWoodenHopper extends TileEntityInventoryHelper implements
                 setTransferCooldown(0);
                 updateHopper();  
             }
-            markForUpdate();
+          //  markForUpdate();
         }
     }
 
