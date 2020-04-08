@@ -1,0 +1,43 @@
+#Blocks
+tile.primal_tech.clay_kiln.name=Глиняная печь
+tile.primal_tech.flint_block.name=Кремневый блок
+tile.primal_tech.stick_bundle.name=Связка палок
+tile.primal_tech.fibre_torch.name=Незажжённый факел
+tile.primal_tech.fibre_torch_lit.name=Зажжёный факел
+tile.primal_tech.charcoal_block.name=Древесный уголь низкого качества
+tile.primal_tech.work_stump.name=Рабочий чурбан
+tile.primal_tech.work_stump_upgraded.name=Рабочий чурбан Mk2
+tile.primal_tech.stone_grill.name=Каменный гриль
+tile.primal_tech.wooden_hopper.name=Воронка Mk2 :P
+tile.primal_tech.charcoal_hopper.name=Жаркая воронка
+tile.primal_tech.water_saw.name=Водная пила
+tile.primal_tech.stone_anvil.name=Каменная наковальня
+tile.primal_tech.leaf_bed.name=Кровать из соломы и листьев
+
+#Items
+item.primal_tech.fire_sticks.name=Обструганные палки
+item.primal_tech.bone_pickaxe.name=Костяная кирка
+item.primal_tech.bone_axe.name=Костяной топор
+item.primal_tech.bone_shovel.name=Костяная лопатка
+item.primal_tech.bone_sword.name=Костяной меч
+item.primal_tech.bone_knife.name=Костяной нож
+item.primal_tech.bone_shard.name=Костяной осколок
+item.primal_tech.plant_fibres.name=Растительное волокно
+item.primal_tech.twine.name=Верёвка
+item.primal_tech.bone_shears.name=Костные ножницы
+item.primal_tech.rock.name=Камень для создания
+item.primal_tech.wood_club.name=Деревянная дубина
+item.primal_tech.stone_club.name=Каменная дубина
+item.primal_tech.bone_club.name=Костяная дубина
+item.primal_tech.flint_edged_disc.name=Водный пильный диск
+item.primal_tech.fluid_bladder.name=Пузырёк для жидкости
+item.primal_tech.stone_mallet.name=Каменный молоток
+item.primal_tech.leaf_bed.name=Кровать из соломы и листьев
+
+#Creative Tab
+itemGroup.primal_tech=Primal Tech
+
+#Tool Tips
+tooltip.fire_sticks_1=Держите обеими руками и щелкните правой кнопкой мыши по блоку.
+tooltip.fire_sticks_2=Поджигает блок, на который вы смотрите. Одноразовый.
+tooltip.mallet_1=Ударьте по каменной наковальне. Просто очищенный камень на палочке.
